@@ -1,0 +1,75 @@
+<div class="container container-fluid shadow-sm" [class.sign-up-mode]="!isSignIn">
+  <div class="forms-container">
+    <div class="signin-signup">
+      <form *ngIf="isSignIn" class="sign-in-form">
+        <h2 class="title">Se connecter</h2>
+
+        <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input type="text" placeholder="Veuiller entrer votre mail" />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input type="password" placeholder="Veuiller entrer votre mot de pass" />
+        </div>
+        <p class="social-text">Retrouver votre mot de pass</p>
+        <input type="submit" value="Se connecter" class="btn solid" />
+      </form>
+      <form *ngIf="!isSignIn" class="sign-up-form">
+        <h2 class="title">S'inscrire</h2>
+        <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input type="text" placeholder="Nom" />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-envelope"></i>
+          <input type="email" placeholder="Email" />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input type="text" placeholder="Numero de telephone" />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input type="password" placeholder="Password" />
+        </div>
+        <input type="submit" class="btn" value="S'inscrire" />
+      </form>
+    </div>
+  </div>
+
+  <div class="panels-container">
+    <div class="panel left-panel">
+      <div class="content">
+        <div class="left-panel-content">
+          <h3 *ngIf="isSignIn">Nouveau ici ?</h3>
+          <p *ngIf="isSignIn">
+            Merci de vous inscrire, votre participation est cruciale pour améliorer notre plateforme et offrir une expérience optimale à chacun.
+          </p>
+          <button class="btn transparent" (click)="toggleForm()">
+            S'inscrire
+          </button>
+          <img src="../../../assets/drawconnexion.png" alt="" class="image">
+        </div>
+      </div>
+    </div>
+  
+    <div class="panel right-panel">
+      <div class="content">
+        <div class="right-panel-content">
+          <div>
+            <h3 *ngIf="!isSignIn">Avez vous un compte</h3>
+            <p *ngIf="!isSignIn">
+            Votre fidélité contribue à l'amélioration constante de nos services pour vous offrir une expérience toujours plus satisfaisante.
+            </p>
+            <button class="btn transparent" (click)="toggleForm()">
+            Se connecter
+            </button>
+          </div>
+          <img src="../../../assets/drawinscrire.png" alt="" class="image">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
