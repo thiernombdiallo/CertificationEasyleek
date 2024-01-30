@@ -1,37 +1,37 @@
+<!-- login.component.html -->
+
 <div class="container container-fluid shadow-sm" [class.sign-up-mode]="!isSignIn">
   <div class="forms-container">
     <div class="signin-signup">
-      <form *ngIf="isSignIn" class="sign-in-form">
+      <form *ngIf="isSignIn" class="sign-in-form" (ngSubmit)="onLogin()">
         <h2 class="title">Se connecter</h2>
-
         <div class="input-field">
           <i class="fas fa-user"></i>
-          <input type="text" placeholder="Veuiller entrer votre mail" />
+          <input type="text" placeholder="Veuillez entrer votre mail" [(ngModel)]="username" />
         </div>
         <div class="input-field">
           <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Veuiller entrer votre mot de pass" />
+          <input type="password" placeholder="Veuillez entrer votre mot de passe" [(ngModel)]="password" />
         </div>
-        <p class="social-text">Retrouver votre mot de pass</p>
         <input type="submit" value="Se connecter" class="btn solid" />
       </form>
-      <form *ngIf="!isSignIn" class="sign-up-form">
+      <form *ngIf="!isSignIn" class="sign-up-form" (ngSubmit)="onRegister()">
         <h2 class="title">S'inscrire</h2>
         <div class="input-field">
           <i class="fas fa-user"></i>
-          <input type="text" placeholder="Nom" />
+          <input type="text" placeholder="Nom" [(ngModel)]="username" />
         </div>
         <div class="input-field">
           <i class="fas fa-envelope"></i>
-          <input type="email" placeholder="Email" />
+          <input type="email" placeholder="Email" [(ngModel)]="email" />
         </div>
         <div class="input-field">
           <i class="fas fa-user"></i>
-          <input type="text" placeholder="Numero de telephone" />
+          <input type="text" placeholder="Numero de telephone" [(ngModel)]="phoneNumber" />
         </div>
         <div class="input-field">
           <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Password" />
+          <input type="password" placeholder="Password" [(ngModel)]="registerPassword" />
         </div>
         <input type="submit" class="btn" value="S'inscrire" />
       </form>
@@ -58,12 +58,12 @@
       <div class="content">
         <div class="right-panel-content">
           <div>
-            <h3 *ngIf="!isSignIn">Avez vous un compte</h3>
+            <h3 *ngIf="!isSignIn">Avez-vous un compte</h3>
             <p *ngIf="!isSignIn">
-            Votre fidélité contribue à l'amélioration constante de nos services pour vous offrir une expérience toujours plus satisfaisante.
+              Votre fidélité contribue à l'amélioration constante de nos services pour vous offrir une expérience toujours plus satisfaisante.
             </p>
             <button class="btn transparent" (click)="toggleForm()">
-            Se connecter
+              Se connecter
             </button>
           </div>
           <img src="../../../assets/drawinscrire.png" alt="" class="image">
@@ -71,5 +71,4 @@
       </div>
     </div>
   </div>
-  
 </div>

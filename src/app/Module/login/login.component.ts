@@ -6,6 +6,17 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  email: string = '';
+  phoneNumber: string = '';
+
+  isSignIn: boolean = true;
+  username: string = '';
+  password: string = '';
+  registerPassword: string = '';
+
+  onLogin():void{};
+  onRegister():void{};
+
   @ViewChild('container') container!: ElementRef;
 
   ngOnInit() {
@@ -19,8 +30,6 @@ export class LoginComponent implements OnInit {
   onSignInClick() {
     this.container.nativeElement.classList.remove('sign-up-mode');
   }
-  isSignIn: boolean = true;
-
   toggleForm() {
     this.isSignIn = !this.isSignIn;
   }
