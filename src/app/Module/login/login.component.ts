@@ -18,9 +18,9 @@ export class LoginComponent implements OnInit {
   password: string = '';
   adresse: string = "";
   registerPassword: string = '';
+  registerEmail: string = '';
   showEmailError: boolean = false;
   emailErrorMessage: string = '';
-
   showPasswordError: boolean = false;
   passwordErrorMessage: string = '';
 
@@ -29,24 +29,24 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   onRegister() {
-    const data = {
-      name: this.username,
-      email: this.email,
-      adresse: this.adresse,
-      phone: this.phoneNumber,
-      password: this.registerPassword,
-    };
+  const data = {
+    name: this.username,
+    email: this.registerEmail,
+    adresse: this.adresse,
+    phone: this.phoneNumber,
+    password: this.registerPassword,
+  };
 
-    this.authService.register(data.name, data.email, data.phone, data.password).subscribe(
-      (response) => {
-        console.log('Réponse d\'inscription:', response);
-        this.login();
-      },
-      (error) => {
-        console.error('Erreur lors de l\'inscription:', error);
-        this.handleError(error);
-      }
-    );
+  this.authService.register(data.name, data.email, data.phone, data.password, data.adresse).subscribe(
+    (response) => {
+      console.log('Réponse d\'inscription:', response);
+      this.login();
+    },
+    (error) => {
+      console.error('Erreur lors de l\'inscription:', error);
+      this.handleError(error);
+    }
+  );
   }
 
   login() {
