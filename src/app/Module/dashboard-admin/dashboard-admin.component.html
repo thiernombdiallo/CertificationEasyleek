@@ -1,53 +1,53 @@
 <!-- SIDEBAR -->
 <section id="sidebar">
     <a class="brand" routerLink="/dashboard">
-        <img src="../../../assets/images/logo.png" alt="" height="80px" class="m-0 m-auto ">
+        <img src="../../../assets/images/logo.png" alt="" height="80px" class="m-0 m-auto">
     </a>
     <hr class="border">
     <ul class="side-menu top">
-        <li class="active" >
+        <li class="active" *ngIf="isAdmin">
             <a>
                 <i class='bx bxs-dashboard'></i>
                 <span class="text">Dashboard</span>
             </a>
         </li>
-        <li>
+        <li *ngIf="isAdmin">
             <a>
                 <i class='bx bxs-shopping-bag-alt'></i>
                 <span class="text">Catégories</span>
             </a>
         </li>
-        <li>
+        <li *ngIf="isAdmin">
             <a>
                 <i class='bx bxs-doughnut-chart'></i>
                 <span class="text">Client</span>
             </a>
         </li>
-        <li>
+        <li *ngIf="isAdmin">
             <a>
                 <i class='bx bxs-doughnut-chart'></i>
                 <span class="text">Restaurant</span>
             </a>
         </li>
-        <li>
+        <li *ngIf="isAdmin">
             <a>
                 <i class='bx bxs-doughnut-chart'></i>
                 <span class="text">Contact </span>
             </a>
         </li>
-        <li>
+        <li *ngIf="isRestaurateur">
             <a>
                 <i class='bx bxs-doughnut-chart'></i>
                 <span class="text">Menu</span>
             </a>
         </li>
-        <li>
+        <li *ngIf="isRestaurateur">
             <a>
                 <i class='bx bxs-doughnut-chart'></i>
                 <span class="text">Commande</span>
             </a>
         </li>
-        <li >
+        <li *ngIf="isRestaurateur">
             <a>
                 <i class='bx bxs-doughnut-chart'></i>
                 <span class="text">Commentaire</span>
@@ -67,6 +67,7 @@
     </ul>
 </section>
 <!-- SIDEBAR -->
+
 <!-- NAVBAR -->
 <nav class="d-flex justify-content-between w-50 border-2 mx-auto">
     <nav class="navbar bg-body-tertiary border-black">

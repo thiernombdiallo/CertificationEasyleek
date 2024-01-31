@@ -10,9 +10,7 @@ input {
 }
 .container {
   position: relative;
-  /* max-width: 100%; */
   margin: 10vh auto;
-  /* border: 1px solid magenta; */
   background-color: #fff;
   min-height: 80vh;
   overflow: hidden;

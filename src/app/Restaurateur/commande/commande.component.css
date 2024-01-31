@@ -1,0 +1,27 @@
+:root{
+    --fraise:#FFA07A;
+    --choco:#5D3C22;
+    --creame:#F8F3C6;
+    --argent:#F1F2F3;
+}
+.boutonajouter-blog{
+    color: #FFA07A;
+    border: 2px solid #FFA07A ;
+ }
+.titremere-blog{
+    color: #5D3C22;
+}
+.iconsearch {
+    background-color: #FFA07A;
+    color: white;
+}
+
+.iconsearch i {
+    color: white;
+}
+
+.carte-blog-admin{
+    /* width: 900px; */
+    height: auto;
+}
+

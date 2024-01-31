@@ -15,6 +15,7 @@ import { MenuComponent } from './Restaurateur/menu/menu.component';
 import { CommandeComponent } from './Restaurateur/commande/commande.component';
 import { CommentaireComponent } from './Restaurateur/commentaire/commentaire.component';
 import { AccueilAdminComponent } from './Administrateur/accueil-admin/accueil-admin.component';
+import { CategorieComponent } from './Administrateur/categorie/categorie.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'commandeResto', component: CommandeComponent},
   { path: 'commentaires', component: CommentaireComponent},
   { path: 'admin', component: AccueilAdminComponent},
+  { path: 'adminCantegorie', component: CategorieComponent},
 
 ];
 

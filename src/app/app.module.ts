@@ -23,6 +23,7 @@ import { ClientComponent } from './Administrateur/client/client.component';
 import { RestaurateurComponent } from './Administrateur/restaurateur/restaurateur.component';
 import { CategorieComponent } from './Administrateur/categorie/categorie.component';
 import { MessageComponent } from './Administrateur/message/message.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MessageComponent } from './Administrateur/message/message.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
