@@ -1,1 +1,167 @@
-<p>restaurateur works!</p>
+<div>
+    <h3 class="text-center mt-2 fw-bold titremere-blog">Listes des restaurants</h3>
+    <div class="d-flex justify-content-between">
+        <button class="btn fw-bold  boutonajouter-blog" data-bs-toggle="modal" data-bs-target="#ajouterrestaurant">Ajouter restaurant</button>
+        <div class="search">
+          <div class="input-group mb-3">
+              <input type="text" class="form-control inputPorteur" placeholder="Chercher un restaurant">
+              <button class="input-group-text iconsearch" id="basic-addon1"><i class="bi bi-search"></i></button>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card w-75"style="margin-top:8%;border:2px solid red;margin-left:15%;border:1px solid #F7E801;">
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" style="background-color: #FFA07A;font-weight:bold;">Photo</th>
+              <th scope="col" style="background-color: #FFA07A;font-weight:bold;">Nom</th>
+              <th scope="col" style="background-color: #FFA07A;font-weight:bold;">Lieux</th>
+              <th scope="col" style="background-color: #FFA07A;font-weight:bold;">Telephone</th>
+              <th scope="col" style="background-color: #FFA07A;font-weight:bold;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Fast-food</td>
+              <td>10/10/2024</td>
+              <td>Fast-food</td>
+              <td>
+                <ul class="d-flex list-group list-group-horizontal ">
+                  <li class="list-group-item"  data-bs-target="#detailrestaurant" data-bs-toggle="modal"><i class="bi bi-eye"></i></li>
+                  <li class="list-group-item"><i class="bi bi-trash3"></i></li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Patisserie </td>
+              <td>15/12/2023</td>
+              <td>Fast-food</td>
+              <td>
+                <ul class="d-flex list-group list-group-horizontal ">
+                  <li class="list-group-item" data-bs-target="#detailrestaurant" data-bs-toggle="modal"><i class="bi bi-eye"></i></li>
+                  <li class="list-group-item"><i class="bi bi-trash3"></i></li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Tangana</td>
+              <td>10/10/2021</td>
+              <td>Fast-food</td>
+              <td>
+                <ul class="d-flex list-group list-group-horizontal  border-0">
+                  <li class="list-group-item" data-bs-target="#detailrestaurant" data-bs-toggle="modal"><i class="bi bi-eye"></i></li>
+                  <li class="list-group-item"><i class="bi bi-trash3"></i></li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+  <!-- les modalles -->
+  <!-- debut model d'ajoute d'un restaurant dans le blog --> 
+    <div class="modal fade" id="ajouterrestaurant" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title w-100 fs-4 titreAjout text-center">Ajouter un restaurant</h1>
+            <button type="button" class="btn btn-closeAjout" data-bs-dismiss="modal" id="close-modal"><i class="bi bi-x-lg"></i></button>
+          </div>
+          <div class="modal-body">
+              <form class="titrerestaurant">
+                <div class="mb-3">
+                  <label for="titrerestaurant">Nom du restaurant:</label>
+                  <input class="form-control" type="text" id="titrerestaurant" name="titrerestaurant" required>
+                </div>
+                <div class="mb-3">
+                    <label for="titrerestaurant">Address Email</label>
+                    <input class="form-control" type="email" id="titrerestaurant" name="titrerestaurant" required>
+                  </div>
+                <div class="mb-3">
+                    <label for="titrerestaurant">Numero de telephone:</label>
+                    <input class="form-control" type="tel" id="titrerestaurant" name="titrerestaurant" required>
+                </div>
+                <div class="mb-3">
+                    <label for="titrerestaurant">Mot de passe</label>
+                    <input class="form-control" type="text" id="titrerestaurant" name="titrerestaurant" required>
+                </div>
+                <div class="mb-3">
+                    <label for="titrerestaurant">Lieu</label>
+                    <input class="form-control" type="text" id="titrerestaurant" name="titrerestaurant" required>
+                </div>
+                <div class="mb-3">
+                    <label for="titrerestaurant">Image:</label>
+                    <input class="form-control" type="text" id="titrerestaurant" name="titrerestaurant" required>
+                </div>
+                <div class="mb-3">
+                    <label for="titrerestaurant">Categorie</label>
+                    <select name="categorie" id="">
+                        <option value="">Ndekki </option>
+                        <option value="">Fast-Food</option>
+                        <option value="">Patiserie</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="titrerestaurant">Description:</label>
+                    <input class="form-control" type="text" id="titrerestaurant" name="titrerestaurant" required>
+                </div>
+          
+                <button class="btn btn-add" type="submit">Ajouter</button>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- fin du model d'ajoute d'un restaurant dans le blog -->
+
+     <!-- debut du model restaurant details -->
+  <div class="modal fade" id="detailrestaurant" tabindex="-1" aria-labelledby="detailrestaurant" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg modal-sm">
+      <div class="modal-content container">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="detailrestaurantLabel">Details du restaurant</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex flex-column">
+            <div class="row">
+              <div class="col">
+             <div class="w-75 mx-auto">
+              <img class="img-fluid rounded-4 imagerestaurant-detailblog w-50 h-25" src="https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" >
+             </div>
+             <div>
+              <h2 class="text-start">Coordonnée</h2>
+              <p class="text-start">Lengor@gmail.com</p>
+              <p class="text-start">77 202 20 20</p>
+              <p class="text-start">Ngor</p>
+             </div>
+             <div>
+              <h2>Description</h2>
+              <p class="text-start">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum praesentium at neque ex saepe beatae, ullam modi aut nobis in non numquam rem tenetur ab nulla consequatur soluta sunt eaque.</p>
+             </div>
+            </div>
+          </div>    
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="d-flex justify-content-end mb-4 mx-2">
+            <button class="btn btnUpdate me-3">Historique</button>
+            <button class="btn btnCloseDetail" data-bs-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+    <!-- fin du model restaurant details -->
+    
+  <!-- les modalles -->
+    
+  

@@ -24,11 +24,13 @@
     </div>
   </div>
 <div class="circles typeResto">
-  <div class="cerclemini">
-    <img src="https://cdn.pixabay.com/photo/2016/01/22/02/13/meat-1155132_640.jpg" alt="" class>
-    <span class="">Dibiterie</span>
+  <div *ngFor="let categorie of categories">
+    <div class="cerclemini">
+      <img src="https://cdn.pixabay.com/photo/2016/01/22/02/13/meat-1155132_640.jpg" alt="">
+      <span>{{ categorie.type }}</span>
+    </div>
   </div>
-  <div class="cerclemini">
+  <!-- <div class="cerclemini">
     <img src="https://cdn.pixabay.com/photo/2020/02/15/20/38/noodles-4851996_640.jpg" alt="">
     <span class="">Tangana</span>
   </div>
@@ -55,7 +57,7 @@
   <div class="cerclemini">
     <img src="https://cdn.pixabay.com/photo/2016/11/29/09/00/doughnuts-1868573_640.jpg" alt="">
     <span class="">Patisserie</span>
-  </div>
+  </div> -->
 </div>
 </div>
 

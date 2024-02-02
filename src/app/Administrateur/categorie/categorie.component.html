@@ -1,34 +1,94 @@
-<div class="card w-75"style="margin-top:8%;border:2px solid red;margin-left:15%;border:1px solid #F7E801;">
-    <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col" style="background-color: #FFA07A;font-weight:bold;">#</th>
-            <th scope="col" style="background-color: #FFA07A;font-weight:bold;">First</th>
-            <th scope="col" style="background-color: #FFA07A;font-weight:bold;">Last</th>
-            <th scope="col" style="background-color: #FFA07A;font-weight:bold;">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
+<div>
+  <h3 class="text-center mt-2 fw-bold titremere-blog">Listes des categories</h3>
+  <div class="d-flex justify-content-between">
+    <button class="btn fw-bold  boutonajouter-blog" data-bs-toggle="modal" data-bs-target="#ajouterCategorie">Ajouter categorie</button>
+    <div class="search">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control inputPorteur" placeholder="Chercher un categorie">
+        <button class="input-group-text iconsearch" id="basic-addon1"><i class="bi bi-search"></i></button>
+      </div>
     </div>
   </div>
+</div>
+
+<div class="card w-75" style="margin-top:8%;border:2px solid red;margin-left:15%;border:1px solid #F7E801;">
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="background-color: #FFA07A;font-weight:bold;">#</th>
+          <th scope="col" style="background-color: #FFA07A;font-weight:bold;">Nom</th>
+          <th scope="col" style="background-color: #FFA07A;font-weight:bold;">Date</th>
+          <th scope="col" style="background-color: #FFA07A;font-weight:bold;">Action</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let categorie of categories">
+        <tr>
+          <th scope="row"> {{ categorie.id }}</th>
+          <td>{{ categorie.type }}</td>
+          <td>{{ categorie.created_at | date:'dd/MM/yyyy'}} <td>
+          <td>
+            <ul class="d-flex list-group list-group-horizontal">
+              <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#editcategorieModal" (click)="editcategorieModal(categorie.id, categorie.type)"><i class="bi bi-pencil-square"></i></li>
+              <li class="list-group-item" (click)="deletecategorie(categorie.id)"><i class="bi bi-trash3"></i></li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- les modalles -->
+<!-- debut model d'ajoute d'un categorie dans le blog --> 
+  <div class="modal fade" id="ajouterCategorie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title w-100 fs-4 titreAjout text-center">Ajouter un categorie</h1>
+          <button type="button" class="btn btn-closeAjout" data-bs-dismiss="modal" id="close-modal"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <div class="modal-body">
+          <form class="titreCategorie" (ngSubmit)="addcategorie()">
+            <div class="mb-3">
+              <label for="titreCategorie">Titre du catégorie:</label>
+              <input class="form-control" type="text" id="titreCategorie" name="titreCategorie" required
+                [(ngModel)]="newcategorie">
+            </div>
+          
+            <button class="btn btn-add" type="submit">Ajouter</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin du model d'ajoute d'un categorie dans le blog -->
+  
+  
+  
+  <!-- debut du model de modification  -->
+  <div class="modal fade" id="editcategorieModal" tabindex="-1" aria-labelledby="modifierLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title titreMdfcategorie w-100 text-center fs-3" id="modifierLabel">Modifier categorie</h1>
+          <button type="button" class="btn btn-closeAjout" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <div class="modal-body">
+            <form class="mdfcategorie">
+              <div class="mb-3">
+                <label for="editTitle">Nouveau titre:</label>
+                <input id="editTitle" class="form-control" name="titre" required>
+              </div>
+          
+              <div class="mdfBtns d-flex justify-content-between">
+                <button type="submit" class="btn btnUpdate" data-bs-dismiss="modal">Enregistrer</button>
+                <button type="button" class="btn btnAnnuler" data-bs-dismiss="modal" >Annuler</button>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin du model de modification  -->
+<!-- les modalles -->
   

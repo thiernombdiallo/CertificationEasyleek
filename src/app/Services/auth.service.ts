@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { apiUrl } from './apiUrl';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,8 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   loggedIn = new BehaviorSubject<boolean>(false);
   userRole = new BehaviorSubject<string>('');
-
-  constructor(private http: HttpClient) { }
+  user: any;
+  constructor(private http: HttpClient, private router: Router) { }
 
   get isLoggedIn(): Observable<boolean> {
     return this.loggedIn.asObservable();
@@ -19,17 +20,15 @@ export class AuthService {
   get usersRole(): Observable<string> {
     return this.userRole.asObservable();
   }
-  login(name: string, password: string): Observable<any> {
+  login(email: string, password: string): Observable<any> {
     const loginUrl = `${apiUrl}/user/login`;
-    const credentials = { name, password };
-  
+    const credentials = { email, password };
     return this.http.post(loginUrl, credentials);
   }
 
-  register(name: string, email: string, phone: string, password: string, adresse: any): Observable<any> {
+  register(name: string, email: string, adresse: string, phone: string, password: string,): Observable<any> {
     const registerUrl = `${apiUrl}/user/register`;
-    const userData = { name, email, phone, password };
-
+    const userData = { name, email, adresse, phone, password };
     return this.http.post(registerUrl, userData);
   }
 
@@ -37,4 +36,5 @@ export class AuthService {
     this.loggedIn.next(false);
     this.userRole.next('');
   }
+ 
 }

@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/Services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
   email: string = '';
-  phoneNumber: string = '';
+  phone: string = '';
 
   isSignIn: boolean = true;
   username: string = '';
@@ -33,11 +34,11 @@ export class LoginComponent implements OnInit {
     name: this.username,
     email: this.registerEmail,
     adresse: this.adresse,
-    phone: this.phoneNumber,
+    phone: this.phone,
     password: this.registerPassword,
   };
 
-  this.authService.register(data.name, data.email, data.phone, data.password, data.adresse).subscribe(
+  this.authService.register(data.name, data.email, data.adresse , data.phone, data.password).subscribe(
     (response) => {
       console.log('Réponse d\'inscription:', response);
       this.login();
@@ -54,40 +55,30 @@ export class LoginComponent implements OnInit {
       email: this.email,
       password: this.password,
     };
-
+  
     this.authService.login(data.email, data.password).subscribe(
       (response) => {
-        console.log(response);
-        if (response.success && response.token) {
-          localStorage.setItem('token', response.token);
-          this.authService.loggedIn.next(true);
-
-          if (response.role) {
-            this.authService.userRole.next(response.role);
-          }
-        } else if (response.error && response.errorLists) {
-          console.error(response.message);
-          console.error(response.errorLists);
-
-          if (response.errorLists.email) {
-            console.error(response.errorLists.email[0]);
-          }
-
-          if (response.errorLists.password) {
-            console.error(response.errorLists.password[0]);
-          }
-        }
-
-        if (response.role === 'profil') {
-          this.router.navigate(['profil']);
-        }
-      },
+        console.log(response)
+        console.log(response.token);
+        
+        if (response.user.role_id === 1) {
+              this.router.navigate(['/adminSysteme']);
+            } else if (response.user.role_id === 2) {
+              this.router.navigate(['/menuResto']);
+            } else if (response.user.role_id === 3) {
+              this.router.navigate(['/accueil']);
+            } else {
+              console.error("Rôle non reconnu :", response.user.role);
+            }
+            ;
+            localStorage.setItem('token', JSON.stringify(response.token).replace(/['"]+/g, ''));
+          },
       (error) => {
         console.error(error);
         this.handleError(error);
       }
     );
-  }
+  }  
 
   // Méthode pour gérer les erreurs avec SweetAlert
   private handleError(error: any): void {

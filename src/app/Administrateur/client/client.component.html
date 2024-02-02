@@ -1,1 +1,121 @@
-<p>client works!</p>
+<div class="card w-75"style="margin-top:8%;border:2px solid red;margin-left:15%;border:1px solid #F7E801;">
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" style="background-color: #FFA07A;font-weight:bold;">Photo</th>
+            <th scope="col" style="background-color: #FFA07A;font-weight:bold;">Nom</th>
+            <th scope="col" style="background-color: #FFA07A;font-weight:bold;">Lieux</th>
+            <th scope="col" style="background-color: #FFA07A;font-weight:bold;">Telephone</th>
+            <th scope="col" style="background-color: #FFA07A;font-weight:bold;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Fast-food</td>
+            <td>10/10/2024</td>
+            <td>Fast-food</td>
+            <td>
+              <ul class="d-flex list-group list-group-horizontal ">
+                <li class="list-group-item"  data-bs-target="#editrestaurantModal" data-bs-toggle="modal"><i class="bi bi-pencil-square"></i></li>
+                <li class="list-group-item"><i class="bi bi-trash3"></i></li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Patisserie </td>
+            <td>15/12/2023</td>
+            <td>Fast-food</td>
+            <td>
+              <ul class="d-flex list-group list-group-horizontal ">
+                <li class="list-group-item" data-bs-target="#editrestaurantModal" data-bs-toggle="modal"><i class="bi bi-pencil-square"></i></li>
+                <li class="list-group-item"><i class="bi bi-trash3"></i></li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Tangana</td>
+            <td>10/10/2021</td>
+            <td>Fast-food</td>
+            <td>
+              <ul class="d-flex list-group list-group-horizontal  border-0">
+                <li class="list-group-item" data-bs-target="#editrestaurantModal" data-bs-toggle="modal"><i class="bi bi-pencil-square"></i></li>
+                <li class="list-group-item"><i class="bi bi-trash3"></i></li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+   <!-- debut du model plat details -->
+   <div class="modal fade" id="detailplat" tabindex="-1" aria-labelledby="detailplat" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg modal-sm">
+      <div class="modal-content container">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="detailplatLabel">Details du plat</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex flex-column">
+            <div class="row">
+              <div class="col">
+             <div class="w-75 mx-auto">
+              <img class="img-fluid rounded-4 imageplat-detailblog" src="https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" >
+             </div>
+             <div>
+              <h2 class="text-start">Prix: 1500 fcfa</h2>
+             </div>
+             <div>
+              <p class="text-start">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum praesentium at neque ex saepe beatae, ullam modi aut nobis in non numquam rem tenetur ab nulla consequatur soluta sunt eaque.</p>
+             </div>
+            </div>
+          </div>    
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="d-flex justify-content-end mb-4 mx-2">
+            <button class="btn btnUpdate me-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Commentaires</button>
+            <button class="btn btnCloseDetail" data-bs-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-sm ">
+      <div class="modal-content container">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 " id="exampleModalToggleLabel2">Commentaires</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- debut Liste des messages des commentaires -->
+    <h3 class="fw-bold text-center titremere-contact my-3">La liste des commentaires</h3>
+    <div class="row gap-2">
+      <div class="col-sm-12 col-lg-12 col-lg-12">
+          <div class="card">
+              <div class="card-header titre-carte-contact">
+                Rare Diallo
+              </div>
+              <div class="card-body">
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus quaerat mollitia consequuntur omnis expedita aliquid, aut, in hic, pariatur repellendus ea provident recusandae vero! Laboriosam perferendis minus ipsa recusandae voluptatem!
+                </p>
+              </div>
+          </div>
+      </div>
+    </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-target="#detailplat" data-bs-toggle="modal">Retourner </button>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- fin du model plat details -->
