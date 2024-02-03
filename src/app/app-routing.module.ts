@@ -7,7 +7,6 @@ import { GuideComponent } from './Utilisateur/guide/guide.component';
 import { ConfidentialiteComponent } from './Utilisateur/confidentialite/confidentialite.component';
 import { ContactComponent } from './Utilisateur/contact/contact.component';
 import { ProfilComponent } from './Utilisateur/profil/profil.component';
-import { DashboardAdminComponent } from './Module/sidebar/dashboard-admin.component';
 import { LoginComponent } from './Module/login/login.component';
 import { HeaderComponent } from './Module/header/header.component';
 import { FooterComponent } from './Module/footer/footer.component';
@@ -21,6 +20,7 @@ import { PanierComponent } from './Utilisateur/panier/panier.component';
 import { RestaurateurComponent } from './Administrateur/restaurateur/restaurateur.component';
 import { ClientComponent } from './Administrateur/client/client.component';
 import { MessageComponent } from './Administrateur/message/message.component';
+import { DashboardAdminComponent } from './Module/dashboard-admin/dashboard-admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
@@ -43,15 +43,12 @@ const routes: Routes = [
   { path: 'commandeResto', component: CommandeComponent},
   { path: 'commentairesResto', component: CommentaireComponent},
   
-  { path: 'adminSysteme', component: AccueilAdminComponent},
+  { path: 'adminSysteme', component: AccueilAdminComponent} ,
   { path: 'adminMessage', component: MessageComponent},
   { path: 'adminCategorie', component: CategorieComponent},
   { path: 'adminRestaurant', component: RestaurateurComponent},
   { path: 'adminClient', component: ClientComponent},
-
-
   
-
 ];
 
 @NgModule({

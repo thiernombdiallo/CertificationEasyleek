@@ -8,7 +8,11 @@ import { AuthService } from 'src/app/Services/auth.service';
   styleUrls: ['./dashboard-admin.component.css']
 })
 export class DashboardAdminComponent {
-  constructor(private renderer: Renderer2, private el: ElementRef) {}
+
+  isRestaurateur: boolean = true;
+  isAdminSysteme: boolean = true;
+  constructor(private renderer: Renderer2, private el: ElementRef , private authService: AuthService
+  ) {}
 
   ngAfterViewInit(): void {
     const sidebar = this.el.nativeElement.querySelector(".sidebar");
@@ -26,6 +30,10 @@ export class DashboardAdminComponent {
       }
     });
   }
+  logout(): void {
+    this.authService.logout();
+  }
 }
+
 
 

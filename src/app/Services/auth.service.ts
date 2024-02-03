@@ -33,8 +33,15 @@ export class AuthService {
   }
 
   logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    // Mettez à jour les valeurs des BehaviorSubject
     this.loggedIn.next(false);
     this.userRole.next('');
+
+    // Naviguer vers la page de connexion ou toute autre page souhaitée
+    this.router.navigate(['/login']);
   }
- 
 }
+ 

@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardAdminComponent } from './Module/sidebar/dashboard-admin.component';
 import { HeaderComponent } from './Module/header/header.component';
 import { FooterComponent } from './Module/footer/footer.component';
 import { LoginComponent } from './Module/login/login.component';
@@ -20,12 +19,13 @@ import { CommandeComponent } from './Restaurateur/commande/commande.component';
 import { CommentaireComponent } from './Restaurateur/commentaire/commentaire.component';
 import { AccueilAdminComponent } from './Administrateur/accueil-admin/accueil-admin.component';
 import { ClientComponent } from './Administrateur/client/client.component';
-import { RestaurateurComponent } from './Administrateur/restaurateur/restaurateur.component';
 import { CategorieComponent } from './Administrateur/categorie/categorie.component';
 import { MessageComponent } from './Administrateur/message/message.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DetailsRestaurantComponent } from './Utilisateur/details-restaurant/details-restaurant.component';
 import { PanierComponent } from './Utilisateur/panier/panier.component';
+import { DashboardAdminComponent } from './Module/dashboard-admin/dashboard-admin.component';
+import { RestaurateurComponent } from './Administrateur/restaurateur/restaurateur.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +58,7 @@ import { PanierComponent } from './Utilisateur/panier/panier.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

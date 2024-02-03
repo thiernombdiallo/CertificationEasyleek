@@ -10,7 +10,7 @@ export class CategorieComponent implements OnInit {
   categories: any[] = [];
   newcategorie: string = '';
   editingCategory: any = {}; 
-
+  editedType: string = ''
   constructor(private categorieService: CategorieService) {}
 
   ngOnInit(): void {
@@ -41,20 +41,26 @@ export class CategorieComponent implements OnInit {
     }
   
 
+    deletecategorie(categorieId: number) {
+        this.categorieService.deletecategorie(categorieId).subscribe(() => {
+          console.log("Catégorie supprimée avec succès !");
+          this.getAllCategories();
+        });
+      
+    }
+    
     editcategorieModal(categorieId: number, currentType: string) {
       this.categorieService.getSingleCategory(categorieId).subscribe((response: any) => {
         this.editingCategory = response.data;
+        this.editedType = this.editingCategory.type; // Initialise la valeur editedType
       });
     }
-
-  editcategorie(categorieId: number, newType: string) {
-    this.categorieService.editcategorie(categorieId, newType).subscribe(() => {
-      this.getAllCategories();
-    });
-  }
-
-  deletecategorie(categorieId: number) {
-      this.categorieService.deletecategorie(categorieId).subscribe(() => {
+  
+    editcategorie(categorieId: number, newType: string) {
+      this.categorieService.editcategorie(categorieId, newType).subscribe((response) =>  {
+        console.log("Catégorie modifiée avec succès !");
+        this.getAllCategories(); console.log("Réponse de l'API :", response);
+        console.log("Catégorie ajoutée avec succès !");
         this.getAllCategories();
       });
     }

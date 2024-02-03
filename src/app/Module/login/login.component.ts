@@ -58,8 +58,9 @@ export class LoginComponent implements OnInit {
   
     this.authService.login(data.email, data.password).subscribe(
       (response) => {
-        console.log(response)
+        console.log(response.user)
         console.log(response.token);
+        localStorage.setItem('token', JSON.stringify(response.token).replace(/['"]+/g, ''));
         
         if (response.user.role_id === 1) {
               this.router.navigate(['/adminSysteme']);
@@ -71,7 +72,6 @@ export class LoginComponent implements OnInit {
               console.error("Rôle non reconnu :", response.user.role);
             }
             ;
-            localStorage.setItem('token', JSON.stringify(response.token).replace(/['"]+/g, ''));
           },
       (error) => {
         console.error(error);
@@ -88,6 +88,10 @@ export class LoginComponent implements OnInit {
       text: 'Une erreur s\'est produite. Veuillez réessayer.',
     });
   }
+  logout(): void {
+    this.authService.logout();
+  }
+
 
   @ViewChild('container') container!: ElementRef;
 
