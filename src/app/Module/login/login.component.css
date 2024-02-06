@@ -3,7 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+.imagelogo {
+  width: 66px;
+}
 body,
 input {
   font-family: "Poppins", sans-serif;

@@ -52,7 +52,7 @@ export class CategorieComponent implements OnInit {
     editcategorieModal(categorieId: number, currentType: string) {
       this.categorieService.getSingleCategory(categorieId).subscribe((response: any) => {
         this.editingCategory = response.data;
-        this.editedType = this.editingCategory.type; // Initialise la valeur editedType
+        this.editedType = this.editingCategory.type;
       });
     }
   

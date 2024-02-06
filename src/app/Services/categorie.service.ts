@@ -40,7 +40,7 @@ export class CategorieService {
       const headers = this.getHeaders();
       return this.http.get<any[]>(`${this.categorieUrl}/categorie/list`, { headers: headers });
     }
-
+    
   deletecategorie(categorieId: number): Observable<any> {
       const headers = this.getHeaders();
     return this.http.delete(`${this.categorieUrl}/auth/categorie/delete/${categorieId}`, { headers });

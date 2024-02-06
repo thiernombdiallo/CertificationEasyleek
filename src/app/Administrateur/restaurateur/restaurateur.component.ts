@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AjoutRestaurateurService } from 'src/app/Services/ajout-restaurateur.service';
+import { apiUrl } from 'src/app/Services/apiUrl';
 import { CategorieService } from 'src/app/Services/categorie.service';
 
 @Component({
@@ -8,41 +9,79 @@ import { CategorieService } from 'src/app/Services/categorie.service';
   styleUrls: ['./restaurateur.component.css'],
 })
 export class RestaurateurComponent implements OnInit {
-  newrestaurateur: any = {};
-  restaurateurs: any[] = []; 
-  detailrestaurateur: any = {}; 
+  restaurateurs: any[] = [];
+  detailrestaurateur: any = {};
   categories: any;
   users: any;
+  restaurantApimage = apiUrl;
+ 
+    name : string = '';
+    adresse: string = '';
+    email: string ='';
+    phone: string = '';
+    password:string= '';
+    categories_id: string= '';
+    image:string= '';
+  
+
+  categorieTypes: string[] = [];
 
   constructor(private ajoutRestaurateurService: AjoutRestaurateurService , private categorieService :CategorieService) {}
 
   ngOnInit(): void {
     this.getListeRestaurateurs();
+    this.getAllCategories();
   }
   
   getListeRestaurateurs() {
     this.ajoutRestaurateurService.getListeRestaurateurs().subscribe((response: any) => {
       console.log("Regarder", response)
-      this.restaurateurs = response;
+      this.restaurateurs = response.data;
     });
   }
-
-  ajouterRestaurant() {
-    // Appelez votre méthode de service pour ajouter un nouveau restaurateur
-    this.ajoutRestaurateurService.ajouterRestaurateur(this.newrestaurateur).subscribe(
-      (response) => {
-        console.log('Restaurant ajouté avec succès', response);
-        // En option, vous pouvez réinitialiser le formulaire ou effectuer toute autre action en cas de succès
-        // this.resetForm();
-        // this.getListeRestaurateurs();
+  getImageUrl(imageName: string): string {
+    if (imageName) {
+      return `${this. restaurantApimage}/public/images/${imageName}`;
+    } else {
+      return `${this. restaurantApimage}/public/images/${imageName}`;
+    }
+  }
+  
+  getAllCategories() {
+    this.categorieService.getAllCategories().subscribe(
+      (categories: any) => {
+        this.categories = categories.data;
+        console.log( 'revoire ok',categories.data)
+        this.categorieTypes = categories.map((categorie: any) => categorie.type);
+        console.log(categories.type)
       },
       (error) => {
-        console.error('Erreur lors de l\'ajout du restaurant', error);
-        // Gérez l'erreur selon les besoins
+        console.error(
+          "Erreur lors de la récupération des catégories :",
+          error
+        );
       }
     );
   }
-
-  getDetailsRestaurant(){};
-  supprimerRestaurant(){};
+  ajouterRestaurant() {
+    const data = {
+      name: this.name,
+      email: this.email,
+      adresse: this.adresse,
+      phone: this.phone,
+      password: this.password,
+      categorie:this.categories_id
+    };
+  
+    this.ajoutRestaurateurService.ajouterRestaurateur(data.name, data.email, data.adresse , data.phone, data.password ,data.categorie).subscribe(
+      (response) => {
+        console.log('Réponse d\'inscription:', response);
+        this.restaurateurs = response.data;
+        this.getListeRestaurateurs();
+        document.getElementById("close-modal")?.click();
+      },
+    );
+    }
+    desactiverRestaurant(){}
+    getDetailsRestaurant(){}
 }

@@ -27,16 +27,16 @@
       </thead>
       <tbody *ngFor="let restaurateur of restaurateurs">
         <tr>
-          <th scope="row">{{ restaurateur.id }}</th>
+          <td><img [src]="getImageUrl(restaurateur.image)" alt="" width="50" height="50"></td>
           <td>{{ restaurateur.name }}</td>
           <td>{{ restaurateur.adresse }}</td>
           <td>{{ restaurateur.phone }}</td>
           <td>
             <ul class="d-flex list-group list-group-horizontal">
               <!-- Bouton pour voir les détails -->
-              <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#detailRestaurantModal" (click)="getDetailsRestaurant()"><i class="bi bi-eye"></i></li>
+              <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#detailrestaurateurModal" (click)="getDetailsRestaurant()"><i class="bi bi-eye"></i></li>
               <!-- Bouton pour supprimer le restaurant -->
-              <li class="list-group-item" (click)="supprimerRestaurant()"><i class="bi bi-trash3"></i></li>
+              <li class="list-group-item" (click)="desactiverRestaurant()"><i class="bi bi-trash3"></i></li>
             </ul>
           </td>
         </tr>
@@ -59,38 +59,34 @@
           <!-- Ajoutez ici les champs pour l'ajout d'un restaurant -->
           <div class="mb-3">
             <label for="nomRestaurant">Nom du restaurant:</label>
-            <input class="form-control" type="text" id="nomRestaurant" name="nomRestaurant" [(ngModel)]="newrestaurateur.name" required>
+            <input class="form-control" type="text" id="nomRestaurant" name="name" [(ngModel)]="name" required>
           </div>
           <div class="mb-3">
             <label for="emailrestaurateur">Email du restaurateur:</label>
-            <input class="form-control" type="email" id="emailrestaurateur" name="emailrestaurateur" [(ngModel)]="newrestaurateur.email" required>
+            <input class="form-control" type="email" id="emailrestaurateur" name="email" [(ngModel)]="email" required>
           </div>
           <div class="mb-3">
             <label for="phonerestaurateur">Telephone du restaurateur:</label>
-            <input class="form-control" type="text" id="phonerestaurateur" name="phonerestaurateur" [(ngModel)]="newrestaurateur.phone" required>
+            <input class="form-control" type="text" id="phonerestaurateur" name="phone" [(ngModel)]="phone" required>
           </div>
           <div class="mb-3">
             <label for="passwordrestaurateur">Mot de passe</label>
-            <input class="form-control" type="password" id="passwordrestaurateur" name="passwordrestaurateur" [(ngModel)]="newrestaurateur.password" required>
+            <input class="form-control" type="password" id="password" name="passwordrestaurateur" [(ngModel)]="password" required>
           </div>
           <div class="mb-3">
             <label for="adresserestaurateur">Adresse du restaurateur:</label>
-            <input class="form-control" type="text" id="adresserestaurateur" name="adresserestaurateur" [(ngModel)]="newrestaurateur.adresse" required>
+            <input class="form-control" type="text" id="adresserestaurateur" name="adresse" [(ngModel)]="adresse" required>
           </div>
           <div class="mb-3">
             <label for="imagerestaurateur">Image du restaurateur:</label>
-            <input class="form-control" type="file" id="imagerestaurateur" name="imagerestaurateur" [(ngModel)]="newrestaurateur.image" required>
+            <input class="form-control" type="file" id="imagerestaurateur" name="image" [(ngModel)]="image" required>
           </div>
           <div class="mb-3">
-            <label for="categorie_idrestaurateur">Type de restaurateur:</label>
-            <select id="categorie_idrestaurateur" name="categorie_idrestaurateur" required>
-              <option value=""></option>
+            <label for="categorie_type">Type de catégorie:</label>
+            <select id="categorie_type" name="categorie_type" [(ngModel)]="categories_id" required>
+              <option *ngFor="let categorie of categories" [value]="categorie.id">{{ categorie.type }}</option>
             </select>
-          </div>
-          <div class="mb-3">
-            <label for="sloganrestaurateur">Slogan du restaurateur:</label>
-            <textarea class="form-control" type="text" id="sloganrestaurateur" name="sloganrestaurateur" [(ngModel)]="newrestaurateur.slogan" required cols="30" rows="10"></textarea>
-          </div> 
+          </div>     
           <button class="btn btn-add" type="submit">Ajouter</button>
         </form>
       </div>
@@ -111,19 +107,18 @@
         <!-- Affichez ici les détails du restaurateur -->
         <div>
           <h2>Nom du restaurateur:</h2>
-          <p>{{ detailrestaurateur.nom }}</p>
+          <p>{{ name }}</p>
         </div>
         <div>
           <h2>Adresse du restaurateur:</h2>
-          <p>{{ detailrestaurateur.adresse }}</p>
+          <p>{{ adresse }}</p>
         </div>
         <div>
           <h2>Numéro de téléphone:</h2>
-          <p>{{ detailrestaurateur.telephone }}</p>
+          <p>{{ phone }}</p>
         </div>
       </div>
       <div class="modal-footer">
-        <!-- <button class="btn btn-danger" (click)="supprimerRestaurateur()">Supprimer le restaurateur</button> -->
         <button class="btn btn-danger" data-bs-dismiss="modal">Supprimer le restaurateur</button>
       </div>
     </div>

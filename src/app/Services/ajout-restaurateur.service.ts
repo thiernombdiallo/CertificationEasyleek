@@ -30,13 +30,17 @@ export class AjoutRestaurateurService {
   }
 
   getListeRestaurateurs(): Observable<any[]> {
-    // Ajoutez le point de terminaison pour récupérer les utilisateurs avec rôle_id: 2
-    const restaurateursUrl = apiUrl + '/user?role=${role_id=2}';
+    const restaurateursUrl = apiUrl + '/auth/restaurant/list/all';
     return this.http.get<any[]>(restaurateursUrl, { headers: this.getHeaders() });
   }  
 
-  ajouterRestaurateur(newrestaurateur: string): Observable<any> {
-    return this.http.post(`${this.restaurantApi}/auth/restaurant/register`, { type: newrestaurateur }, { headers: this.getHeaders() });
-    
+  ajouterRestaurateur(name: string, email: string, adresse: string, phone: string, password: string, categorie_id:string): Observable<any> {
+    const registerUrl = `${apiUrl}/auth/restaurant/register`;
+    const userData = { name, email, adresse, phone, password , categorie_id};
+    return this.http.post(registerUrl, userData ,{ headers: this.getHeaders() });
+  }
+  desactiver(): Observable<any> {
+    const deleteUrl = `${apiUrl}/auth//compte/block/{id}`;
+    return this.http.post(deleteUrl, { headers: this.getHeaders() });
   }
 }
