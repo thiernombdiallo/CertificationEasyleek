@@ -100,7 +100,7 @@ export class AjouteplatComponent {
       
     console.log(this.libelle);
     console.log(this.prix);
-    console.log(this.image);
+    console.log(this.image.name);
     console.log(this.descriptif);
     console.log(this.menu_id);
 

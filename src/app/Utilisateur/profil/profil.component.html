@@ -1,13 +1,4 @@
 <div class="row">
-    <div class="col-lg-12 border-danger">
-        <div class="card d-flex justify-content-between">
-            <div class="border-black">
-                <img src="/assets/image 100.png" alt="">
-                <p>Nom complet</p>
-            </div>
-                <button class="btn-danger">editer son profil</button>
-        </div>
-    </div>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -21,20 +12,18 @@
                 <div class="my-profile-head">
                     <div class="profile-img-main">
                         <div class="profile-img">
-                                                             <img src="https://dakarfooddelivery.com/assets/front/images/user-img.png">
+                                                            
                         </div>
                     </div>
                     <div class="my-profile-detail">
                         <div class="my-profile-info">
                             <h3>Fatoumata Diallo</h3>
                                                                                                 <p class="rtl-num-cod"><i class="iicon-icon-35"></i> +221709013262</p>
-                                                            <!-- earning points changes start -->
-                                                            <!-- <p><i class="wallet_icon"></i></p> -->
-                            <!-- earning points changes end -->
+                                                            
                         </div>
                         <div class="edit-pro-btn">
-                            <button class="btn" data-toggle="modal" data-target="#edit-profile">Editer le profil</button>
-                            <button class="btn delete_a" data-toggle="modal" onclick="showDeleteAcc();">Supprimer le compte</button>
+                            <button class="btn me-5" data-toggle="modal" data-target="#edit-profile">Editer le profil</button>
+                            <button class="btn btn-danger me-5" (click)="logout()">Déconnexion</button>
                         </div>
                     </div>
                 </div>

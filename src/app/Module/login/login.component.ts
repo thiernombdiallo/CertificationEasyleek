@@ -135,7 +135,7 @@ validatePhoneNumber(phone: string): boolean {
             } else if (response.user.role_id === 2) {
               this.router.navigate(['/menuResto']);
             } else if (response.user.role_id === 3) {
-              this.router.navigate(['/accueil']);
+              this.router.navigate(['/profil']);
             } else {
               console.error("Rôle non reconnu :", response.user.role);
             }
