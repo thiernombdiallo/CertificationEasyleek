@@ -21,6 +21,8 @@ import { RestaurateurComponent } from './Administrateur/restaurateur/restaurateu
 import { ClientComponent } from './Administrateur/client/client.component';
 import { MessageComponent } from './Administrateur/message/message.component';
 import { DashboardAdminComponent } from './Module/dashboard-admin/dashboard-admin.component';
+import { AjouteplatComponent } from './Restaurateur/ajouteplat/ajouteplat.component';
+import { DasboardRestoComponent } from './Module/dasboard-resto/dasboard-resto.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
@@ -39,7 +41,9 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent},
   { path: 'profil', component: ProfilComponent },
 
+  { path: 'dashboardResto', component: DasboardRestoComponent},
   { path: 'menuResto', component: MenuComponent},
+  { path: 'gestionPlat', component: AjouteplatComponent},
   { path: 'commandeResto', component: CommandeComponent},
   { path: 'commentairesResto', component: CommentaireComponent},
   

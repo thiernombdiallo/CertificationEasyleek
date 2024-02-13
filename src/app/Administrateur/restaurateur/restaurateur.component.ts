@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AjoutRestaurateurService } from 'src/app/Services/ajout-restaurateur.service';
 import { apiUrl } from 'src/app/Services/apiUrl';
 import { CategorieService } from 'src/app/Services/categorie.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ajout-restaurateur',
@@ -23,7 +24,15 @@ export class RestaurateurComponent implements OnInit {
     categories_id: string= '';
     image:string= '';
   
-
+    restaurateur: {
+      id: string;
+      name: string;
+      isBlocked: boolean;
+    } = {
+      id: '',
+      name: '',
+      isBlocked: false
+    };
   categorieTypes: string[] = [];
 
   constructor(private ajoutRestaurateurService: AjoutRestaurateurService , private categorieService :CategorieService) {}
@@ -32,7 +41,17 @@ export class RestaurateurComponent implements OnInit {
     this.getListeRestaurateurs();
     this.getAllCategories();
   }
-  
+   // Validate email format
+validateEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// Validate phone number format
+validatePhoneNumber(phone: string): boolean {
+  const phoneRegex = /^(70|75|76|77|78)[0-9]{7}$/;
+  return phoneRegex.test(phone);
+}
   getListeRestaurateurs() {
     this.ajoutRestaurateurService.getListeRestaurateurs().subscribe((response: any) => {
       console.log("Regarder", response)
@@ -64,6 +83,54 @@ export class RestaurateurComponent implements OnInit {
     );
   }
   ajouterRestaurant() {
+    if (!this.name || !this.email || !this.adresse || !this.phone || !this.password) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur!',
+        text: 'Veuillez remplir tous les champs.',
+      });
+      return;
+    }
+  
+    // Validate name length
+    if (this.name.length < 3) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur!',
+        text: 'Le nom doit contenir au moins 3 caractères.',
+      });
+      return;
+    }
+  
+    // Validate email format
+    if (!this.validateEmail(this.email)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur!',
+        text: 'Veuillez saisir une adresse e-mail valide.',
+      });
+      return;
+    }
+  
+    // Validate phone number format
+    if (!this.validatePhoneNumber(this.phone)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur!',
+        text: 'Veuillez saisir un numéro de téléphone valide (format : 70xxxxxxx, 75xxxxxxx, 76xxxxxxx, 77xxxxxxx, 78xxxxxxx).',
+      });
+      return;
+    }
+  
+    // Validate password length
+    if (this.password.length < 8) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur!',
+        text: 'Le mot de passe doit contenir au moins 8 caractères.',
+      });
+      return;
+    }
     const data = {
       name: this.name,
       email: this.email,
@@ -72,8 +139,8 @@ export class RestaurateurComponent implements OnInit {
       password: this.password,
       categorie:this.categories_id
     };
-  
-    this.ajoutRestaurateurService.ajouterRestaurateur(data.name, data.email, data.adresse , data.phone, data.password ,data.categorie).subscribe(
+    
+    this.ajoutRestaurateurService.ajouterRestaurateur(data.name, data.email, data.adresse , data.phone, data.password ,data.categorie ).subscribe(
       (response) => {
         console.log('Réponse d\'inscription:', response);
         this.restaurateurs = response.data;
@@ -82,6 +149,76 @@ export class RestaurateurComponent implements OnInit {
       },
     );
     }
-    desactiverRestaurant(){}
-    getDetailsRestaurant(){}
-}
+    desactiverRestaurant(restaurateur: any): void {
+      Swal.fire({
+        title: 'Êtes-vous sûr(e) de vouloir désactiver ce restaurant ?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Oui, désactiver',
+        cancelButtonText: 'Annuler'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Appel de la méthode de désactivation du service
+          this.ajoutRestaurateurService.desactiverRestaurant(restaurateur.id).subscribe(
+            (response) => {
+              console.log('Restaurant désactivé avec succès', response);
+              // Ajoutez ici le code pour mettre à jour la liste des restaurateurs ou effectuer d'autres actions si nécessaire.
+            },
+            (error) => {
+              console.error('Erreur lors de la désactivation du restaurant', error);
+              // Ajoutez ici le code pour gérer l'erreur, par exemple, afficher un message à l'utilisateur.
+            }
+          );
+        }
+      });
+    }
+    unblockRestaurant(restaurateur: any): void {
+      Swal.fire({
+        title: 'Êtes-vous sûr(e) de vouloir débloquer ce restaurant ?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Oui, débloquer',
+        cancelButtonText: 'Annuler'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Call the method to unlock the restaurant
+          this.ajoutRestaurateurService.unblockRestaurant(restaurateur.id).subscribe(
+            (response) => {
+              console.log('Restaurant débloqué avec succès', response);
+              // Update the icon or perform other actions if needed
+              restaurateur.isBlocked = false; // Assuming there's a property to track if the restaurant is blocked
+            },
+            (error) => {
+              console.error('Erreur lors du déblocage du restaurant', error);
+              // Handle error as needed
+            }
+          );
+        }
+      });
+    }
+
+    toggleBlockStatus(): void {
+      this.restaurateur.isBlocked = !this.restaurateur.isBlocked;
+    }
+// toggleBlockStatus(restaurateur: any): void {
+//   if (restaurateur.isBlocked) {
+//     this.unblockRestaurant(restaurateur);
+//   } else {
+//     this.desactiverRestaurant(restaurateur);
+//   }
+// }
+    getDetailsRestaurant(restaurateur: any): void {
+      // Call the service method to get restaurant details by ID
+      this.ajoutRestaurateurService.getRestaurantDetails(restaurateur.id).subscribe(
+        (details) => {
+          // Update component properties with the fetched details
+          this.name = details.name;
+          this.adresse = details.adresse;
+          this.phone = details.phone;
+        },
+        (error) => {
+          console.error('Erreur lors de la récupération des détails du restaurant', error);
+          // Handle error as needed
+        }
+      );
+    }}

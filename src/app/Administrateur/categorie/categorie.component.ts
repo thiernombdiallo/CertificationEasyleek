@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategorieService } from 'src/app/Services/categorie.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-categorie',
@@ -25,6 +26,14 @@ export class CategorieComponent implements OnInit {
   }
 
   addcategorie() {
+    if (!this.newcategorie || this.newcategorie.trim() === '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur!',
+        text: 'Veuillez saisir le nom de la catégorie.',
+      });
+      return;
+    }
     console.log("Ajout de catégorie en cours...", this.newcategorie);
     this.categorieService.addcategorie(this.newcategorie).subscribe(
       (response) => {
@@ -42,11 +51,21 @@ export class CategorieComponent implements OnInit {
   
 
     deletecategorie(categorieId: number) {
-        this.categorieService.deletecategorie(categorieId).subscribe(() => {
-          console.log("Catégorie supprimée avec succès !");
-          this.getAllCategories();
-        });
-      
+      Swal.fire({
+        title: 'Confirmation',
+        text: 'Êtes-vous sûr de vouloir supprimer cette catégorie ?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Oui, supprimer',
+        cancelButtonText: 'Annuler'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.categorieService.deletecategorie(categorieId).subscribe(() => {
+            console.log("Catégorie supprimée avec succès !");
+            this.getAllCategories();
+          });
+        }
+      });
     }
     
     editcategorieModal(categorieId: number, currentType: string) {
@@ -57,6 +76,14 @@ export class CategorieComponent implements OnInit {
     }
   
     editcategorie(categorieId: number, newType: string) {
+      if (!newType || newType.trim() === '') {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur!',
+          text: 'Veuillez saisir le nouveau nom de la catégorie.',
+        });
+        return;
+      }
       this.categorieService.editcategorie(categorieId, newType).subscribe((response) =>  {
         console.log("Catégorie modifiée avec succès !");
         this.getAllCategories(); console.log("Réponse de l'API :", response);

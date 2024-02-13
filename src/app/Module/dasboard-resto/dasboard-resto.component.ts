@@ -1,13 +1,12 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { AuthService } from 'src/app/Services/auth.service';
 
-
 @Component({
-  selector: 'app-dashboard-admin',
-  templateUrl: './dashboard-admin.component.html',
-  styleUrls: ['./dashboard-admin.component.css']
+  selector: 'app-dasboard-resto',
+  templateUrl: './dasboard-resto.component.html',
+  styleUrls: ['./dasboard-resto.component.css']
 })
-export class DashboardAdminComponent {
+export class DasboardRestoComponent {
 
   constructor(private renderer: Renderer2, private el: ElementRef , private authService: AuthService
   ) {}
@@ -33,6 +32,4 @@ export class DashboardAdminComponent {
     this.authService.logout();
   }
 }
-
-
 

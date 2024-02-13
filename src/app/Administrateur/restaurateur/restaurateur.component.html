@@ -34,9 +34,11 @@
           <td>
             <ul class="d-flex list-group list-group-horizontal">
               <!-- Bouton pour voir les détails -->
-              <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#detailrestaurateurModal" (click)="getDetailsRestaurant()"><i class="bi bi-eye"></i></li>
+              <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#detailrestaurateurModal" (click)="getDetailsRestaurant(restaurateur)"><i class="bi bi-eye"></i></li>
               <!-- Bouton pour supprimer le restaurant -->
-              <li class="list-group-item" (click)="desactiverRestaurant()"><i class="bi bi-trash3"></i></li>
+              <li class="list-group-item" (click)="toggleBlockStatus()">
+                <i [class]="restaurateur.isBlocked ? 'bi-unlock' : 'bi-trash3'"></i>
+              </li>
             </ul>
           </td>
         </tr>
@@ -119,7 +121,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-danger" data-bs-dismiss="modal">Supprimer le restaurateur</button>
+        <button class="btn btn-danger" data-bs-dismiss="modal">Desactiver </button>
       </div>
     </div>
   </div>

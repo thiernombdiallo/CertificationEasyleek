@@ -26,6 +26,8 @@ import { DetailsRestaurantComponent } from './Utilisateur/details-restaurant/det
 import { PanierComponent } from './Utilisateur/panier/panier.component';
 import { DashboardAdminComponent } from './Module/dashboard-admin/dashboard-admin.component';
 import { RestaurateurComponent } from './Administrateur/restaurateur/restaurateur.component';
+import { AjouteplatComponent } from './Restaurateur/ajouteplat/ajouteplat.component';
+import { DasboardRestoComponent } from './Module/dasboard-resto/dasboard-resto.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { RestaurateurComponent } from './Administrateur/restaurateur/restaurateu
     MessageComponent,
     DetailsRestaurantComponent,
     PanierComponent,
+    AjouteplatComponent,
+    DasboardRestoComponent,
    
   ],
   imports: [
