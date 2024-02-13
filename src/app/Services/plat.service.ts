@@ -7,7 +7,7 @@ import { apiUrl } from './apiUrl';
   providedIn: 'root',
 })
 export class PlatService {
-  private platsUrl = apiUrl +'/auth/plat';
+  private menuUrl = apiUrl + '/auth/menu';
 
   constructor(private http: HttpClient) {}
 
@@ -19,35 +19,30 @@ export class PlatService {
     });
   }
 
-  getPlats(): Observable<any> {
-    return this.http.get(`${this.platsUrl}/list`, { headers: this.getHeaders() });
+  getMenus(): Observable<any[]> {
+    const headers = this.getHeaders();
+    return this.http.get<any[]>(`${this.menuUrl}/list`, { headers });
+  }
+  
+  addMenu(newmenu: string): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.post<any>(`${this.menuUrl}/store`, { titre : newmenu}, { headers });
   }
 
-  getPlatDetails(id: number): Observable<any> {
-    return this.http.get(`${this.platsUrl}/show/${id}`, { headers: this.getHeaders() });
+  editMenu(menuId: string, newTitre: string): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.put<any>(`${this.menuUrl}/update/${menuId}`, { titre: newTitre }, { headers });
   }
 
-  getPlatsByRestaurant(): Observable<any> {
-    return this.http.get(`${this.platsUrl}/list/restaurant`, { headers: this.getHeaders() });
+  getMenu(menuId: string): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.get<any>(`${this.menuUrl}/show/${menuId}`, { headers });
   }
 
-  ajouterPlat(platData: any): Observable<any> {
-    return this.http.post(`${this.platsUrl}/store`, platData, { headers: this.getHeaders() });
+  deleteMenu(menuId: string): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.delete<any>(`${this.menuUrl}/delete/${menuId}`, { headers });
   }
-
-  modifierPlat(platId: number, platData: any): Observable<any> {
-    return this.http.put(`${this.platsUrl}/update/${platId}`, platData, { headers: this.getHeaders() });
+  
+    
   }
-
-  archiverPlat(platId: number): Observable<any> {
-    return this.http.patch(`${this.platsUrl}/archiver/${platId}`, {}, { headers: this.getHeaders() });
-  }
-
-  desarchiverPlat(platId: number): Observable<any> {
-    return this.http.patch(`${this.platsUrl}/desarchiver/${platId}`, {}, { headers: this.getHeaders() });
-  }
-
-  supprimerPlat(platId: number): Observable<any> {
-    return this.http.delete(`${this.platsUrl}/delete/${platId}`, { headers: this.getHeaders() });
-  }
-}

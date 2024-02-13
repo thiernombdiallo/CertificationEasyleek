@@ -25,10 +25,6 @@ export class AjoutRestaurateurService {
     }
   }
 
-  getListeRestaurants(): Observable<any[]> {
-    return this.http.get<any[]>(this.restaurantApi, { headers: this.getHeaders() });
-  }
-
   getListeRestaurateurs(): Observable<any[]> {
     const restaurateursUrl = apiUrl + '/auth/restaurant/list/all';
     return this.http.get<any[]>(restaurateursUrl, { headers: this.getHeaders() });
@@ -39,8 +35,17 @@ export class AjoutRestaurateurService {
     const userData = { name, email, adresse, phone, password , categorie_id};
     return this.http.post(registerUrl, userData ,{ headers: this.getHeaders() });
   }
-  desactiver(): Observable<any> {
-    const deleteUrl = `${apiUrl}/auth//compte/block/{id}`;
-    return this.http.post(deleteUrl, { headers: this.getHeaders() });
+  desactiverRestaurant(id: string): Observable<any> {
+    const blockUrl = `${apiUrl}/auth/restaurant/compte/block/${id}`;
+    return this.http.post(blockUrl, {}, { headers: this.getHeaders() });
+  }
+  unblockRestaurant(id: string): Observable<any> {
+    const unblockUrl = `${apiUrl}/auth/restaurant/compte/unblock/${id}`;
+    return this.http.post(unblockUrl, {}, { headers: this.getHeaders() });
+  }
+
+  getRestaurantDetails(id: string): Observable<any> {
+    const detailsUrl = `${apiUrl}/auth/restaurant/details/${id}`;
+    return this.http.post(detailsUrl, {}, { headers: this.getHeaders() });
   }
 }
