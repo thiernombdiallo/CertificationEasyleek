@@ -15,6 +15,7 @@ export class MenuComponent {
   newmenu: string = '';
   editingMenu: any = {};
   editedTitre: string = '';
+  plats:any[] = [];
 
 
 constructor(private menusservice: PlatService) {}
@@ -22,6 +23,16 @@ constructor(private menusservice: PlatService) {}
   ngOnInit(): void {
     this.getMenu(); 
   }
+  fetchPlats() {
+    console.log()
+    this.menusservice.getRestaurantList().subscribe(
+      (response: any) => {
+        console.log("Liste des plats :", response);
+        this.plats = response; // Adjust if the response structure is different
+      },
+    );
+  }
+
   
   // menu 
   deletemenu(menuId: string) {
@@ -83,5 +94,18 @@ constructor(private menusservice: PlatService) {}
       this.menus = response.menu;
     });
   }
- 
+  detail(menuId: any) {
+    this.menusservice.getMenuDetails(menuId).subscribe(
+      (response :any) => {
+        console.log("je suis reponse",response)
+        this.selectedMenu = response;
+
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des détails du menu', error);
+        // Handle error as needed
+      }
+    );
+  }
 }
+

@@ -149,7 +149,23 @@ validatePhoneNumber(phone: string): boolean {
       },
     );
     }
-    desactiverRestaurant(restaurateur: any): void {
+
+    getDetailsRestaurant(restaurateur: any): void {
+      console.log('Restaurateur:', restaurateur);
+      this.ajoutRestaurateurService.getRestaurantDetails(restaurateur.id).subscribe(
+         (details) => {
+          console.log("la reponse du detail",details)
+            this.name = details.data.name;
+            this.adresse = details.data.adresse;
+            this.phone = details.data.phone;
+         },
+         (error) => {
+            console.error('Erreur lors de la récupération des détails du restaurant', error);
+         }
+      );
+   }
+   
+desactiverRestaurant(restaurateur: any): void {
       Swal.fire({
         title: 'Êtes-vous sûr(e) de vouloir désactiver ce restaurant ?',
         icon: 'warning',
@@ -172,7 +188,9 @@ validatePhoneNumber(phone: string): boolean {
         }
       });
     }
-    unblockRestaurant(restaurateur: any): void {
+
+
+activerRestaurant(restaurateur: any): void {
       Swal.fire({
         title: 'Êtes-vous sûr(e) de vouloir débloquer ce restaurant ?',
         icon: 'warning',
@@ -182,7 +200,7 @@ validatePhoneNumber(phone: string): boolean {
       }).then((result) => {
         if (result.isConfirmed) {
           // Call the method to unlock the restaurant
-          this.ajoutRestaurateurService.unblockRestaurant(restaurateur.id).subscribe(
+          this.ajoutRestaurateurService.activerRestaurant(restaurateur.id).subscribe(
             (response) => {
               console.log('Restaurant débloqué avec succès', response);
               // Update the icon or perform other actions if needed
@@ -200,25 +218,4 @@ validatePhoneNumber(phone: string): boolean {
     toggleBlockStatus(): void {
       this.restaurateur.isBlocked = !this.restaurateur.isBlocked;
     }
-// toggleBlockStatus(restaurateur: any): void {
-//   if (restaurateur.isBlocked) {
-//     this.unblockRestaurant(restaurateur);
-//   } else {
-//     this.desactiverRestaurant(restaurateur);
-//   }
-// }
-    getDetailsRestaurant(restaurateur: any): void {
-      // Call the service method to get restaurant details by ID
-      this.ajoutRestaurateurService.getRestaurantDetails(restaurateur.id).subscribe(
-        (details) => {
-          // Update component properties with the fetched details
-          this.name = details.name;
-          this.adresse = details.adresse;
-          this.phone = details.phone;
-        },
-        (error) => {
-          console.error('Erreur lors de la récupération des détails du restaurant', error);
-          // Handle error as needed
-        }
-      );
-    }}
+  }

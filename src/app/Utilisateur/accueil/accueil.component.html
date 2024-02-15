@@ -14,23 +14,23 @@
     </div>
   </div>
 <!-- section type de restaurant -->
-<div class="border-black" id="restotype">
+<div class="border-black my-5" id="restotype">
   <div class="d-flex justify-content-between">
-    <h3>Différentes types de restaurants</h3>
-    <div class="d-flex justify-content-between">
+    <h3 class="m-4">Différentes types de restaurants</h3>
+    <div class="d-flex justify-content-between m-4">
       <p>Voir plus</p>
       <p><i class="bi bi-chevron-left" data-bs-target="#restotype" data-bs-slide="prev"></i><p>
       <p><i class="bi bi-chevron-right" data-bs-target="#restotype" data-bs-slide="next"></i></p>
     </div>
   </div>
 <div class="circles typeResto">
-  <div *ngFor="let categorie of categories">
+  <!-- <div *ngFor="let categorie of categories">
     <div class="cerclemini">
       <img src="https://cdn.pixabay.com/photo/2016/01/22/02/13/meat-1155132_640.jpg" alt="">
       <span>{{ categorie.type }}</span>
     </div>
-  </div>
-  <!-- <div class="cerclemini">
+  </div> -->
+  <div class="cerclemini">
     <img src="https://cdn.pixabay.com/photo/2020/02/15/20/38/noodles-4851996_640.jpg" alt="">
     <span class="">Tangana</span>
   </div>
@@ -57,14 +57,14 @@
   <div class="cerclemini">
     <img src="https://cdn.pixabay.com/photo/2016/11/29/09/00/doughnuts-1868573_640.jpg" alt="">
     <span class="">Patisserie</span>
-  </div> -->
+  </div>
 </div>
 </div>
 
 <!-- section type de restaurant -->
 
 <!-- section du resto mise en avant -->
-<div class="my-4">
+<div class="my-4 m-4">
   <h4 class="text-start">Restaurant mise à avant</h4>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 m-5 ">
     <div class="col">
@@ -151,7 +151,7 @@
           <div class="col-md-8 my-5">
             <div class="card-body">
               <h3 class="card-title">Nous sommes EesyLeek</h3>
-              <p class="card-text my-5">EasyLeek, leader de la restauration rapide, propose une expérience culinaire exceptionnelle grâce à une sélection diversifiée de restaurants sous sa bannière. Chaque établissement incarne l'innovation, la qualité des ingrédients et la créativité, redéfinissant ainsi les normes de ce secteur. Notre mission est de rendre une cuisine de qualité accessible à tous, en offrant des plats délicieux et équilibrés avec un service rapide et efficace.
+              <p class="card-text my-5 w-75">EasyLeek, leader de la restauration rapide, propose une expérience culinaire exceptionnelle grâce à une sélection diversifiée de restaurants sous sa bannière. Chaque établissement incarne l'innovation, la qualité des ingrédients et la créativité, redéfinissant ainsi les normes de ce secteur. Notre mission est de rendre une cuisine de qualité accessible à tous, en offrant des plats délicieux et équilibrés avec un service rapide et efficace.
               </p>
               <button class="boutonVoirDts rounded-4 ">voir plus</button> 
             </div>
@@ -164,9 +164,9 @@
 <!-- section du resto petit a propos -->
 
 <!-- section du resto degustation -->
-<div>
+<div class="m-4">
   <div class="card mb-3 carteRestoNekh shadow-sm ">
-    <div class="row g-0">
+    <div class="row g-0 ">
       <div class="col-md-4">
         <div class="card-body">
           <h3 class="card-title titreCartenekh">Meilleur offres 
