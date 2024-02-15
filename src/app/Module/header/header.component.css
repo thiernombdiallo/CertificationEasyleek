@@ -56,7 +56,7 @@ a {
 
 .menu-toggle {
     position: relative;
-    z-index: 2;
+    z-index: 5;
     display: block;
     margin: 0;
     padding: 0.5em 0;

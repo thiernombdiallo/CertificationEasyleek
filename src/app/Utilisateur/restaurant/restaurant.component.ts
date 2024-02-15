@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Restaurant } from 'src/app/Model/restaurant/restaurant.model';
+import { AjoutRestaurateurService } from 'src/app/Services/ajout-restaurateur.service';
+import { CategorieService } from 'src/app/Services/categorie.service';
 
 @Component({
   selector: 'app-restaurant',
@@ -8,8 +10,17 @@ import { Restaurant } from 'src/app/Model/restaurant/restaurant.model';
 })
 export class RestaurantComponent {
 
+  constructor(private categorieService: CategorieService ,private restaurantService:AjoutRestaurateurService) {}
+
+  ngOnInit() {
+    this.getAllCategories();
+    this.getAllRestaurants()
+  
+  }
 // Tableau restaurant
-// restaurants: Restaurant[] = []; //creont le model pour recuperer le tableau
+restaurants: any[] = []; 
+categories :any [] =[];
+categorie_id:string="";
 
 // Attribut pour faire les recherche
 // searchRestaurant = '';
@@ -43,4 +54,41 @@ export class RestaurantComponent {
   //   return Array.from({ length: this.getTotalPages() }, (_, i) => i + 1);
   // }
 
+  getAllCategories() {
+    this.categorieService.getAllCategories().subscribe((response: any) => {
+      console.log("voir liste", response.data)
+      this.categories = response.data;
+    });
+  }
+
+  getAllRestaurants() {
+    this.restaurantService.getListeRestaurateursPourtous().subscribe((response: any) => {
+      console.log("Regarder", response)
+      this.restaurants = response.data;
+    });
+  }
+
+  onRestoChange() {
+    // Call the function to filter restaurants based on the selected category
+    this.loadRestaurantsForSelectedCategory();
+  }
+
+  loadRestaurantsForSelectedCategory() {
+    if (this.categorie_id) {
+      this.categorieService.getSingleCategoryPourTous(this.categorie_id).subscribe(
+        (restaurants: any) => {
+          this.restaurants = restaurants.data;
+          console.log('Restaurants récupérés avec succès pour la catégorie sélectionnée!', this.restaurants);
+        },
+        (error) => {
+          console.error("Erreur lors de la récupération des restaurants pour la catégorie sélectionnée:", error);
+        }
+      );
+    } else {
+      // If no category selected, show all restaurants
+      this.getAllRestaurants();
+    }
+  }
 }
+  
+

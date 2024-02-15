@@ -23,8 +23,7 @@ export class AjoutRestaurateurService {
       console.error('Token non disponible.');
       throw new Error('Token non disponible.');
     }
-  }
-
+  }  
   getListeRestaurateurs(): Observable<any[]> {
     const restaurateursUrl = apiUrl + '/auth/restaurant/list/all';
     return this.http.get<any[]>(restaurateursUrl, { headers: this.getHeaders() });
@@ -61,13 +60,9 @@ export class AjoutRestaurateurService {
     return this.http.get<any[]>(restaurateursUnblockUrl, { headers: this.getHeaders() });
   }  
 
-  // Route::post('/restaurant/register', [UserController::class, 'restaurantRegister']);
-  // Route::post('/restaurant/details/{id}', [UserController::class, 'voirRestaurantDetails']);
-  // Route::post('/restaurant/compte/block/{id}', [UserController::class, 'blockRestaurant']);
-  // Route::post('/restaurant/compte/unblock/{id}', [UserController::class, 'unblockRestaurant']);
-  // Route::get('/restaurant/list/blocked', [UserController::class, 'listRestaurantBlocked']);
-  // Route::get('/restaurant/list/unblocked', [UserController::class, 'listRestaurantUnblocked']);
-  // Route::get('/restaurant/list/all', [UserController::class, 'listAllRestaurant']);
-
+  getListeRestaurateursPourtous(): Observable<any[]> {
+    const restaurateursUrl = apiUrl + '/restaurant/list/';
+    return this.http.get<any[]>(restaurateursUrl);
+  }
 
 }

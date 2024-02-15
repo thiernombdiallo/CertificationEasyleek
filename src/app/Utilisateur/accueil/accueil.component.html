@@ -66,80 +66,30 @@
 <!-- section du resto mise en avant -->
 <div class="my-4 m-4">
   <h4 class="text-start">Restaurant mise à avant</h4>
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 m-5 ">
-    <div class="col">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 m-5">
+    <div *ngFor="let restaurant of restaurants" class="col">
       <div class="card rounded rounded-4 cardResto">
         <div class="rounded rounded-4 w-100  cardRestoEntete d-flex justify-content-center">
-        <img src="https://images.pexels.com/photos/3763814/pexels-photo-3763814.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top border border-2 w-75 h-75 my-5" alt="image restaurant">
+          <img src="http://127.0.0.1:8000/images/{{restaurant.image}}" class="card-img-top border border-2 w-75 h-75 my-5" alt="image restaurant">
         </div>
         <div class="card-body cardBodyResto">
           <div class="card-title d-flex justify-content-between">
-            <h5>Delicious Pizza</h5>
-            <p class="badge  badgeEtatResto">Ouvert</p>
-        </div>
-          <p class="card-text">Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque</p>
-        </div>
-        <div class="card-footer rounded rounded-4 cardFooterResto d-flex justify-content-end">
-            <button class="boutonCommandeDts rounded rounded-5 px-3">Commander</button>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card rounded rounded-4 cardResto">
-        <div class="rounded rounded-4 w-100  cardRestoEntete d-flex justify-content-center">
-        <img src="https://images.pexels.com/photos/3763814/pexels-photo-3763814.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top border border-2 w-75 h-75 my-5" alt="image restaurant">
-        </div>
-        <div class="card-body cardBodyResto">
-          <div class="card-title d-flex justify-content-between">
-            <h5>Delicious Pizza</h5>
-            <p class="badge  badgeEtatResto">Ouvert</p>
-        </div>
-          <p class="card-text">Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque</p>
+            <h5>{{ restaurant.name }}</h5>
+            <p class="badge badgeEtatResto">{{ restaurant.status }}</p>
+          </div>
+          <p class="card-text">{{ restaurant.description }}</p>
         </div>
         <div class="card-footer rounded rounded-4 cardFooterResto d-flex justify-content-end">
-            <button class="boutonCommandeDts rounded rounded-5 px-3">Commander</button>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card rounded rounded-4 cardResto">
-        <div class="rounded rounded-4 w-100  cardRestoEntete d-flex justify-content-center">
-        <img src="https://images.pexels.com/photos/3763814/pexels-photo-3763814.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top border border-2 w-75 h-75 my-5" alt="image restaurant">
-        </div>
-        <div class="card-body cardBodyResto">
-          <div class="card-title d-flex justify-content-between">
-            <h5>Delicious Pizza</h5>
-            <p class="badge  badgeEtatResto">Ouvert</p>
-        </div>
-          <p class="card-text">Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque</p>
-        </div>
-        <div class="card-footer rounded rounded-4 cardFooterResto d-flex justify-content-end">
-            <button class="boutonCommandeDts rounded rounded-5 px-3">Commander</button>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card rounded rounded-4 cardResto">
-        <div class="rounded rounded-4 w-100  cardRestoEntete d-flex justify-content-center">
-        <img src="https://images.pexels.com/photos/3763814/pexels-photo-3763814.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top border border-2 w-75 h-75 my-5" alt="image restaurant">
-        </div>
-        <div class="card-body cardBodyResto">
-          <div class="card-title d-flex justify-content-between">
-            <h5>Delicious Pizza</h5>
-            <p class="badge  badgeEtatResto">Ouvert</p>
-        </div>
-          <p class="card-text">Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque</p>
-        </div>
-        <div class="card-footer rounded rounded-4 cardFooterResto d-flex justify-content-end">
-            <button class="boutonCommandeDts rounded rounded-5 px-3">Commander</button>
+          <button class="boutonCommandeDts rounded rounded-5 px-3">Commander</button>
         </div>
       </div>
     </div>
   </div>
   <div class="d-flex justify-content-center">
-      <button class="boutonCommandeDts">voir plus</button>    
+    <button class="boutonCommandeDts">voir plus</button>
   </div>
 </div>
+
 <!-- section du resto mise en avant -->
 
 <!-- section du resto petit a propos -->

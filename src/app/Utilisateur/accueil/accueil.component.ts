@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AjoutRestaurateurService } from 'src/app/Services/ajout-restaurateur.service';
 import { CategorieService } from 'src/app/Services/categorie.service';
 
 @Component({
@@ -8,11 +9,22 @@ import { CategorieService } from 'src/app/Services/categorie.service';
 })
 export class AccueilComponent {
   categories: any[] = [];
+  restaurants: any[] = [];
 
-constructor(private categorieService: CategorieService) {}
+constructor(private categorieService: CategorieService ,private restaurantService:AjoutRestaurateurService) {}
 
 ngOnInit() {
   this.getAllCategories();
+  this.getListeRestaurateurs()
+  console.log("c'est le reponse du fou",this.getListeRestaurateurs)
+
+}
+
+getListeRestaurateurs() {
+  this.restaurantService.getListeRestaurateursPourtous().subscribe((response: any) => {
+    console.log("Regarder", response)
+    this.restaurants = response.data;
+  });
 }
 
 getAllCategories() {

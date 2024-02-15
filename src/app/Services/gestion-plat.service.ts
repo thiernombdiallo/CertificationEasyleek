@@ -34,16 +34,15 @@ export class GestionPlatService {
   //     })
   //   );
   // }
-
   getPlatsForMenu(menuId: string): Observable<any[]> {
-            const headers = this.getHeaders();
-            return this.http.get<any[]>(`${this.platsUrl}/list/restaurant/${menuId}`, { headers }).pipe(
-              catchError((error) => {
-                console.error('Error in getPlatsForMenu:', error);
-                throw error;
-              })
-            );
-          }
+    const headers = this.getHeaders();
+    return this.http.get<any[]>(`${this.platsUrl}/list/restaurant/${menuId}`, { headers }).pipe(
+        catchError((error) => {
+            console.error('Erreur dans getPlatsForMenu :', error);
+            throw error; 
+        })
+    );
+}
       
  ajouterPlat(formData : any) : Observable<any>{
     const headers = this.getHeaders();

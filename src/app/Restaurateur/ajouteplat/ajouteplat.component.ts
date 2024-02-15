@@ -11,11 +11,11 @@ export class AjouteplatComponent {
   menus: any[] = [];
   plats: any[] = [];
   selectedPlat: any = {};
-  descriptif:any = "";
-  image:any;
-  menu_id: any = "";
-  prix: any = "";
-  libelle: any = "";
+  descriptif:string = "";
+  image:any="";
+  menu_id: string = "";
+  prix: string = "";
+  libelle: string = "";
   user_id:string="";
   newPlat: string = '';
   editingPlat: any = {};
@@ -61,11 +61,11 @@ export class AjouteplatComponent {
     
     addPlat() {
       let formData = new FormData();
-      formData.append('libelle', this.libelle);
-      formData.append('prix', this.prix);
-      formData.append('descriptif', this.descriptif);
-      formData.append('menu_id', this.menu_id);
-      formData.append('image', this.image as Blob);
+      formData.append("libelle", this.libelle);
+      formData.append("prix", this.prix);
+      formData.append("descriptif", this.descriptif);
+      formData.append("menu_id", this.menu_id);
+      formData.append("image", this.image as Blob);
     
       console.log("voici le formdata" , formData)
       this.platservice.ajouterPlat(formData).subscribe(
@@ -139,7 +139,7 @@ export class AjouteplatComponent {
     detailsplat(platId: number): void{
       this.platservice.getSinglePlat(platId).subscribe(
         (platDetails) => {
-          // Assuming platDetails contains the required details
+          console.log("ca c'est le truc du details" ,platDetails)
           this.showDetailsModal(platDetails);
         },
         (error) => {
@@ -147,6 +147,8 @@ export class AjouteplatComponent {
         }
       );
     }
+
+    
     showDetailsModal(platId:number): void {
       console.log("ca",platId)
       this.platservice.getSinglePlat(platId).subscribe((response:any)=>{
@@ -155,6 +157,7 @@ export class AjouteplatComponent {
         this.libelle=this.details.libelle;
         this.prix=this.details.prix;
         this.descriptif=this.details.descriptif
+
       })
     }
 

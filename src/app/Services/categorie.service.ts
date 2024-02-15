@@ -36,11 +36,7 @@ export class CategorieService {
         })
       );
   }
-    getAllCategories(): Observable<any[]> {
-      const headers = this.getHeaders();
-      return this.http.get<any[]>(`${this.categorieUrl}/categorie/list`, { headers: headers });
-    }
-    
+   
   deletecategorie(categorieId: number): Observable<any> {
       const headers = this.getHeaders();
     return this.http.delete(`${this.categorieUrl}/auth/categorie/delete/${categorieId}`, { headers });
@@ -53,5 +49,12 @@ export class CategorieService {
   getSingleCategory(categorieId: number): Observable<any> {
     const headers = this.getHeaders();
     return this.http.get<any>(`${this.categorieUrl}/auth/categorie/show/${categorieId}`, { headers: headers });
+  }
+  getSingleCategoryPourTous(categorieId: string): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.get<any>(`${this.categorieUrl}/restaurant/list/${categorieId}`);
+  }
+  getAllCategories(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.categorieUrl}/categorie/list`);
   }
 }
