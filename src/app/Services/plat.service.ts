@@ -9,6 +9,7 @@ import { apiUrl } from './apiUrl';
 export class PlatService {
   private menuUrl = apiUrl + '/auth/menu';
   private platUrl = apiUrl + '/auth/plat';
+  private plattest=apiUrl
 
 
   constructor(private http: HttpClient) {}
@@ -53,5 +54,13 @@ export class PlatService {
     const headers = this.getHeaders();
     return this.http.get<any>(`${this.menuUrl}/show/${menuId}`, { headers });
   }
-    
+
+  getPlatsForMenuUtilisateur(menuId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.plattest}/plat/list/${menuId}`);
+  }
+  
+  getPlats(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.plattest}/plat/list`);
+  }
+  
   }

@@ -50,7 +50,7 @@ a {
     background-color: #fff;
     color: #F0EAD6;
     border-bottom: 1px solid #FFA07A;
-    position: fixed;
+    /* position: fixed; */
     z-index: 5;
 }
 
