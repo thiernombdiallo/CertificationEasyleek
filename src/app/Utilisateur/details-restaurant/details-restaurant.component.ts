@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AjoutRestaurateurService } from 'src/app/Services/ajout-restaurateur.service';
 import { GestionPlatService } from 'src/app/Services/gestion-plat.service';
 import { PanierService } from 'src/app/Services/panier.service';
 import { PlatService } from 'src/app/Services/plat.service';
@@ -9,15 +10,23 @@ import { PlatService } from 'src/app/Services/plat.service';
   styleUrls: ['./details-restaurant.component.css']
 })
 export class DetailsRestaurantComponent {
+  restaurateurs:any []=[];
   plats :any [] = [];
   menus: any [] = [];
   selectedMenuId: string ="";
 
-  constructor(private platService: PlatService , private panierService: PanierService) {}
+  constructor(private platService: PlatService , private panierService: PanierService , private ajoutRestaurateurService: AjoutRestaurateurService) {}
 
   ngOnInit(): void {
     this.loadMenus();
     this.loadPlats();
+  }
+
+  getListeRestaurateurs() {
+    this.ajoutRestaurateurService.getListeRestaurateurs().subscribe((response: any) => {
+      console.log("Regarder", response)
+      this.restaurateurs = response.data;
+    });
   }
 
   loadMenus() {

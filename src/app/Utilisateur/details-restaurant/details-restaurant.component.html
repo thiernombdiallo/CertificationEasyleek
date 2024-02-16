@@ -3,9 +3,9 @@
 
 
 <section class="my-5 border mt-5">
-<div class="w-100 mx-auto  my-4">
+<div class="w-100 mx-auto  my-4" *ngFor="let restaurateur of restaurateurs">
     <div class="d-flex justify-content-between my-4 gap-4">
-        <h4 class="titreDash fw-bold">Le nom du Restaurant </h4>
+        <h4 class="titreDash fw-bold">{{restaurateur.name}} </h4>
         <div>
             <div class="d-flex justify-content-around gap-3 me-5">
                 <div>

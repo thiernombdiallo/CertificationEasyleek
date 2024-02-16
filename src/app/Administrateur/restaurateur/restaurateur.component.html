@@ -32,7 +32,7 @@
       </thead>
       <tbody *ngFor="let restaurateur of restaurateurs">
         <tr>
-          <td><img [src]="getImageUrl(restaurateur.image)" alt="" width="50" height="50"></td>
+          <td><img src="http://127.0.0.1:8000/images/{{restaurateur.image}}" alt="" width="50" height="50"></td>
           <td>{{ restaurateur.name }}</td>
           <td>{{ restaurateur.adresse }}</td>
           <td>{{ restaurateur.phone }}</td>
