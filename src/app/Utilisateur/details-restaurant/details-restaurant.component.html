@@ -37,8 +37,8 @@
           </div>
           <p class="card-text">{{ plat.descriptif }}</p>
         </div>
-        <div class="card-footer rounded rounded-4 cardFooterResto d-flex justify-content-end">
-          <button class="boutonCommandeDts rounded rounded-5 px-3">Ajouter  <i class="bi bi-basket"></i></button>
+        <div class="card-footer rounded rounded-4 cardFooterResto d-flex justify-content-end"> 
+          <button class="boutonCommandeDts rounded rounded-5 px-3" (click)="ajouterAuPanier(plat)">Ajouter <i class="bi bi-basket"></i></button>
         </div>
       </div>
     </div>

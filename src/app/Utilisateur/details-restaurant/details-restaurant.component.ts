@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { GestionPlatService } from 'src/app/Services/gestion-plat.service';
+import { PanierService } from 'src/app/Services/panier.service';
 import { PlatService } from 'src/app/Services/plat.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class DetailsRestaurantComponent {
   menus: any [] = [];
   selectedMenuId: string ="";
 
-  constructor(private platService: PlatService) {}
+  constructor(private platService: PlatService , private panierService: PanierService) {}
 
   ngOnInit(): void {
     this.loadMenus();
@@ -20,7 +21,7 @@ export class DetailsRestaurantComponent {
   }
 
   loadMenus() {
-    this.platService.getMenus().subscribe(
+    this.platService.getMenusUtilisateur().subscribe(
       (menus: any) => {
         console.log("he suis le menu me voila", menus.menu)
         this.menus = menus.menu;
@@ -63,6 +64,10 @@ export class DetailsRestaurantComponent {
     );
   }
   
+  ajouterAuPanier(plat: any) {
+    console.log("me voila panier ", plat)
+    this.panierService.ajouterAuPanier(plat);
+  }
 }
 
 

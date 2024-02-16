@@ -38,6 +38,9 @@ body {
 a {
     transition: color 800ms ease-in-out, background-color 800ms ease-in-out;
 }
+/* ul.active li{ 
+    color: #FFA07A;
+} */
 
 .nav {
     padding: 0;

@@ -62,5 +62,8 @@ export class PlatService {
   getPlats(): Observable<any[]> {
     return this.http.get<any[]>(`${this.plattest}/plat/list`);
   }
-  
+  getMenusUtilisateur(): Observable<any[]> {
+    const headers = this.getHeaders();
+    return this.http.get<any[]>(`${this.plattest}/menu/list`);
+  }
   }

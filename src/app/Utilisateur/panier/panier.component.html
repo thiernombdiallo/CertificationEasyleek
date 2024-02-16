@@ -12,31 +12,20 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">image</th>
-            <td>libelle</td>
-            <td>1500</td>
-            <td> <button><i class="bi bi-dash"></i></button>  2  <button><i class="bi bi-plus"></i></button></td>
-            <td>3000</td>
-            <td><i class="bi bi-x"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">image</th>
-            <td>libelle</td>
-            <td>1500</td>
-            <td> <button><i class="bi bi-dash"></i></button>  2  <button><i class="bi bi-plus"></i></button></td>
-            <td>3000</td>
-            <td><i class="bi bi-x"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">image</th>
-            <td>libelle</td>
-            <td>1500</td>
-            <td> <button><i class="bi bi-dash"></i></button>  2  <button><i class="bi bi-plus"></i></button></td>
-            <td>3000</td>
-            <td><i class="bi bi-x"></i></td>
+          <tr *ngFor="let item of panier">
+            <th scope="row"><img src="http://127.0.0.1:8000/images/{{item.image}}" alt="Image du plat" width="50px" height="50px"></th>
+            <td>{{ item.libelle }}</td>
+            <td>{{ item.prix }}</td>
+            <td>
+              <button (click)="diminuerQuantite(item)"> <i class="bi bi-dash"></i> </button>
+              {{ item.quantite }}
+              <button (click)="augmenterQuantite(item)"> <i class="bi bi-plus"></i> </button>
+            </td>
+            <td>{{ item.prix * item.quantite }}</td>
+            <td><button (click)="supprimerDuPanier(item)"> <i class="bi bi-x"></i> </button></td>
           </tr>
         </tbody>
+        
       </table>
     </div>
   </div>

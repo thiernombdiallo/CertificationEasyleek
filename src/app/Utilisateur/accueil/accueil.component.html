@@ -1,64 +1,115 @@
 <app-header></app-header>
 
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner carouselBaniere">
-      <div class="carousel-item h-100 active">
-        <img src="../../../assets/banierplats.png" class="d-block w-100 h-100" alt="carousel de la page d'accueil" >
-      </div>
-      <div class="carousel-item h-100 ">
-        <img src="../../../assets/baniertout.png" class="d-block w-100 h-100" alt="carousel de la page d'accueil">
-      </div>
-      <div class="carousel-item h-100">
-        <img src="../../../assets/baniersucre.png" class="d-block w-100 h-100" alt="carousel de la page d'accueil">
-      </div>
+<div
+  id="carouselExampleSlidesOnly"
+  class="carousel slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner carouselBaniere">
+    <div class="carousel-item h-100 active">
+      <img
+        src="../../../assets/banierplats.png"
+        class="d-block w-100 h-100"
+        alt="carousel de la page d'accueil"
+      />
+    </div>
+    <div class="carousel-item h-100">
+      <img
+        src="../../../assets/baniertout.png"
+        class="d-block w-100 h-100"
+        alt="carousel de la page d'accueil"
+      />
+    </div>
+    <div class="carousel-item h-100">
+      <img
+        src="../../../assets/baniersucre.png"
+        class="d-block w-100 h-100"
+        alt="carousel de la page d'accueil"
+      />
     </div>
   </div>
+</div>
 <!-- section type de restaurant -->
 <div class="border-black my-5 typedeResto" id="restotype">
   <div class="d-flex justify-content-between">
     <h3 class="m-4">Différentes types de restaurants</h3>
     <div class="d-flex justify-content-between m-4">
       <p>Voir plus</p>
-      <p><i class="bi bi-chevron-left" data-bs-target="#restotype" data-bs-slide="prev"></i><p>
-      <p><i class="bi bi-chevron-right" data-bs-target="#restotype" data-bs-slide="next"></i></p>
+      <p>
+        <i
+          class="bi bi-chevron-left"
+          data-bs-target="#restotype"
+          data-bs-slide="prev"
+        ></i>
+      </p>
+      <p></p>
+      <p>
+        <i
+          class="bi bi-chevron-right"
+          data-bs-target="#restotype"
+          data-bs-slide="next"
+        ></i>
+      </p>
     </div>
   </div>
-<div class="circles typeResto">
-  <!-- <div *ngFor="let categorie of categories">
+  <div class="circles typeResto">
+    <div *ngFor="let categorie of categories">
     <div class="cerclemini">
       <img src="https://cdn.pixabay.com/photo/2016/01/22/02/13/meat-1155132_640.jpg" alt="">
       <span>{{ categorie.type }}</span>
     </div>
-  </div> -->
-  <div class="cerclemini">
-    <img src="https://cdn.pixabay.com/photo/2020/02/15/20/38/noodles-4851996_640.jpg" alt="">
-    <span class="">Tangana</span>
   </div>
-  <div class="cerclemini">
-    <img src="https://cdn.pixabay.com/photo/2012/03/02/00/29/beef-20678_640.jpg" alt="">
-    <span class="">Fast-food</span>
+    <!-- <div class="cerclemini">
+      <img
+        src="https://cdn.pixabay.com/photo/2020/02/15/20/38/noodles-4851996_640.jpg"
+        alt=""
+      />
+      <span class="">Tangana</span>
+    </div>
+    <div class="cerclemini">
+      <img
+        src="https://cdn.pixabay.com/photo/2012/03/02/00/29/beef-20678_640.jpg"
+        alt=""
+      />
+      <span class="">Fast-food</span>
+    </div>
+    <div class="cerclemini">
+      <img
+        src="https://cdn.pixabay.com/photo/2016/11/29/09/00/doughnuts-1868573_640.jpg"
+        alt=""
+      />
+      <span class="">Patisserie</span>
+    </div>
+    <div class="cerclemini">
+      <img
+        src="https://cdn.pixabay.com/photo/2016/01/22/02/13/meat-1155132_640.jpg"
+        alt=""
+        class
+      />
+      <span class="">Dibiterie</span>
+    </div>
+    <div class="cerclemini">
+      <img
+        src="https://cdn.pixabay.com/photo/2020/02/15/20/38/noodles-4851996_640.jpg"
+        alt=""
+      />
+      <span class="">Tangana</span>
+    </div>
+    <div class="cerclemini">
+      <img
+        src="https://cdn.pixabay.com/photo/2012/03/02/00/29/beef-20678_640.jpg"
+        alt=""
+      />
+      <span class="">Fast-food</span>
+    </div>
+    <div class="cerclemini">
+      <img
+        src="https://cdn.pixabay.com/photo/2016/11/29/09/00/doughnuts-1868573_640.jpg"
+        alt=""
+      />
+      <span class="">Patisserie</span>
+    </div> -->
   </div>
-  <div class="cerclemini">
-    <img src="https://cdn.pixabay.com/photo/2016/11/29/09/00/doughnuts-1868573_640.jpg" alt="">
-    <span class="">Patisserie</span>
-  </div>
-  <div class="cerclemini">
-    <img src="https://cdn.pixabay.com/photo/2016/01/22/02/13/meat-1155132_640.jpg" alt="" class>
-    <span class="">Dibiterie</span>
-  </div>
-  <div class="cerclemini">
-    <img src="https://cdn.pixabay.com/photo/2020/02/15/20/38/noodles-4851996_640.jpg" alt="">
-    <span class="">Tangana</span>
-  </div>
-  <div class="cerclemini">
-    <img src="https://cdn.pixabay.com/photo/2012/03/02/00/29/beef-20678_640.jpg" alt="">
-    <span class="">Fast-food</span>
-  </div>
-  <div class="cerclemini">
-    <img src="https://cdn.pixabay.com/photo/2016/11/29/09/00/doughnuts-1868573_640.jpg" alt="">
-    <span class="">Patisserie</span>
-  </div>
-</div>
 </div>
 
 <!-- section type de restaurant -->
@@ -69,8 +120,14 @@
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 m-5">
     <div *ngFor="let restaurant of restaurants" class="col">
       <div class="card rounded rounded-4 cardResto">
-        <div class="rounded rounded-4 w-100  cardRestoEntete d-flex justify-content-center">
-          <img src="http://127.0.0.1:8000/images/{{restaurant.image}}" class="card-img-top border border-2 w-75 h-75 my-5" alt="image restaurant">
+        <div
+          class="rounded rounded-4 w-100 cardRestoEntete d-flex justify-content-center"
+        >
+          <img
+            src="http://127.0.0.1:8000/images/{{ restaurant.image }}"
+            class="card-img-top border border-2 w-75 h-75 my-5"
+            alt="image restaurant"
+          />
         </div>
         <div class="card-body cardBodyResto">
           <div class="card-title d-flex justify-content-between">
@@ -79,8 +136,15 @@
           </div>
           <p class="card-text">{{ restaurant.description }}</p>
         </div>
-        <div class="card-footer rounded rounded-4 cardFooterResto d-flex justify-content-end">
-          <button class="boutonCommandeDts rounded rounded-5 px-3">Commander</button>
+        <div
+          class="card-footer rounded rounded-4 cardFooterResto d-flex justify-content-end"
+        >
+          <button
+            class="boutonCommandeDts rounded rounded-5 px-3"
+            routerLink="/detailsrestaurant"
+          >
+            Commander
+          </button>
         </div>
       </div>
     </div>
@@ -93,86 +157,115 @@
 <!-- section du resto mise en avant -->
 
 <!-- section du resto petit a propos -->
-    <div class="card mb-3 carteNoscible">
-        <div class="row g-0">
-          <div class="col-md-4 d-flex justify-content-center align-items-center">
-            <img src="../../../assets/about-img.png.png" class="w-50 h-75 " alt="...">
-          </div>
-          <div class="col-md-8 my-5">
-            <div class="card-body">
-              <h3 class="card-title">Nous sommes EesyLeek</h3>
-              <p class="card-text my-5 w-75">EasyLeek, leader de la restauration rapide, propose une expérience culinaire exceptionnelle grâce à une sélection diversifiée de restaurants sous sa bannière. Chaque établissement incarne l'innovation, la qualité des ingrédients et la créativité, redéfinissant ainsi les normes de ce secteur. Notre mission est de rendre une cuisine de qualité accessible à tous, en offrant des plats délicieux et équilibrés avec un service rapide et efficace.
-              </p>
-              <button class="boutonVoirDts rounded-4 ">voir plus</button> 
-            </div>
-            <div>
-                   
-            </div>
-          </div>
-        </div>
+<div class="card mb-3 carteNoscible">
+  <div class="row g-0">
+    <div class="col-md-4 d-flex justify-content-center align-items-center">
+      <img
+        src="../../../assets/about-img.png.png"
+        class="w-50 h-75"
+        alt="..."
+      />
+    </div>
+    <div class="col-md-8 my-5">
+      <div class="card-body">
+        <h3 class="card-title">Nous sommes EesyLeek</h3>
+        <p class="card-text my-5 w-75">
+          EasyLeek, leader de la restauration rapide, propose une expérience
+          culinaire exceptionnelle grâce à une sélection diversifiée de
+          restaurants sous sa bannière. Chaque établissement incarne
+          l'innovation, la qualité des ingrédients et la créativité,
+          redéfinissant ainsi les normes de ce secteur. Notre mission est de
+          rendre une cuisine de qualité accessible à tous, en offrant des plats
+          délicieux et équilibrés avec un service rapide et efficace.
+        </p>
+        <button class="boutonVoirDts rounded-4">voir plus</button>
       </div>
+      <div></div>
+    </div>
+  </div>
+</div>
 <!-- section du resto petit a propos -->
 
 <!-- section du resto degustation -->
 <div class="m-4">
-  <div class="card mb-3 carteRestoNekh shadow-sm ">
-    <div class="row g-0 ">
-      <div class="col-md-4">
-        <div class="card-body">
-          <h3 class="card-title titreCartenekh">Meilleur offres 
-          <br> <span>Sandwiches </span></h3>
-          <p class="card-text">Profitez de la grande taille des sandwichs. Complet
-            votre repas avec la tranche parfaite de sandwichs.
-                            
-          </p>
-        </div>
-        <div class="d-flex justify-content-center">
-            <button class="boutonCommandeDts">Passer une commande</button>    
-        </div>
-      </div>
-      <div class="col-md-8">
-        <img src="../../../assets/crispy-sandwiches.png.png" class="img-fluid rounded-start" alt="...">
-      </div>
-    </div>
-  </div>
-<div class="card mb-3 carteRestoNekh shadow-sm">
-    <div class="row g-0">
-      <div class="col-md-8">
-            <img src="../../../assets/maigua 1.png" class="img-fluid rounded-start" alt="...">
-      </div>
-      <div class="col-md-4">
-        <div class="card-body">
-          <h3 class="card-title titreCartenekh">Célébrer les fêtes  <br> <span>avec
-            Frites , brossette.. </span></h3>
-          <p class="card-text">Obtenez le meilleur poulet frit enduit d'une lèvre   saveur de piment citronné. Découvrez le meilleur offres pour le poulet frite
-         </p>
-        </div>
-        <div class="d-flex justify-content-center">
-            <button class="boutonCommandeDts">Passer une commande</button>    
-        </div>
-      </div>
-    </div>
-  </div>
-<div class="card mb-3 carteRestoNekh shadow-sm ">
+  <div class="card mb-3 carteRestoNekh shadow-sm">
     <div class="row g-0">
       <div class="col-md-4">
         <div class="card-body">
-          <h3 class="card-title titreCartenekh">Comme au bon vieux temps , <br> <span> autour d'un délicieux plat</span>
+          <h3 class="card-title titreCartenekh">
+            Meilleur offres <br />
+            <span>Sandwiches </span>
           </h3>
-          <p class="card-text">nous nous retrouvons pour savourer les saveurs authentiques et partager des moments conviviaux
+          <p class="card-text">
+            Profitez de la grande taille des sandwichs. Complet votre repas avec
+            la tranche parfaite de sandwichs.
           </p>
         </div>
         <div class="d-flex justify-content-center">
-            <button class="boutonCommandeDts">Passer une commande</button>    
+          <button class="boutonCommandeDts">Passer une commande</button>
         </div>
       </div>
       <div class="col-md-8">
-        <img src="../../../assets/thiep.png" class="img-fluid rounded-start" alt="...">
+        <img
+          src="../../../assets/crispy-sandwiches.png.png"
+          class="img-fluid rounded-start"
+          alt="..."
+        />
+      </div>
+    </div>
+  </div>
+  <div class="card mb-3 carteRestoNekh shadow-sm">
+    <div class="row g-0">
+      <div class="col-md-8">
+        <img
+          src="../../../assets/maigua 1.png"
+          class="img-fluid rounded-start"
+          alt="..."
+        />
+      </div>
+      <div class="col-md-4">
+        <div class="card-body">
+          <h3 class="card-title titreCartenekh">
+            Célébrer les fêtes <br />
+            <span>avec Frites , brossette.. </span>
+          </h3>
+          <p class="card-text">
+            Obtenez le meilleur poulet frit enduit d'une lèvre saveur de piment
+            citronné. Découvrez le meilleur offres pour le poulet frite
+          </p>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button class="boutonCommandeDts">Passer une commande</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card mb-3 carteRestoNekh shadow-sm">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <div class="card-body">
+          <h3 class="card-title titreCartenekh">
+            Comme au bon vieux temps , <br />
+            <span> autour d'un délicieux plat</span>
+          </h3>
+          <p class="card-text">
+            nous nous retrouvons pour savourer les saveurs authentiques et
+            partager des moments conviviaux
+          </p>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button class="boutonCommandeDts">Passer une commande</button>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <img
+          src="../../../assets/thiep.png"
+          class="img-fluid rounded-start"
+          alt="..."
+        />
       </div>
     </div>
   </div>
 </div>
 <!-- section du resto degustation -->
 <app-footer></app-footer>
-
-
