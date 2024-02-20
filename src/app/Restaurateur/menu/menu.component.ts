@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PlatService } from 'src/app/Services/plat.service';
+import { PlatService } from 'src/app/Services/menu.service';
 import Swal from 'sweetalert2';
 
 

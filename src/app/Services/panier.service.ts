@@ -1,17 +1,114 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable, catchError, of } from 'rxjs';
+import Swal from 'sweetalert2';
+import { apiUrl } from './apiUrl';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PanierService {
 
-  constructor() { this.chargerPanier(); }
+
+
+  constructor(private http: HttpClient ,private router:Router) { this.chargerPanier(); }
 
   private panier: any[] = [];
+  private platsUrl= apiUrl
 
-  ajouterAuPanier(plat: any) {
-    console.log( "je suis ce que je suis ", plat)
-    this.panier.push(plat);
+  private isUserLoggedIn(): Observable<boolean> {
+    // Vérifiez si l'utilisateur est connecté localement
+    const token = localStorage.getItem('token');
+  
+    if (!token) {
+      // Aucun token n'est présent, l'utilisateur n'est pas connecté
+      return of(false);
+    }
+  
+    // Vérifiez si l'utilisateur est connecté côté serveur
+    return this.checkUserLogin();
+  }
+  
+  private checkUserLogin(): Observable<boolean> {
+    const checkLoginUrl = `${this.platsUrl}/user/login`;
+  
+    return this.http.get<boolean>(checkLoginUrl, { headers: this.getHeaders() }).pipe(
+      catchError(() => of(false)) 
+    );
+  }
+  
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+  
+    if (token) {
+      return new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      });
+    } else {
+      return new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
+    }
+  }
+  
+  
+  
+
+  message(title: any, icon: any, message: any) {
+    Swal.fire({
+      title: title,
+      text: message,
+      icon: icon
+    });
+  }
+
+  ajouterAuPanier(plat: any, quantite = 1) {
+    const platExistant = this.panier.find(item => item.id === plat.id);
+
+    if (platExistant) {
+      platExistant.quantite += quantite;
+    } else {
+      this.panier.push({ ...plat, quantite });
+    }
+
+    this.sauvegarderPanier();
+    this.message('Succès', 'success', 'Plat ajouté au panier.');
+  }
+
+
+
+  passerCommande() :Observable<any> {
+    const headers = this.getHeaders();
+    const commande = { plats: this.panier,};
+    console.log("c'est commendjnjn", commande)
+    return this.http.get<any[]>(`${this.platsUrl}/auth/commande/list`, { headers }).pipe(
+      catchError((error) => {
+        console.error('Erreur lors de la récupération des commandes utilisateur:', error);
+        return of([]); 
+      })
+    );
+  }
+
+  envoyerCommande(commande: any): Observable<any> {
+    const headers = this.getHeaders();
+    console.log("C'est commande :", commande);
+    return this.http.post<any>(`${this.platsUrl}/auth/commande/store`, commande, { headers }).pipe(
+      catchError((error) => {
+        console.error('Erreur lors de l\'envoi de la commande :', error);
+        throw error;
+      })
+    );
+  }
+  
+  
+
+
+
+  viderPanier() {
+    this.panier = [];
+    this.sauvegarderPanier();
   }
 
   getPanier(): any[] {
@@ -28,45 +125,7 @@ export class PanierService {
       this.panier = JSON.parse(panierString);
     }
   }
-  // postToPanier(produit: any, quantite = 0) {
-  //   let produitPanier = {};
-  //   if (localStorage.getItem('panier') == null || localStorage.getItem('panier') == undefined) {
-  //     if (quantite != 0) {
 
-  //       produitPanier = {
-  //         produit: produit,
-  //         quantitePanier: quantite
-  //       }
-  //     } else {
-
-  //       produitPanier = {
-  //         produit: produit,
-  //         quantitePanier: 1
-  //       }
-  //     }
-  //     localStorage.setItem('panier', JSON.stringify([produitPanier]));
-  //     this.message("parfait", "success", "produit ajouté au panier");
-  //   } else {
-  //     let panier = JSON.parse(localStorage.getItem('panier') ?? '[]');
-  //     let a = panier.filter((item: any) => item.produit.id == produit.id);
-  //     // console.log(a.length);
-  //     if (a.length > 0) {
-
-  //       this.message("oops", "warning", "Ce produit existe déja dans le panier");
-  //     } else {
-  //       if (quantite != 0) {
-
-  //         produitPanier = {
-  //           produit: produit,
-  //           quantitePanier: quantite
-  //         }
-  //       } else {
-
-  //         produitPanier = {
-  //           produit: produit,
-  //           quantitePanier: 1
-  //         }
-  //       }
 
   diminuerQuantite(plat: any) {
     const index = this.panier.findIndex((item) => item.id === plat.id);
@@ -95,6 +154,13 @@ export class PanierService {
     this.sauvegarderPanier();
   }
 
+
+  
+  getUserCommandes(): Observable<any[]> {
+    const headers = this.getHeaders();
+    return this.http.get<any[]>(`${this.platsUrl}/auth/commande/list` , { headers });
+  }
 }
+
   
 

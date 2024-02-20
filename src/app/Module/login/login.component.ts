@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from 'src/app/Services/auth.service';
+import { AuthService , AuthResponse } from 'src/app/Services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -103,10 +103,9 @@ validatePhoneNumber(phone: string): boolean {
       console.log('Réponse d\'inscription:', response);
       this.login();
     },
-    // (error) => {
-    //   // console.error('Erreur lors de l\'inscription:', error);
-    //   this.handleError(error);
-    // }
+    (error) => {
+      this.handleError(error);
+    }
   );
   }
 
@@ -119,36 +118,35 @@ validatePhoneNumber(phone: string): boolean {
       });
       return;
     }
+  
     const data = {
       email: this.email,
       password: this.password,
     };
   
     this.authService.login(data.email, data.password).subscribe(
-      (response) => {
-        console.log(response.user)
+      (response: AuthResponse) => {
+        console.log(response.user);
         console.log(response.token);
         localStorage.setItem('token', JSON.stringify(response.token).replace(/['"]+/g, ''));
-        
+  
         if (response.user.role_id === 1) {
-              this.router.navigate(['/adminSysteme']);
-            } else if (response.user.role_id === 2) {
-              this.router.navigate(['/menuResto']);
-            } else if (response.user.role_id === 3) {
-              this.router.navigate(['/profil']);
-            } else {
-              console.error("Rôle non reconnu :", response.user.role);
-            }
-            ;
-          },
+          this.router.navigate(['/adminSysteme']);
+        } else if (response.user.role_id === 2) {
+          this.router.navigate(['/menuResto']);
+        } else if (response.user.role_id === 3) {
+          this.router.navigate(['/profil']);
+        } else {
+          console.error("Rôle non reconnu :", response.user.role_id);
+        }
+      },
       (error) => {
-        console.error(error);
+        console.error("voici l'erreur", error);
         this.handleError(error);
       }
     );
-  }  
-
-  // Méthode pour gérer les erreurs avec SweetAlert
+  }
+   
   private handleError(error: any): void {
     Swal.fire({
       icon: 'error',

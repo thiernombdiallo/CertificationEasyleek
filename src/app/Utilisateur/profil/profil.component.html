@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="row">
     <div class="container">
         <div class="row">
@@ -6,237 +7,98 @@
                     <h2>Mon profil</h2>
                 </div>
             </div>
-            <div class="col-lg-12">
-                                                            </div>
+            <div class="col-lg-12"></div>
             <div class="col-lg-12">
                 <div class="my-profile-head">
                     <div class="profile-img-main">
-                        <div class="profile-img">
-                                                            
-                        </div>
+                        <div class="profile-img"></div>
                     </div>
                     <div class="my-profile-detail">
                         <div class="my-profile-info">
-                            <h3>Fatoumata Diallo</h3>
-                                                                                                <p class="rtl-num-cod"><i class="iicon-icon-35"></i> +221709013262</p>
-                                                            
+                            <h3>{{ name }}</h3>
+                            <p class="rtl-num-cod">
+                                <i class="iicon-icon-35"></i> {{ phone }}
+                            </p>
                         </div>
                         <div class="edit-pro-btn">
-                            <button class="btn me-5" data-toggle="modal" data-target="#edit-profile">Editer le profil</button>
-                            <button class="btn btn-danger me-5" (click)="logout()">Déconnexion</button>
+                            <button class="btn me-5" data-toggle="modal" data-target="#edit-profile">
+                                Editer le profil
+                            </button>
+                            <button class="btn btn-danger me-5" (click)="logout()">
+                                Déconnexion
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row" id="profile_page_content">
+        <!-- <div class="row" id="profile_page_content">
             <div class="col-xl-3 col-lg-4">
                 <div class="sidebar-menu-main">
                     <div class="sidebar-menu">
                         <div class="ordering-title">
                             <h6>Commande</h6>
                         </div>
-                       
-                        <ul id="myTab" class="nav nav-tabs">
-                            <li id="tab_order_history" class="tabs active" onclick="addActiveClass(this.id)"><a href="#order_history" data-toggle="tab">Historique des commandes</a></li>
-                            <li id="tab_bookings" class="tabs " onclick="addActiveClass(this.id)"><a href="#bookings" data-toggle="tab">Mes réservations</a></li>
-                            <li id="tab_table_bookings" class="tabs " onclick="addActiveClass(this.id)"><a href="#table_bookings" data-toggle="tab">Réservations de tables</a></li>
-                            <!-- <li id="tab_wallet_history" class="tabs " onclick="addActiveClass(this.id)"><a href="#wallet_history" data-toggle="tab">Historique du portefeuille</a></li> -->
-                            <li id="tab_addresses" class="tabs " onclick="addActiveClass(this.id)"><a href="#addresses" data-toggle="tab">Mes adresses</a></li>
-                            <li id="tab_notifications" class="tabs " onclick="addActiveClass(this.id)"><a href="#notifications" data-toggle="tab">Mes notifications</a></li>
-                             <li id="tab_bookmark" class="tabs " onclick="addActiveClass(this.id)"><a href="#bookmarks" data-toggle="tab">mon signet</a></li>
+
+                        <ul class="nav nav-tabs">
+                            <li class="tabs active">
+                                <a>Historique des commandes</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col-xl-9 col-lg-8">
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade in active show" id="order_history">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active show">
                         <div class="profile-content-area">
                             <div class="profile-page-title">
                                 <h5>Historique des commandes</h5>
                                 <ul class="nav nav-tabs" role="tablist">
-                                  <li class="nav-item">
-                                    <a href="#current-orders" class="nav-link active" data-toggle="tab">Commandes en cours</a>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a href="#past-orders" class="nav-link" data-toggle="tab">commandes passées</a>
-                                  </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active">Commandes en
+                                            cours</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" >Commandes passées</a>
+                                    </li>
                                 </ul>
                             </div>
                             
-                            <div class="profile-content-main">
-                                <div class="tab-content">
-                                    <div id="past-orders" class="tab-pane">
-                                                                                        <!-- <div class="col-xl-6 col-lg-12"> -->
-                                            <div class="empty_block">
-                                                <figure>
-                                                    <img src="https://dakarfooddelivery.com/assets/front/images/icn-empty.png">
-                                                </figure>
-                                                <p class="no-found">Aucune commande passée trouvée.</p>
-                                            </div>
-                                            <!-- </div> -->
-                                                                                </div>
-                                    <div id="current-orders" class="tab-pane show active">
-                                                                                        <div class="empty_block">
-                                                <figure>
-                                                    <img src="https://dakarfooddelivery.com/assets/front/images/icn-empty.png">
-                                                </figure>
-                                                <p class="no-found">Aucune commande en cours trouvée.</p>
-                                            </div>
-                                                                                </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
-                    <div class="tab-pane fade " id="bookings">
-                        <div class="profile-content-area">
-                            <div class="profile-page-title">
-                                <h5>Mes réservations</h5>
-                                <ul class="nav nav-tabs" role="tablist">
-                                  <li class="nav-item">
-                                    <a href="#current-bookings" class="nav-link active" data-toggle="tab">Réservations à venir</a>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a href="#past-bookings" class="nav-link" data-toggle="tab">Réservations passées</a>
-                                  </li>
-                                </ul>
-                            </div>
-                            <div class="profile-content-main">
-                                <div class="tab-content">
-                                    <div id="past-bookings" class="tab-pane">
-                                                                                        <div class="empty_block">
-                                                <figure>
-                                                    <img src="https://dakarfooddelivery.com/assets/front/images/icn-empty.png">
-                                                </figure>
-                                                <p class="no-found">Aucune réservation passée trouvée.</p>
-                                            </div>
-                                                                                </div>
-                                    <div id="current-bookings" class="tab-pane show active">
-                                                                                            <div class="empty_block">
-                                                    <figure>
-                                                        <img src="https://dakarfooddelivery.com/assets/front/images/icn-empty.png">
-                                                    </figure>
-                                                    <p class="no-found">Aucune réservation à venir trouvée.</p>
-                                                </div>
-                                                                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- wallet history : start -->
-                                            <!-- wallet history : end -->
-                    <div class="tab-pane fade " id="addresses">
-                        <div class="profile-content-area">
-                            <div class="profile-page-title">
-                                <h5>Mes adresses</h5>
-                                <div class="add-address-btn">
-                                    <button class="btn" data-toggle="modal" data-target="#add-address">Si la géolocalisation n'apparaît pas automatiquement dans l'onglet ci-dessous, autorisez-la dans les paramètres de votre navigateur (PC) ou applications mobiles (Chrome ou Safari, Instagram) &gt; Autorisations &gt; Localisation. 
-Si cela ne fonctionne pas, choisissez l'option 'à emporter' ci-dessus, et indiquez votre adresse dans les commentaires. Pour plus d'infos, contactez le service commercial au (+221) 76 545 72 70.</button>
-                                </div>
-                            </div>
-                            <div class="profile-content-main">
-                                                                        <div class="empty_block">
-                                        <figure>
-                                            <img src="https://dakarfooddelivery.com/assets/front/images/icn-empty.png">
-                                        </figure>
-                                        <p class="no-found">Aucune adresse trouvée.</p>
-                                    </div>
-                                                                </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade " id="notifications">
-                        <div class="profile-content-area">
-                            <div class="profile-page-title">
-                                <h5>Mes notifications</h5>
-                            </div>
-                            <div class="profile-content-main">
-                                                                        <div class="row orders-box-row">
-                                                                                                <div class="col-xl-6 col-lg-12">
-                                                        <div class="my-address-main ">
-                                                            <div class="noti">
-                                                                <div class="my-address-list">
-                                                                    <h6>Découvrez le plaisir d'une alimentation saine avec Mammy Healthy !</h6>
-                                                                                                                                            <p>Commandez dès maintenant pour une expérience gustative équilibrée et savoureuse. #HealthyEating  </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                                                                        <div class="col-xl-6 col-lg-12">
-                                                        <div class="my-address-main ">
-                                                            <div class="noti">
-                                                                <div class="my-address-list">
-                                                                    <h6>Découvrez plus de 70 restaurants pour un déjeuner gourmand! Commandez maintenant.</h6>
-                                                                                                                                            <p>Choisissez parmi une variété de cuisines: africain, pizza, sushi et plus. Déjeunez facilement avec nous ! </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                                    
-                                    </div>
-                                                                </div>
-                                                        </div>
-                    </div>
-                     <!-- bookmark :start -->
-                    <div class="tab-pane fade " id="bookmarks">
-                        <div class="profile-content-area">
-                            <div class="profile-page-title">
-                                <h5>mon signet</h5>
-                            </div>
-                            <div class="profile-content-main">
-                                                                        <div class="empty_block">
-                                        <figure>
-                                            <img src="https://dakarfooddelivery.com/assets/front/images/icn-empty.png">
-                                        </figure>
-                                        <p class="no-found">Aucun signet trouvé</p>
-                                    </div>
-                                                                </div>
-                                                        </div>
-                    </div>
-                    <!-- bookmark :end -->
-                    <!-- table bookings : start -->
-                    <div class="tab-pane fade " id="table_bookings">
-                        <div class="profile-content-area">
-                            <div class="profile-page-title">
-                                <h5>Réservations de tables</h5>
-                                <ul class="nav nav-tabs" role="tablist">
-                                  <li class="nav-item">
-                                    <a href="#current-table-bookings" class="nav-link active" data-toggle="tab">Réservations de tables à venir</a>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a href="#past-table-bookings" class="nav-link" data-toggle="tab">Réservations de tables passées</a>
-                                  </li>
-                                </ul>
-                            </div>
-                            <div class="profile-content-main">
-                                <div class="tab-content">
-                                    <div id="past-table-bookings" class="tab-pane">
-                                                                                        <div class="empty_block">
-                                                <figure>
-                                                    <img src="https://dakarfooddelivery.com/assets/front/images/icn-empty.png">
-                                                </figure>
-                                                <p class="no-found">Aucune réservation de table antérieure n’a été trouvée.</p>
-                                            </div>
-                                                                                </div>
-                                    <div id="current-table-bookings" class="tab-pane show active">
-                                                                                            <div class="empty_block">
-                                                    <figure>
-                                                        <img src="https://dakarfooddelivery.com/assets/front/images/icn-empty.png">
-                                                    </figure>
-                                                    <p class="no-found">Aucune réservation de table à venir n’a été trouvée.</p>
-                                                </div>
-                                                                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- table bookings : end -->
                 </div>
+            </div>
+        </div> -->
+    </div>
+    <!-- <div class="col-lg-12 border-black">
+        <div class=""></div>
+    </div> -->
+
+
+
+    <div class="profile-content-main">
+        <div class="tab-content">
+
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque maxime illum reprehenderit explicabo, amet corporis dolor sed, in soluta officia, at vero possimus fugit? Laudantium dolorum dicta aliquam fugit veniam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam debitis itaque harum mollitia in aspernatur quas reiciendis placeat, cupiditate pariatur voluptatem? Veniam voluptatum eaque accusantium quae animi cum perspiciatis repellendus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde facilis consequuntur accusamus corrupti quaerat ex temporibus praesentium modi? Libero accusantium sit voluptatum eos labore cumque consectetur repellendus harum deserunt magni.
+            <div>
+                <div *ngIf="Commandes.length > 0; else noCommands">
+                    <div *ngFor="let commande of Commandes">
+                        {{ commande.id }} - {{ commande.nomPlat }} 
+                        - {{commande.created_at | date:'dd/MM/yyyy'}} - {{commande.etatCommande}} - {{commande.prixCommande}}
+                    </div>
+                </div>
+                <ng-template #noCommands>
+                    <div>
+                        <figure>
+                            <img
+                                src=""  alt="je suis l'image "/>
+                        </figure>
+                        <p class="no-found">Aucune commande passée trouvée.</p>
+                    </div>
+                </ng-template>
             </div>
         </div>
     </div>
-    <div class="col-lg-12 border-black">
-        <div class=""></div>
-    </div>
-
 </div>

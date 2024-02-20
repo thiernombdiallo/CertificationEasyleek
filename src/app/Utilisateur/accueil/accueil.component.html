@@ -1,31 +1,15 @@
 <app-header></app-header>
 
-<div
-  id="carouselExampleSlidesOnly"
-  class="carousel slide"
-  data-bs-ride="carousel"
->
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner carouselBaniere">
     <div class="carousel-item h-100 active">
-      <img
-        src="../../../assets/banierplats.png"
-        class="d-block w-100 h-100"
-        alt="carousel de la page d'accueil"
-      />
+      <img src="../../../assets/banierplats.png" class="d-block w-100 h-100" alt="carousel de la page d'accueil" />
     </div>
     <div class="carousel-item h-100">
-      <img
-        src="../../../assets/baniertout.png"
-        class="d-block w-100 h-100"
-        alt="carousel de la page d'accueil"
-      />
+      <img src="../../../assets/baniertout.png" class="d-block w-100 h-100" alt="carousel de la page d'accueil" />
     </div>
     <div class="carousel-item h-100">
-      <img
-        src="../../../assets/baniersucre.png"
-        class="d-block w-100 h-100"
-        alt="carousel de la page d'accueil"
-      />
+      <img src="../../../assets/baniersucre.png" class="d-block w-100 h-100" alt="carousel de la page d'accueil" />
     </div>
   </div>
 </div>
@@ -36,29 +20,21 @@
     <div class="d-flex justify-content-between m-4">
       <p>Voir plus</p>
       <p>
-        <i
-          class="bi bi-chevron-left"
-          data-bs-target="#restotype"
-          data-bs-slide="prev"
-        ></i>
+        <i class="bi bi-chevron-left" data-bs-target="#restotype" data-bs-slide="prev"></i>
       </p>
       <p></p>
       <p>
-        <i
-          class="bi bi-chevron-right"
-          data-bs-target="#restotype"
-          data-bs-slide="next"
-        ></i>
+        <i class="bi bi-chevron-right" data-bs-target="#restotype" data-bs-slide="next"></i>
       </p>
     </div>
   </div>
   <div class="circles typeResto">
     <div *ngFor="let categorie of categories">
-    <div class="cerclemini">
-      <img src="https://cdn.pixabay.com/photo/2016/01/22/02/13/meat-1155132_640.jpg" alt="">
-      <span>{{ categorie.type }}</span>
+      <div class="cerclemini" (change)="onRestoChange()">
+        <img src="https://cdn.pixabay.com/photo/2016/01/22/02/13/meat-1155132_640.jpg" alt="">
+        <span>{{ categorie.type }}</span>
+      </div>
     </div>
-  </div>
     <!-- <div class="cerclemini">
       <img
         src="https://cdn.pixabay.com/photo/2020/02/15/20/38/noodles-4851996_640.jpg"
@@ -120,14 +96,9 @@
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 m-5">
     <div *ngFor="let restaurant of restaurants" class="col">
       <div class="card rounded rounded-4 cardResto">
-        <div
-          class="rounded rounded-4 w-100 cardRestoEntete d-flex justify-content-center"
-        >
-          <img
-            src="http://127.0.0.1:8000/images/{{ restaurant.image }}"
-            class="card-img-top border border-2 w-75 h-75 my-5"
-            alt="image restaurant"
-          />
+        <div class="rounded rounded-4 w-100 cardRestoEntete d-flex justify-content-center">
+          <img src="http://127.0.0.1:8000/images/{{ restaurant.image }}"
+            class="card-img-top border border-2 w-75 h-75 my-5" alt="image restaurant" />
         </div>
         <div class="card-body cardBodyResto">
           <div class="card-title d-flex justify-content-between">
@@ -136,13 +107,8 @@
           </div>
           <p class="card-text">{{ restaurant.description }}</p>
         </div>
-        <div
-          class="card-footer rounded rounded-4 cardFooterResto d-flex justify-content-end"
-        >
-          <button
-            class="boutonCommandeDts rounded rounded-5 px-3"
-            routerLink="/detailsrestaurant"
-          >
+        <div class="card-footer rounded rounded-4 cardFooterResto d-flex justify-content-end">
+          <button class="boutonCommandeDts rounded rounded-5 px-3" routerLink="/detailsrestaurant/id">
             Commander
           </button>
         </div>
@@ -160,11 +126,7 @@
 <div class="card mb-3 carteNoscible">
   <div class="row g-0">
     <div class="col-md-4 d-flex justify-content-center align-items-center">
-      <img
-        src="../../../assets/about-img.png.png"
-        class="w-50 h-75"
-        alt="..."
-      />
+      <img src="../../../assets/about-img.png.png" class="w-50 h-75" alt="..." />
     </div>
     <div class="col-md-8 my-5">
       <div class="card-body">
@@ -206,22 +168,14 @@
         </div>
       </div>
       <div class="col-md-8">
-        <img
-          src="../../../assets/crispy-sandwiches.png.png"
-          class="img-fluid rounded-start"
-          alt="..."
-        />
+        <img src="../../../assets/crispy-sandwiches.png.png" class="img-fluid rounded-start" alt="..." />
       </div>
     </div>
   </div>
   <div class="card mb-3 carteRestoNekh shadow-sm">
     <div class="row g-0">
       <div class="col-md-8">
-        <img
-          src="../../../assets/maigua 1.png"
-          class="img-fluid rounded-start"
-          alt="..."
-        />
+        <img src="../../../assets/maigua 1.png" class="img-fluid rounded-start" alt="..." />
       </div>
       <div class="col-md-4">
         <div class="card-body">
@@ -258,11 +212,7 @@
         </div>
       </div>
       <div class="col-md-8">
-        <img
-          src="../../../assets/thiep.png"
-          class="img-fluid rounded-start"
-          alt="..."
-        />
+        <img src="../../../assets/thiep.png" class="img-fluid rounded-start" alt="..." />
       </div>
     </div>
   </div>

@@ -11,9 +11,9 @@ export class GestionPlatService {
   
   private platsUrl = apiUrl +'/auth/plat';
   private platsUrlSimple = apiUrl;
-
+  
   constructor(private http: HttpClient) {}
-
+  
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
     console.log("message ",token)
@@ -22,8 +22,8 @@ export class GestionPlatService {
       'Authorization': `Bearer ${token}`,
     });
   }
-
-
+  
+  
   // Plat
   getPlatsForMenu(menuId: string): Observable<any[]> {
     const headers = this.getHeaders();
@@ -45,27 +45,38 @@ export class GestionPlatService {
     return this.http.delete<any>(`${this.platsUrl}/delete/${platId}`, { headers });
   }
 
-  updatePlat(platId: string): Observable<any> {
+  // updatePlat(platId: string): Observable<any> {
+  //   const headers = this.getHeaders();
+  //   return this.http.put<any>(`${this.platsUrl}/update/${platId}`, { headers }).pipe(
+  //     catchError((error) => {
+  //       console.error('Error in getPlatsForMenu:', error);
+  //       throw error;
+  //     })
+  //     );
+  // }
+  updatePlat(platId: string, updatedPlat: any): Observable<any> {
     const headers = this.getHeaders();
-    return this.http.put<any>(`${this.platsUrl}/update/${platId}`, { headers }).pipe(
+    return this.http.put<any>(`${this.platsUrl}/update/${platId}`, updatedPlat, { headers }).pipe(
       catchError((error) => {
-        console.error('Error in getPlatsForMenu:', error);
+        console.error('Error in updatePlat:', error);
         throw error;
       })
     );
   }
-
   
+
   getSinglePlat(platId: number): Observable<any> {
     const headers = this.getHeaders();
     return this.http.get<any>(`${this.platsUrl}/show/${platId}`, { headers });
   }
-
+  
   getSinglePlatUtilisateur(platId: string): Observable<any> {
     return this.http.get<any>(`${this.platsUrlSimple}/plat/show/${platId}`);
   }
   getPlatsForMenuUtilisateur(menuId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.platsUrlSimple}/plat/list/${menuId}`);
-}
-}
+  }
+  }
 
+  
+  

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AjoutRestaurateurService } from 'src/app/Services/ajout-restaurateur.service';
 import { GestionPlatService } from 'src/app/Services/gestion-plat.service';
 import { PanierService } from 'src/app/Services/panier.service';
-import { PlatService } from 'src/app/Services/plat.service';
+import { PlatService } from 'src/app/Services/menu.service';
 
 @Component({
   selector: 'app-details-restaurant',
@@ -14,16 +15,34 @@ export class DetailsRestaurantComponent {
   plats :any [] = [];
   menus: any [] = [];
   selectedMenuId: string ="";
+  restaurantId :any ="" ; 
+  restaurant: any;
 
-  constructor(private platService: PlatService , private panierService: PanierService , private ajoutRestaurateurService: AjoutRestaurateurService) {}
+  constructor(private platService: PlatService , private panierService: PanierService , private ajoutRestaurateurService: AjoutRestaurateurService ,private route: ActivatedRoute,) {}
+
 
   ngOnInit(): void {
     this.loadMenus();
     this.loadPlats();
+    this.getListeRestaurateurs() ;
+
+    // this.route.params.subscribe(params => {
+    //   console.log("ca c'est le in id " ,params)
+    //   this.restaurantId = +params['id'];
+    //   // Charger les données du restaurant en utilisant this.restaurantId
+    //   this.ajoutRestaurateurService.getRestaurantDetailsUtilisateur(this.restaurantId).subscribe(
+    //     (restaurant:any) => {
+    //       this.restaurant = restaurant;
+    //     },
+    //     (error) => {
+    //       console.error('Erreur lors de la récupération des détails du restaurant:', error);
+    //     }
+    //   );
+    // });
   }
 
   getListeRestaurateurs() {
-    this.ajoutRestaurateurService.getListeRestaurateurs().subscribe((response: any) => {
+    this.ajoutRestaurateurService.getRestaurantDetailsUtilisateur(this.restaurantId).subscribe((response: any) => {
       console.log("Regarder", response)
       this.restaurateurs = response.data;
     });

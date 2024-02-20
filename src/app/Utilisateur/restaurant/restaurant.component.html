@@ -15,11 +15,12 @@
 <!-- section de resto avec ces cartes -->
 <div class="w-100 mx-auto me-5 my-4">
   <div class="d-flex justify-content-between my-4 gap-4">
-    <h4 class="titreDash fw-bold">Tous les restaurants à proximité</h4>
+    <h4 class="titreDash fw-bold">Tous les restaurants</h4>
     <div>
       <div class="d-flex justify-content-around gap-3 me-5">
         <div>
           <select class="form-select selectc-input" aria-label="Default select example" id="categorie_type" name="categorie_type" [(ngModel)]="categorie_id" (change)="onRestoChange()" required>
+            <option value="" disabled selected>Choisissez un type de categorie</option>
             <option *ngFor="let categorie of categories" [value]="categorie.id">{{ categorie.type }}</option>
           </select>
         </div>
@@ -46,7 +47,7 @@
           <p class="card-text">{{ restaurant.description }}</p>
         </div>
         <div class="card-footer rounded rounded-4 cardFooterResto d-flex justify-content-end">
-          <button class="boutonCommandeDts rounded rounded-5 px-3" routerLink="/detailsrestaurant">Commander</button>
+          <button class="boutonCommandeDts rounded rounded-5 px-3" routerLink="/detailsrestaurant/id">Commander</button>
         </div>
       </div>
     </div>

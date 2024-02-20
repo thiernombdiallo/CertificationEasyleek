@@ -7,10 +7,9 @@ import { apiUrl } from './apiUrl';
   providedIn: 'root',
 })
 export class PlatService {
+  private plattest=apiUrl
   private menuUrl = apiUrl + '/auth/menu';
   private platUrl = apiUrl + '/auth/plat';
-  private plattest=apiUrl
-
 
   constructor(private http: HttpClient) {}
 

@@ -23,20 +23,20 @@ categories :any [] =[];
 categorie_id:string="";
 
 // Attribut pour faire les recherche
-// searchRestaurant = '';
-// itemSearchs: any;
+searchRestaurant = '';
+itemSearchs: any;
 
 
 // Propriétés de pagination
-// itemsPerPage: number = 6;
-// currentPage: number = 1;
+itemsPerPage: number = 6;
+currentPage: number = 1;
 
   //methode pour gerer la pagination
-  // get paginatedRestaurant(): any[] {
-  //   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-  //   const endIndex = startIndex + this.itemsPerPage;
-  //   return this.itemSearchs ? this.itemSearchs.slice(startIndex, endIndex) : this.restaurants.slice(startIndex, endIndex);
-  // }
+  get paginatedRestaurant(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.itemSearchs ? this.itemSearchs.slice(startIndex, endIndex) : this.restaurants.slice(startIndex, endIndex);
+  }
 
   // methodes qui gerent les page pour la pagination
 
@@ -69,7 +69,6 @@ categorie_id:string="";
   }
 
   onRestoChange() {
-    // Call the function to filter restaurants based on the selected category
     this.loadRestaurantsForSelectedCategory();
   }
 

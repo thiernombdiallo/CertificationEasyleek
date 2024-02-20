@@ -13,6 +13,8 @@ import { FooterComponent } from './Module/footer/footer.component';
 import { MenuComponent } from './Restaurateur/menu/menu.component';
 import { CommandeComponent } from './Restaurateur/commande/commande.component';
 import { CommentaireComponent } from './Restaurateur/commentaire/commentaire.component';
+import { AjouteplatComponent } from './Restaurateur/ajouteplat/ajouteplat.component';
+import { DasboardRestoComponent } from './Module/dasboard-resto/dasboard-resto.component';
 import { AccueilAdminComponent } from './Administrateur/accueil-admin/accueil-admin.component';
 import { CategorieComponent } from './Administrateur/categorie/categorie.component';
 import { DetailsRestaurantComponent } from './Utilisateur/details-restaurant/details-restaurant.component';
@@ -21,8 +23,7 @@ import { RestaurateurComponent } from './Administrateur/restaurateur/restaurateu
 import { ClientComponent } from './Administrateur/client/client.component';
 import { MessageComponent } from './Administrateur/message/message.component';
 import { DashboardAdminComponent } from './Module/dashboard-admin/dashboard-admin.component';
-import { AjouteplatComponent } from './Restaurateur/ajouteplat/ajouteplat.component';
-import { DasboardRestoComponent } from './Module/dasboard-resto/dasboard-resto.component';
+import { AuthGuardService } from './Services/auth-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
@@ -33,7 +34,7 @@ const routes: Routes = [
   
   { path: 'accueil', component: AccueilComponent},
   { path: 'restaurant', component: RestaurantComponent},
-  { path: 'detailsrestaurant', component: DetailsRestaurantComponent },
+  { path: 'detailsrestaurant/id', component: DetailsRestaurantComponent },
   { path: 'panier', component: PanierComponent },
   { path: 'propos', component: ProposComponent},
   { path: 'guide', component: GuideComponent},

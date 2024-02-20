@@ -64,5 +64,9 @@ export class AjoutRestaurateurService {
     const restaurateursUrl = apiUrl + '/restaurant/list/';
     return this.http.get<any[]>(restaurateursUrl);
   }
+  getRestaurantDetailsUtilisateur(id: string): Observable<any> {
+    const detailsUrl = `${apiUrl}//restaurant/details/${id}`;
+    return this.http.get(detailsUrl);
+}
 
 }

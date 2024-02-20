@@ -11,6 +11,7 @@
           <div class="mb-3">
             <label for="menu">Type de menu:</label>
             <select id="menu" name="menu_id" [(ngModel)]="menu_id" (change)="onMenuChange()" required>
+              <option value="" disabled selected>Choisissez un type de menu</option>
               <option *ngFor="let menuTitre of menus" [value]="menuTitre.id">{{ menuTitre.titre }}</option>
             </select>
           </div>
@@ -89,8 +90,6 @@
                   <option *ngFor="let menuTitre of menus" [value]="menuTitre.id">{{ menuTitre.titre }}</option>
                 </select>
               </div>
-              {{ menu_id }}
-
               <button class="btn btn-add" type="submit">Ajouter</button>
             </form>
           </div>
@@ -153,6 +152,13 @@
             <h2>{{libelle}}</h2>
             <h2>{{prix}}</h2>
             <h2>{{descriptif}}</h2>
+          <div>
+            <div *ngIf="Commandes">
+              <div *ngFor="let commande of Commandes">
+                  {{ commande.nomPlat }} 
+              </div>
+            </div>
+          </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

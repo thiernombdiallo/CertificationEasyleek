@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { CommandeService } from 'src/app/Services/commande.service';
 import { GestionPlatService } from 'src/app/Services/gestion-plat.service';
-import { PlatService } from 'src/app/Services/plat.service';
+import { PlatService } from 'src/app/Services/menu.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ajouteplat',
@@ -25,8 +27,9 @@ export class AjouteplatComponent {
   // editedArticle: Article = { id: 0, titre: '', photo: '', description: '' };
   platId:string="";
   details: any;
+  Commandes : any []=[];
 
-  constructor(private platservice: GestionPlatService , private recupererMenu:PlatService) {}
+  constructor(private platservice: GestionPlatService , private recupererMenu:PlatService , private commandeService :CommandeService) {}
 
   ngOnInit(): void {
     this.loadPlats(); 
@@ -60,27 +63,29 @@ export class AjouteplatComponent {
    
     
     addPlat() {
-      let formData = new FormData();
-      formData.append("libelle", this.libelle);
-      formData.append("prix", this.prix);
-      formData.append("descriptif", this.descriptif);
-      formData.append("menu_id", this.menu_id);
-      formData.append("image", this.image as Blob);
+      // let formData = new FormData();
+      // formData.append("libelle", this.libelle);
+      // formData.append("prix", this.prix);
+      // formData.append("descriptif", this.descriptif);
+      // formData.append("menu_id", this.menu_id);
+      // formData.append("image", this.image as Blob);
+
+      let platAdd = {
+        libelle: this.libelle,
+        prix: this.prix,
+        image: this.image as File ,
+        descriptif: this.descriptif,
+        menu_id: this.menu_id,
+      }
     
-      console.log("voici le formdata" , formData)
-      this.platservice.ajouterPlat(formData).subscribe(
+      console.log("voici le formdata" , platAdd)
+      this.platservice.ajouterPlat(platAdd).subscribe(
         (response: any) => {
           console.log('Plat ajouté avec succès !', response);
           this.loadPlats();
         },
         (error: any) => {
           console.error('Erreur lors de l\'ajout du plat :', error);
-      
-          // Gérer les erreurs spécifiques ici
-          if (error.status === 422) {
-            console.error('Erreur 422 : Données invalides.');
-            console.error('Détails de l\'erreur :', error.error.errors);
-          }
         }
       );
 }      
@@ -104,9 +109,14 @@ export class AjouteplatComponent {
           this.plats = plats;
           console.log('Plats récupérés avec succès!', this.plats);
         },
-        (error) => {
-          console.error("Erreur lors de la récupération des plats :", error);
-        }
+      //   (error) => {
+      //     console.error("Erreur lors de la récupération des plats :", error);
+      //     Swal.fire({
+      //       icon: 'error',
+      //       title: 'Erreur',
+      //       text: 'Erreur lors de la récupération des plats. Veuillez réessayer plus tard.',
+      //     });
+      //   }
       );
     }
   
@@ -139,7 +149,6 @@ export class AjouteplatComponent {
     detailsplat(platId: number): void{
       this.platservice.getSinglePlat(platId).subscribe(
         (platDetails) => {
-          console.log("ca c'est le truc du details" ,platDetails)
           this.showDetailsModal(platDetails);
         },
         (error) => {
@@ -174,14 +183,22 @@ editmenuModal(platId:number){
   })
 };
 
-modifierPlat(platId:string, editingPlat :any){
+// modifierPlat(platId:string, editingPlat :any){
 
-this.platservice.updatePlat(editingPlat).subscribe(()=>{
-  console.log("c'est l'autre ca " ,editingPlat)
-  this.loadPlats()
-})
-};
-    }
+// this.platservice.updatePlat(editingPlat).subscribe(()=>{
+//   console.log("c'est l'autre ca " ,editingPlat)
+//   this.loadPlats()
+// })
+// };
+modifierPlat(platId: string, editingPlat: any) {
+  this.platservice.updatePlat(platId, editingPlat).subscribe(() => {
+    console.log("Plat mis à jour avec succès.", editingPlat);
+    this.loadPlats();
+  });
+}
+
+}
+    
     
     
 // let formData=new FormData();
