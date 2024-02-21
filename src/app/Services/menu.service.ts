@@ -58,11 +58,12 @@ export class PlatService {
     return this.http.get<any[]>(`${this.plattest}/plat/list/${menuId}`);
   }
   
-  getPlats(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.plattest}/plat/list`);
+  getPlatsTotalresto(restaurant_id:any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.plattest}/plat/list/byrestaurant/${restaurant_id}`);
   }
-  getMenusUtilisateur(): Observable<any[]> {
+  getMenusUtilisateur(restaurant_id :any): Observable<any[]> {
     const headers = this.getHeaders();
-    return this.http.get<any[]>(`${this.plattest}/menu/list`);
+    return this.http.get<any[]>(`${this.plattest}/byrestaurant/menu/list/${restaurant_id}`);
   }
+
   }

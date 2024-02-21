@@ -22,7 +22,7 @@ export class RestaurateurComponent implements OnInit {
     phone: string = '';
     password:string= '';
     categories_id: string= '';
-    image:string= '';
+    image :any= '';
   
     restaurateur: {
       id: string;
@@ -54,7 +54,7 @@ validatePhoneNumber(phone: string): boolean {
 }
   getListeRestaurateurs() {
     this.ajoutRestaurateurService.getListeRestaurateurs().subscribe((response: any) => {
-      console.log("Regarder", response)
+      // console.log("Regarder", response)
       this.restaurateurs = response.data;
     });
   }
@@ -70,9 +70,9 @@ validatePhoneNumber(phone: string): boolean {
     this.categorieService.getAllCategories().subscribe(
       (categories: any) => {
         this.categories = categories.data;
-        console.log( 'revoire ok',categories.data)
+        // console.log( 'revoire ok',categories.data)
         this.categorieTypes = categories.map((categorie: any) => categorie.type);
-        console.log(categories.type)
+        // console.log(categories.type)
       },
       (error) => {
         console.error(
@@ -137,9 +137,12 @@ validatePhoneNumber(phone: string): boolean {
       adresse: this.adresse,
       phone: this.phone,
       password: this.password,
-      categorie:this.categories_id
+      categorie:this.categories_id,
+      image: this.image,
     };
+
     
+
     this.ajoutRestaurateurService.ajouterRestaurateur(data.name, data.email, data.adresse , data.phone, data.password ,data.categorie ).subscribe(
       (response) => {
         console.log('Réponse d\'inscription:', response);
@@ -151,10 +154,10 @@ validatePhoneNumber(phone: string): boolean {
     }
 
     getDetailsRestaurant(restaurateur: any): void {
-      console.log('Restaurateur:', restaurateur);
+      // console.log('Restaurateur:', restaurateur);
       this.ajoutRestaurateurService.getRestaurantDetails(restaurateur.id).subscribe(
          (details) => {
-          console.log("la reponse du detail",details)
+          // console.log("la reponse du detail",details)
             this.name = details.data.name;
             this.adresse = details.data.adresse;
             this.phone = details.data.phone;
@@ -177,7 +180,7 @@ desactiverRestaurant(restaurateur: any): void {
           // Appel de la méthode de désactivation du service
           this.ajoutRestaurateurService.desactiverRestaurant(restaurateur.id).subscribe(
             (response) => {
-              console.log('Restaurant désactivé avec succès', response);
+              // console.log('Restaurant désactivé avec succès', response);
               // Ajoutez ici le code pour mettre à jour la liste des restaurateurs ou effectuer d'autres actions si nécessaire.
             },
             (error) => {
@@ -202,7 +205,7 @@ activerRestaurant(restaurateur: any): void {
           // Call the method to unlock the restaurant
           this.ajoutRestaurateurService.activerRestaurant(restaurateur.id).subscribe(
             (response) => {
-              console.log('Restaurant débloqué avec succès', response);
+              // console.log('Restaurant débloqué avec succès', response);
               // Update the icon or perform other actions if needed
               restaurateur.isBlocked = false; // Assuming there's a property to track if the restaurant is blocked
             },

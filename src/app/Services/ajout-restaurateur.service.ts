@@ -29,9 +29,9 @@ export class AjoutRestaurateurService {
     return this.http.get<any[]>(restaurateursUrl, { headers: this.getHeaders() });
   }  
 
-  ajouterRestaurateur(name: string, email: string, adresse: string, phone: string, password: string, categorie_id:string): Observable<any> {
+  ajouterRestaurateur(name: string, email: string, adresse: string, phone: string, password: string, categorie_id:string ): Observable<any> {
     const registerUrl = `${apiUrl}/auth/restaurant/register`;
-    const userData = { name, email, adresse, phone, password , categorie_id};
+    const userData = { name, email, adresse, phone, password , categorie_id };
     return this.http.post(registerUrl, userData ,{ headers: this.getHeaders() });
   }
   
@@ -65,8 +65,12 @@ export class AjoutRestaurateurService {
     return this.http.get<any[]>(restaurateursUrl);
   }
   getRestaurantDetailsUtilisateur(id: string): Observable<any> {
-    const detailsUrl = `${apiUrl}//restaurant/details/${id}`;
+    const detailsUrl = `${apiUrl}/restaurant/details/${id}`;
     return this.http.get(detailsUrl);
 }
 
+getListeRestaurateursPour(restaurantId:string): Observable<any> {
+  const restaurateursUrl = `${apiUrl}/plat/list/byrestaurant/${restaurantId}`;
+  return this.http.get<any[]>(restaurateursUrl);
+}
 }

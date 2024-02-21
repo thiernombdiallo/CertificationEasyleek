@@ -158,7 +158,7 @@ export class PanierService {
   
   getUserCommandes(): Observable<any[]> {
     const headers = this.getHeaders();
-    return this.http.get<any[]>(`${this.platsUrl}/auth/commande/list` , { headers });
+    return this.http.get<any[]>(`${this.platsUrl}/auth/commande/list`, { headers });
   }
 }
 

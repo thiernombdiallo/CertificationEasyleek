@@ -7,6 +7,9 @@
     --argent: #F0EAD6;
     --fisa: #F8F3C6;
 }
+.active{
+    color: #FFA07A !important;
+}
 img{
     width: 66px;
 }

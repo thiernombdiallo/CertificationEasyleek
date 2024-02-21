@@ -23,7 +23,18 @@ export class GestionPlatService {
     });
   }
   
-  
+  getPlatsForTotal(): Observable<any[]> {
+    const headers = this.getHeaders();
+    return this.http.get<any[]>(`${this.platsUrl}/list/restaurant/`, { headers }).pipe(
+        catchError((error) => {
+            console.error('Erreur dans getPlatsForMenu :', error);
+            throw error; 
+        })
+    );
+}
+
+
+
   // Plat
   getPlatsForMenu(menuId: string): Observable<any[]> {
     const headers = this.getHeaders();
@@ -35,28 +46,33 @@ export class GestionPlatService {
     );
 }
       
- ajouterPlat(formData : any) : Observable<any>{
-    const headers = this.getHeaders();
+//  ajouterPlat(formData : any) : Observable<any>{
+//     const headers = this.getHeaders();
+//     return this.http.post<any>(`${this.platsUrl}/store`, formData , { headers })
+//   } 	
 
-    return this.http.post<any>(`${this.platsUrl}/store`, formData , { headers })
-  } 	
+  // let platAdd = {
+  //   libelle: this.libelle,
+  //   prix: this.prix,
+  //   image: this.image as Blob,
+  //   descriptif: this.descriptif,
+  //   menu_id: this.menu_id,
+  // }
+  ajouterPlat(libelle: string, prix: string, image: any, descriptif: string, menu_id: string): Observable<any> {
+    const registerRestoUrl = `${this.platsUrl}/store`;
+    const userData = { libelle,  prix, image, descriptif, menu_id};
+    return this.http.post(registerRestoUrl, userData ,{ headers: this.getHeaders() });
+  }
+
   deletePlat(platId: string): Observable<any> {
     const headers = this.getHeaders();
     return this.http.delete<any>(`${this.platsUrl}/delete/${platId}`, { headers });
   }
 
-  // updatePlat(platId: string): Observable<any> {
-  //   const headers = this.getHeaders();
-  //   return this.http.put<any>(`${this.platsUrl}/update/${platId}`, { headers }).pipe(
-  //     catchError((error) => {
-  //       console.error('Error in getPlatsForMenu:', error);
-  //       throw error;
-  //     })
-  //     );
-  // }
-  updatePlat(platId: string, updatedPlat: any): Observable<any> {
+ 
+  updatePlat(platId: any,): Observable<any> {
     const headers = this.getHeaders();
-    return this.http.put<any>(`${this.platsUrl}/update/${platId}`, updatedPlat, { headers }).pipe(
+    return this.http.put<any>(`${this.platsUrl}/update/${platId}`, { headers }).pipe(
       catchError((error) => {
         console.error('Error in updatePlat:', error);
         throw error;

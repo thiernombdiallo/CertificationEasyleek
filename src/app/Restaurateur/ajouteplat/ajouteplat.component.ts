@@ -34,6 +34,7 @@ export class AjouteplatComponent {
   ngOnInit(): void {
     this.loadPlats(); 
     this.getAllmenu();
+    this.loadPlatsTotal();
   }
 
 
@@ -44,8 +45,8 @@ export class AjouteplatComponent {
     
     this.recupererMenu.getMenus().subscribe(
       (menu: any) => {
+        console.log('Menus récupérés avec succès !', menu);
         this.menus = menu.menu;
-        console.log('Menus récupérés avec succès !', this.menus);
       },
       (error) => {
         console.error("Erreur lors de la récupération des menus :", error);
@@ -54,32 +55,35 @@ export class AjouteplatComponent {
     }
     
     getMenu() {
-      
       this.recupererMenu.getMenus().subscribe((response :any) => {
-        // console.log("voir liste", response.menu)
+        console.log("voir liste", response.menu)
         this.menus = response.menu.menu_id;
       });
     }
    
-    
-    addPlat() {
-      // let formData = new FormData();
-      // formData.append("libelle", this.libelle);
-      // formData.append("prix", this.prix);
-      // formData.append("descriptif", this.descriptif);
-      // formData.append("menu_id", this.menu_id);
-      // formData.append("image", this.image as Blob);
+    // this.ajoutRestaurateurService.ajouterRestaurateur(data.libelle, data.prix, data.image , data.descriptif ,data.menu_id ).subscribe(
+    //   (response) => {
+    //     // console.log('Réponse d\'inscription:', response);
+    //     this.restaurateurs = response.data;
+    //     this.getListeRestaurateurs();
+    //     document.getElementById("close-modal")?.click();
+    //   },
+    // );
+    // }
 
-      let platAdd = {
+
+    addPlat() {
+
+      const data = {
         libelle: this.libelle,
         prix: this.prix,
-        image: this.image as File ,
+        image: this.image.name as Blob,
         descriptif: this.descriptif,
         menu_id: this.menu_id,
       }
     
-      console.log("voici le formdata" , platAdd)
-      this.platservice.ajouterPlat(platAdd).subscribe(
+      // console.log("voici le formdata" , platAdd)
+      this.platservice.ajouterPlat(data.libelle, data.prix, data.image , data.descriptif ,data.menu_id ).subscribe(
         (response: any) => {
           console.log('Plat ajouté avec succès !', response);
           this.loadPlats();
@@ -93,7 +97,7 @@ export class AjouteplatComponent {
 
  getFile(event: any) {
       this.image = event.target.files[0] as File;
-      console.log(typeof(this.image));
+      // console.log(typeof(this.image));
       console.warn(event.target.files[0]);
       console.warn(this.image);
 
@@ -109,16 +113,9 @@ export class AjouteplatComponent {
           this.plats = plats;
           console.log('Plats récupérés avec succès!', this.plats);
         },
-      //   (error) => {
-      //     console.error("Erreur lors de la récupération des plats :", error);
-      //     Swal.fire({
-      //       icon: 'error',
-      //       title: 'Erreur',
-      //       text: 'Erreur lors de la récupération des plats. Veuillez réessayer plus tard.',
-      //     });
-      //   }
       );
     }
+
   
     loadPlatsForSelectedMenu() {
       if (this.menu_id) {
@@ -137,7 +134,7 @@ export class AjouteplatComponent {
        {
         this.platservice.deletePlat(platId).subscribe(
           (response) => {
-            console.log('Plat supprimé avec succès!', response);
+            // console.log('Plat supprimé avec succès!', response);
             this.loadPlatsForSelectedMenu();
           },
           (error) => {
@@ -159,9 +156,9 @@ export class AjouteplatComponent {
 
     
     showDetailsModal(platId:number): void {
-      console.log("ca",platId)
+      // console.log("ca",platId)
       this.platservice.getSinglePlat(platId).subscribe((response:any)=>{
-        console.log("c'est la reponse du truc", response)
+        // console.log("c'est la reponse du truc", response)
         this.details = response.data
         this.libelle=this.details.libelle;
         this.prix=this.details.prix;
@@ -173,69 +170,29 @@ export class AjouteplatComponent {
 
 editmenuModal(platId:number){
   this.platservice.getSinglePlat(platId).subscribe((response:any)=>{
-    console.log("c'est la reponse du truc", response)
+    // console.log("c'est la reponse du truc", response)
     this.editingPlat= response.data;
     this.libelle=this.editingPlat.libelle
     this.prix=this.editingPlat.prix
     this.descriptif=this.editingPlat.descriptif
     this.image=this.editingPlat.image 
-
   })
 };
-
-// modifierPlat(platId:string, editingPlat :any){
-
-// this.platservice.updatePlat(editingPlat).subscribe(()=>{
-//   console.log("c'est l'autre ca " ,editingPlat)
-//   this.loadPlats()
-// })
-// };
-modifierPlat(platId: string, editingPlat: any) {
-  this.platservice.updatePlat(platId, editingPlat).subscribe(() => {
-    console.log("Plat mis à jour avec succès.", editingPlat);
+modifierPlat(platId: string,) {
+  this.platservice.updatePlat(platId).subscribe(() => {
+    console.log("Plat mis à jour avec succès.", platId);
     this.loadPlats();
   });
 }
 
+loadPlatsTotal() {
+      this.platservice.getPlatsForTotal().subscribe(
+        (platsTtal: any) => {
+          console.log('Plats récupérés avec succès!', platsTtal);
+          this.plats = platsTtal.plats;
+        },
+      );
+    }
+
 }
     
-    
-    
-// let formData=new FormData();
-// alert(this.libelle)
-//     formData.append('libelle',this.libelle);
-//     formData.append("prix",this.prix);
-//     formData.append("image",this.image);
-//     formData.append("descriptif",this.descriptif);
-//     formData.append("menu_id", this.menu_id);
-
-
-// let formData=new FormData();
-    // formData.append("libelle",this.libelle);
-    // formData.append("prix",this.prix);
-    // formData.append("image",this.image);
-    // formData.append("descriptif",this.descriptif);
-    // formData.append("menu_id", this.menu_id);
-
-    // console.log("formdata affichage ",formData);
-
-    // let platAdd = {
-      //   libelle: this.libelle,
-      //   prix: this.prix,
-      //   image: this.image as File ,
-      //   descriptif: this.descriptif,
-      //   menu_id: this.menu_id
-      // }
-      //     const platAdd = new FormData();
-// // alert(this.libelle)
-//     platAdd.append('libelle', "dhdh");
-//     platAdd.append("prix", "1232");
-//     platAdd.append("descriptif", "hfhfhfh");
-//     platAdd.append("menu_id", "1");
-//     platAdd.append("image",this.image as Blob );
-//     console.log("Le plat formdata: ", platAdd)
-
-    // console.log(platAdd[])
-    
-    // console.log("image affichage ",this.image);
-    // console.log( "voirrrrrr", platAdd);

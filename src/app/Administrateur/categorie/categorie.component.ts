@@ -20,7 +20,7 @@ export class CategorieComponent implements OnInit {
 
   getAllCategories() {
     this.categorieService.getAllCategories().subscribe((response: any) => {
-      console.log("voir liste", response.data)
+      // console.log("voir liste", response.data)
       this.categories = response.data;
     });
   }
@@ -34,11 +34,11 @@ export class CategorieComponent implements OnInit {
       });
       return;
     }
-    console.log("Ajout de catégorie en cours...", this.newcategorie);
+    // console.log("Ajout de catégorie en cours...", this.newcategorie);
     this.categorieService.addcategorie(this.newcategorie).subscribe(
       (response) => {
-        console.log("Réponse de l'API :", response);
-        console.log("Catégorie ajoutée avec succès !");
+        // console.log("Réponse de l'API :", response);
+        // console.log("Catégorie ajoutée avec succès !");
         this.getAllCategories();
         this.newcategorie = '';
         document.getElementById("close-modal")?.click();
@@ -61,7 +61,7 @@ export class CategorieComponent implements OnInit {
       }).then((result) => {
         if (result.isConfirmed) {
           this.categorieService.deletecategorie(categorieId).subscribe(() => {
-            console.log("Catégorie supprimée avec succès !");
+            // console.log("Catégorie supprimée avec succès !");
             this.getAllCategories();
           });
         }
@@ -85,9 +85,9 @@ export class CategorieComponent implements OnInit {
         return;
       }
       this.categorieService.editcategorie(categorieId, newType).subscribe((response) =>  {
-        console.log("Catégorie modifiée avec succès !");
-        this.getAllCategories(); console.log("Réponse de l'API :", response);
-        console.log("Catégorie ajoutée avec succès !");
+        // console.log("Catégorie modifiée avec succès !");
+        // this.getAllCategories(); console.log("Réponse de l'API :", response);
+        // console.log("Catégorie ajoutée avec succès !");
         this.getAllCategories();
       });
     }

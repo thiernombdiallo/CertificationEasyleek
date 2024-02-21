@@ -38,16 +38,16 @@
       <div class="d-flex total">
         <h3 class="me-3">Total : {{ calculerTotal() }} fcfa</h3>
       </div>
-      <div>
-        <button type="button" class="btn btn-primary ajoutelemnt" data-bs-toggle="modal"
-          data-bs-target="#exampleModal">Commander</button>
+      <div *ngIf="panier.length > 0">
+        <button type="button" class="btn ajoutelemnt commandebtn" data-bs-toggle="modal"
+          data-bs-target="#exampleModalCommande">Commander</button>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Le modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModalCommande" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -56,7 +56,6 @@
       </div>
       <div class="modal-body">
         <h4>Récapitulatif</h4>
-        <!-- Ajoutez ici le contenu du récapitulatif, par exemple le montant de la commande, les frais de livraison, etc. -->
         <div class="form-group">
           <label for="adresseLivraison">Adresse de Livraison</label><br>
           <select [(ngModel)]="adresseLivraison" name="adresseLivraison">
@@ -72,15 +71,9 @@
         <div class="card w-75"
           style="margin-top: 8%; border: 2px solid red; margin-left: 15%; border: 1px solid #f7e801;">
           <div class="card-body">
-            <!-- ... Votre tableau et autres éléments du panier ... -->
             <div class="somme container">
               <div class="d-flex total">
                 <h3 class="me-3">Total : {{ calculerTotal() }} fr</h3>
-              </div>
-              <!-- Le bouton "Commander" qui ouvre le modal -->
-              <div>
-                <button type="button" class="btn ajoutelemnt" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal">Commander</button>
               </div>
             </div>
           </div>
@@ -88,8 +81,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <!-- Lorsque l'utilisateur clique sur "Valider", appelez votre fonction passerCommande() -->
-        <button type="button" class="btn btn-primary" (click)="passerCommande()">Valider</button>
+        <button type="button" class="btn  commandebtn" (click)="passerCommande()">Valider</button>
       </div>
     </div>
   </div>

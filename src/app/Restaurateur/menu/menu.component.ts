@@ -24,10 +24,10 @@ constructor(private menusservice: PlatService) {}
     this.getMenu(); 
   }
   fetchPlats() {
-    console.log()
+    // console.log()
     this.menusservice.getRestaurantList().subscribe(
       (response: any) => {
-        console.log("Liste des plats :", response);
+        // console.log("Liste des plats :", response);
         this.plats = response; // Adjust if the response structure is different
       },
     );
@@ -58,10 +58,10 @@ constructor(private menusservice: PlatService) {}
       Swal.fire('Erreur!', 'Le champ du nouveau menu doit contenir au moins 5 caractères.', 'error');
       return;
     }
-    console.log("Ajout de catégorie en cours...", this.newmenu);
+    // console.log("Ajout de catégorie en cours...", this.newmenu);
     this.menusservice.addMenu(this.newmenu).subscribe((response) => {
-      console.log(response)
-      console.log("Réponse de l'API :", response);
+      // console.log(response)
+      // console.log("Réponse de l'API :", response);
       this.getMenu();
       this.newmenu = ''; 
       document.getElementById("close-modal")?.click();
@@ -97,7 +97,7 @@ constructor(private menusservice: PlatService) {}
   detail(menuId: any) {
     this.menusservice.getMenuDetails(menuId).subscribe(
       (response :any) => {
-        console.log("je suis reponse",response)
+        // console.log("je suis reponse",response)
         this.selectedMenu = response;
 
       },

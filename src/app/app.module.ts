@@ -22,7 +22,6 @@ import { ClientComponent } from './Administrateur/client/client.component';
 import { CategorieComponent } from './Administrateur/categorie/categorie.component';
 import { MessageComponent } from './Administrateur/message/message.component';
 import { HttpClientModule } from '@angular/common/http';
-import { DetailsRestaurantComponent } from './Utilisateur/details-restaurant/details-restaurant.component';
 import { PanierComponent } from './Utilisateur/panier/panier.component';
 import { DashboardAdminComponent } from './Module/dashboard-admin/dashboard-admin.component';
 import { RestaurateurComponent } from './Administrateur/restaurateur/restaurateur.component';
@@ -51,7 +50,6 @@ import { DasboardRestoComponent } from './Module/dasboard-resto/dasboard-resto.c
     RestaurateurComponent,
     CategorieComponent,
     MessageComponent,
-    DetailsRestaurantComponent,
     PanierComponent,
     AjouteplatComponent,
     DasboardRestoComponent,

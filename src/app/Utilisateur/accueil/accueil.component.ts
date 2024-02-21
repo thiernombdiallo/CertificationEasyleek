@@ -17,20 +17,20 @@ constructor(private categorieService: CategorieService ,private restaurantServic
 ngOnInit() {
   this.getAllCategories();
   this.getListeRestaurateurs()
-  console.log("c'est le reponse du fou",this.getListeRestaurateurs)
+  // console.log("c'est le reponse du fou",this.getListeRestaurateurs)
 
 }
 
 getListeRestaurateurs() {
   this.restaurantService.getListeRestaurateursPourtous().subscribe((response: any) => {
-    console.log("Regarder", response)
+    // console.log("Regarder", response)
     this.restaurants = response.data;
   });
 }
 
 getAllCategories() {
   this.categorieService.getAllCategories().subscribe((response: any) => {
-    console.log("voir liste", response.data)
+    // console.log("voir liste", response.data)
     this.categories = response.data;
   });
 }
@@ -44,7 +44,7 @@ loadRestaurantsForSelectedCategory() {
     this.categorieService.getSingleCategoryPourTous(this.categorie_id).subscribe(
       (restaurants: any) => {
         this.restaurants = restaurants.data;
-        console.log('Restaurants récupérés avec succès pour la catégorie sélectionnée!', this.restaurants);
+        // console.log('Restaurants récupérés avec succès pour la catégorie sélectionnée!', this.restaurants);
       },
       (error) => {
         console.error("Erreur lors de la récupération des restaurants pour la catégorie sélectionnée:", error);
@@ -56,4 +56,6 @@ loadRestaurantsForSelectedCategory() {
     // this.getAllRestaurants();
   }
 }
+
+
 }

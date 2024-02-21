@@ -52,4 +52,14 @@ border:1px solid #FFA07A;
     color: #F8F3C6;
     font-weight: bold;
 }
-
+.pagi{
+    color: black;
+}
+img.imageRestaurant{
+    width: 250px !important;
+    height: 200px !important;
+}
+img.imagePLat{
+    width: 100% !important;
+    height: 300px !important;
+}

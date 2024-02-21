@@ -40,6 +40,33 @@ supprimerDuPanier(plat: any) {
 }
 
 
+// passerCommande() {
+//   const panier = this.panierService.getPanier();
+
+//   const commandes = panier.map(plat => ({
+//     plat_id: plat.id,
+//     nombrePlats: plat.quantite
+//   }));
+
+//   const commande = {
+//     commandes: commandes,
+//     lieuLivraison: this.adresseLivraison
+//   };
+
+//   this.panierService.envoyerCommande(commande).subscribe(
+//     (response) => {
+//       // console.log('Réponse de la commande :', response);
+//       this.panierService.viderPanier();
+//       this.message('Succès', 'success', 'Commande passée avec succès.');
+//       this.router.navigate(['/profil']);
+//     },
+//     (_error) => {
+//       this.message('Erreur', 'error', 'Veuillez vous connecter.');
+//       this.router.navigate(['/login']);
+//     }
+//   );
+// }
+
 passerCommande() {
   const panier = this.panierService.getPanier();
 
@@ -55,7 +82,9 @@ passerCommande() {
 
   this.panierService.envoyerCommande(commande).subscribe(
     (response) => {
-      console.log('Réponse de la commande :', response);
+      // Clear local storage after a successful order
+      localStorage.clear();
+
       this.panierService.viderPanier();
       this.message('Succès', 'success', 'Commande passée avec succès.');
       this.router.navigate(['/profil']);

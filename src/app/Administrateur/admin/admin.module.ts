@@ -10,11 +10,11 @@ import { AdminRoutingModule } from './admin.routing';
 
 @NgModule({
   declarations: [
-    AccueilAdminComponent,
-    MessageComponent,
-    CategorieComponent,
-    RestaurateurComponent,
-    ClientComponent,
+    // AccueilAdminComponent,
+    // MessageComponent,
+    // CategorieComponent,
+    // RestaurateurComponent,
+    // ClientComponent,
   ],
   imports: [CommonModule, AdminRoutingModule],
 })

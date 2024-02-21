@@ -17,7 +17,6 @@ import { AjouteplatComponent } from './Restaurateur/ajouteplat/ajouteplat.compon
 import { DasboardRestoComponent } from './Module/dasboard-resto/dasboard-resto.component';
 import { AccueilAdminComponent } from './Administrateur/accueil-admin/accueil-admin.component';
 import { CategorieComponent } from './Administrateur/categorie/categorie.component';
-import { DetailsRestaurantComponent } from './Utilisateur/details-restaurant/details-restaurant.component';
 import { PanierComponent } from './Utilisateur/panier/panier.component';
 import { RestaurateurComponent } from './Administrateur/restaurateur/restaurateur.component';
 import { ClientComponent } from './Administrateur/client/client.component';
@@ -34,7 +33,6 @@ const routes: Routes = [
   
   { path: 'accueil', component: AccueilComponent},
   { path: 'restaurant', component: RestaurantComponent},
-  { path: 'detailsrestaurant/id', component: DetailsRestaurantComponent },
   { path: 'panier', component: PanierComponent },
   { path: 'propos', component: ProposComponent},
   { path: 'guide', component: GuideComponent},

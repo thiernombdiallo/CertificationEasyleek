@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   // Validate email format
 validateEmail(email: string): boolean {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailRegex =/^[A-Za-z]+[A-Za-z0-9._%+-]+@[A-Za-z][A-Za-z0-9.-]+.[A-Za-z]{2,}$/;
   return emailRegex.test(email);
 }
 
@@ -40,13 +40,14 @@ validatePhoneNumber(phone: string): boolean {
   const phoneRegex = /^(70|75|76|77|78)[0-9]{7}$/;
   return phoneRegex.test(phone);
 }
+
   onRegister() {
 
     if (!this.username || !this.registerEmail || !this.adresse || !this.phone || !this.registerPassword) {
       Swal.fire({
         icon: 'error',
         title: 'Erreur!',
-        text: 'Veuillez remplir tous les champs.',
+        text: 'Veuillez remplir tous les champsfggfgfgfgbfgfg.',
       });
       return;
     }
@@ -70,7 +71,7 @@ validatePhoneNumber(phone: string): boolean {
       });
       return;
     }
-  
+
     // Validate phone number format
     if (!this.validatePhoneNumber(this.phone)) {
       Swal.fire({
@@ -101,12 +102,12 @@ validatePhoneNumber(phone: string): boolean {
   this.authService.register(data.name, data.email, data.adresse , data.phone, data.password).subscribe(
     (response) => {
       console.log('Réponse d\'inscription:', response);
-      this.login();
+      this.setIsSignIn(true);
     },
-    (error) => {
-      this.handleError(error);
-    }
   );
+  }
+  setIsSignIn(value: boolean): void {
+    this.isSignIn = value;
   }
 
   login() {

@@ -2,7 +2,7 @@
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner carouselBaniere">
     <div class="carousel-item h-100 active">
-      <img src="../../../assets/banierplats.png" class="d-block w-100 h-100" alt="carousel de la page d'accueil" >
+      <img src="../../../assets/banierdetails.png" class="d-block w-100 h-100" alt="carousel de la page d'accueil" >
     </div>
     <div class="carousel-item h-100 ">
       <img src="../../../assets/baniertout.png" class="d-block w-100 h-100" alt="carousel de la page d'accueil">
@@ -13,7 +13,7 @@
   </div>
 </div>
 <!-- section de resto avec ces cartes -->
-<div class="w-100 mx-auto me-5 my-4">
+<div class="w-100 mx-auto me-5 my-4" *ngIf="DetailPlatidentifier">
   <div class="d-flex justify-content-between my-4 gap-4">
     <h4 class="titreDash fw-bold">Tous les restaurants</h4>
     <div>
@@ -35,23 +35,73 @@
   </div>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 m-5">
     <div *ngFor="let restaurant of restaurants" class="col">
-      <div class="card rounded rounded-4 cardResto">
-        <div class="rounded rounded-4 w-100  cardRestoEntete d-flex justify-content-center">
-          <img src="http://127.0.0.1:8000/images/{{restaurant.image}}" class="card-img-top border border-2 w-75 h-75 my-5" alt="image restaurant">
+      <div class="card rounded rounded-4 cardResto" width="100px">
+        <div class="rounded rounded-4 w-100 h-75 cardRestoEntete d-flex justify-content-center">
+          <img src="http://127.0.0.1:8000/images/{{restaurant.image}}" class="card-img-top border border-2 w-75 h-75 my-5 imageRestaurant" alt="image restaurant">
         </div>
         <div class="card-body cardBodyResto">
           <div class="card-title d-flex justify-content-between">
             <h5>{{ restaurant.name }}</h5>
             <p class="badge badgeEtatResto">ouvert</p>
           </div>
-          <p class="card-text">{{ restaurant.description }}</p>
+          <!-- <p class="card-text">{{ restaurant.adresse }}</p> -->
         </div>
         <div class="card-footer rounded rounded-4 cardFooterResto d-flex justify-content-end">
-          <button class="boutonCommandeDts rounded rounded-5 px-3" routerLink="/detailsrestaurant/id">Commander</button>
+          <button class="boutonCommandeDts rounded rounded-5 px-3" (click)="toggleForm(); loadPlats(restaurant.id) ; loadMenus(restaurant.id)">Consulter</button>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+
+<section class="my-5 border mt-5" *ngIf="!DetailPlatidentifier">
+  <p><i class="bi bi-arrow-left-circle-fill display-4" (click)="toggleForm()"></i></p>
+<div class="w-100 mx-auto my-4">
+  
+    <div class="d-flex justify-content-between my-4 gap-4">
+     <div>
+        <h4 class="titreDash fw-bold">Titre Restaurant </h4>
+     </div>
+        <div>
+            <div class="d-flex justify-content-around gap-3 me-5">
+                <div>
+                  <select class="form-select selectc-input" aria-label="Default select example" (change)="onMenuChange()" [(ngModel)]="selectedMenuId">
+                    <option value="" disabled selected>Choisissez un type de menu</option>
+                    <option *ngFor="let menu of menus" [value]="menu.id">{{ menu.titre }}</option>
+                  </select>
+                </div>
+                <div class="search">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control inputsearchResto" placeholder="rechercher un restaurant">
+                        <span class="input-group-text iconsearch" id="basic-addon1"><i class="bi bi-search"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 m-5">
+    <div *ngFor="let plat of plats" class="col">
+      <div class="card rounded rounded-4 cardResto">
+        <div class="rounded rounded-4 w-100  cardRestoEntete d-flex justify-content-center"  >
+          <img src="http://127.0.0.1:8000/images/{{plat.image}}"  width="100px"  class="card-img-top border border-2 imagePLat" alt="plat image">
+        </div>
+        <div class="card-body cardBodyResto">
+          <div class="card-title d-flex justify-content-between">
+            <h5>{{ plat.libelle }}</h5>
+            <p class="">{{ plat.prix }} fcfa</p>
+          </div>
+          <p class="card-text">{{ plat.descriptif }}</p>
+        </div>
+        <div class="card-footer rounded rounded-4 cardFooterResto d-flex justify-content-end"> 
+          <button class="boutonCommandeDts rounded rounded-5 px-3" (click)="ajouterAuPanier(plat)">Ajouter <i class="bi bi-basket"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <!-- section de resto avec ces cartes -->
@@ -64,9 +114,9 @@
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <li class="page-item active"><a class="page-link">1</a></li>
-            <li class="page-item"><a class="page-link">2</a></li>
-            <li class="page-item"><a class="page-link">3</a></li>
+            <li class="page-item active"><a class="page-link active">1</a></li>
+            <li class="page-item"><a class="page-link pagi">2</a></li>
+            <li class="page-item"><a class="page-link pagi">3</a></li>
             <li class="page-item">
                 <a class="page-link" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
@@ -75,23 +125,28 @@
         </ul>
     </nav>
 </div>
-<!-- <div class="pagin d-flex justify-content-center">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item" (click)="changePage(currentPage - 1)" [class.disabled]="currentPage === 1">
-          <a class="page-link" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li class="page-item " *ngFor="let page of getPages()">
-          <a class="page-link active" (click)="changePage(page)" [class.active]="currentPage === page">{{ page }}</a>
-        </li>
-        <li class="page-item" (click)="changePage(currentPage + 1)" [class.disabled]="currentPage === getTotalPages()">
-          <a class="page-link" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    </div> -->
+
+</section>
+<!-- section de resto avec ces cartes -->
 <!-- pagination  -->
+
+<!-- <div class="pagin d-flex justify-content-center">
+  <nav aria-label="Page navigation example">
+      <ul class="pagination">
+          <li class="page-item">
+              <a class="page-link" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+              </a>
+          </li>
+          <li class="page-item "><a class="page-link active">1</a></li>
+          <li class="page-item"><a class="page-link pagi">2</a></li>
+          <li class="page-item"><a class="page-link pagi">3</a></li>
+          <li class="page-item">
+              <a class="page-link" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+              </a>
+          </li>
+      </ul>
+  </nav>
+</div> -->
+
