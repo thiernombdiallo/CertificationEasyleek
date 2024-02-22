@@ -58,10 +58,15 @@ export class GestionPlatService {
   //   descriptif: this.descriptif,
   //   menu_id: this.menu_id,
   // }
-  ajouterPlat(libelle: string, prix: string, image: any, descriptif: string, menu_id: string): Observable<any> {
+  // ajouterPlat(libelle: string, prix: string, image: any, descriptif: string, menu_id: string): Observable<any> {
+  //   const registerRestoUrl = `${this.platsUrl}/store`;
+  //   const userData = { libelle,  prix, image, descriptif, menu_id};
+  //   return this.http.post(registerRestoUrl, userData ,{ headers: this.getHeaders() });
+  // }
+
+  ajouterPlat(platData: any): Observable<any> {
     const registerRestoUrl = `${this.platsUrl}/store`;
-    const userData = { libelle,  prix, image, descriptif, menu_id};
-    return this.http.post(registerRestoUrl, userData ,{ headers: this.getHeaders() });
+    return this.http.post(registerRestoUrl, platData, { headers: this.getHeaders() });
   }
 
   deletePlat(platId: string): Observable<any> {

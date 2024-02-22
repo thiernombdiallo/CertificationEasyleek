@@ -13,7 +13,7 @@ import { ConfidentialiteComponent } from './Utilisateur/confidentialite/confiden
 import { GuideComponent } from './Utilisateur/guide/guide.component';
 import { RestaurantComponent } from './Utilisateur/restaurant/restaurant.component';
 import { ProfilComponent } from './Utilisateur/profil/profil.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './Restaurateur/menu/menu.component';
 import { CommandeComponent } from './Restaurateur/commande/commande.component';
 import { CommentaireComponent } from './Restaurateur/commentaire/commentaire.component';
@@ -60,6 +60,7 @@ import { DasboardRestoComponent } from './Module/dasboard-resto/dasboard-resto.c
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     
   ],
   providers: [],
