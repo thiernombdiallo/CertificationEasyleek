@@ -102,7 +102,8 @@ currentPage: number = 1;
   loadMenus(restaurant_id: any) {
     this.platService.getMenusUtilisateur(restaurant_id).subscribe(
       (menus: any) => {
-        this.menus = menus.menu;
+        console.log("je suis la reponse du menu ", menus.plats);
+        this.menus = menus.plats;
       },
       (error) => {
         console.error('Error fetching menus:', error);

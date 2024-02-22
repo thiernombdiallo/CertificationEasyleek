@@ -51,7 +51,6 @@ export class CategorieService {
     return this.http.get<any>(`${this.categorieUrl}/auth/categorie/show/${categorieId}`, { headers: headers });
   }
   getSingleCategoryPourTous(categorieId: string): Observable<any> {
-    const headers = this.getHeaders();
     return this.http.get<any>(`${this.categorieUrl}/restaurant/list/${categorieId}`);
   }
   getAllCategories(): Observable<any[]> {
