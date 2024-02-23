@@ -8,8 +8,8 @@
         <div>
           <button class="btn fw-bold me-3 boutonajouter-blog" (click)="etatSelectionne = 'enCours'">En cours</button>
           <button class="btn fw-bold me-3 boutonajouter-blog" (click)="etatSelectionne = 'livraison'">Livraison</button>
-          <button class="btn fw-bold me-3 boutonajouter-blog" (click)="etatSelectionne = 'acceptee'">Acceptée</button>
-          <button class="btn fw-bold me-3 boutonajouter-blog" (click)="etatSelectionne = 'refuser'">Refuser</button>
+          <button class="btn fw-bold me-3 boutonajouter-blog" (click)="etatSelectionne = 'acceptee'">Accepter</button>
+          <button class="btn fw-bold me-3 boutonajouter-blog" (click)="etatSelectionne = 'refusee'">Refuser</button>
           <button class="btn fw-bold boutonajouter-blog" (click)="etatSelectionne = 'termine'">Terminé</button>
 
 
@@ -32,15 +32,15 @@
                 <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Nom client</th>
                 <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Nom du plat</th>
                 <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Prix Total</th>
-                <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Lieux de Livraison
+                <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Lieu de livraison
                 </th>
                 <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Etat</th>
                 <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let commande of Commandes"
-                [hidden]="(commande.etatCommande === etatSelectionne || etatSelectionne === 'tous')">
+              <tr *ngFor="let commande of filterCommandesByEtat(etatSelectionne)"
+                [hidden]="etatSelectionne !== 'tous' && commande.etatCommande !== etatSelectionne">
                 <th scope="row">{{ commande.user_id }}</th>
                 <td>{{ commande.nomPlat }}</td>
                 <td>{{ commande.prixCommande }} fcfa</td>
@@ -49,10 +49,10 @@
                 <td class="d-flex justify-content-between">
                   <i class="bi bi-pencil-square display-6" data-bs-toggle="modal"
                     data-bs-target="#modifierCommande"></i>
+                    <i class="bi bi-truck display-6" (click)="termine(commande.id)"></i>
                   <i class="bi bi-x-octagon display-6" (click)="annulerCommande(commande.id)"></i>
                 </td>
               </tr>
-
             </tbody>
           </table>
         </div>

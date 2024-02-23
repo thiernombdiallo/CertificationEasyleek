@@ -42,4 +42,10 @@ constructor(private commandeService: CommandeService) {}
       }
     )
   }
+  filterCommandesByEtat(etat: string): any[] {
+    return this.Commandes.filter((commande) => commande.etatCommande === etat);
+  }
+  termine(commandeId :any){
+
+  }
   };
