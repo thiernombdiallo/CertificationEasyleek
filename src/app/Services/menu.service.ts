@@ -10,6 +10,7 @@ export class PlatService {
   private plattest=apiUrl
   private menuUrl = apiUrl + '/auth/menu';
   private platUrl = apiUrl + '/auth/plat';
+  
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +28,7 @@ export class PlatService {
   }
   getMenus(): Observable<any[]> {
     const headers = this.getHeaders();
-    return this.http.get<any[]>(`${this.menuUrl}/list`, { headers });
+    return this.http.get<any[]>(`${this.plattest}/auth/restaurant/menu/list`, { headers });
   }
   
   addMenu(newmenu: string): Observable<any> {

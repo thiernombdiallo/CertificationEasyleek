@@ -14,12 +14,12 @@ export class LoginComponent implements OnInit {
   email: string = '';
   phone: string = '';
 
-  isSignIn: boolean = true;
   username: string = '';
   password: string = '';
   adresse: string = "";
   registerPassword: string = '';
   registerEmail: string = '';
+  isSignIn: boolean = true;
   showEmailError: boolean = false;
   emailErrorMessage: string = '';
   showPasswordError: boolean = false;
@@ -40,6 +40,10 @@ validatePhoneNumber(phone: string): boolean {
   const phoneRegex = /^(70|75|76|77|78)[0-9]{7}$/;
   return phoneRegex.test(phone);
 }
+validateNom(username :string) : boolean {
+const nameRegex= /^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ-']$/;
+return nameRegex.test(username);
+}
 
   onRegister() {
 
@@ -47,7 +51,7 @@ validatePhoneNumber(phone: string): boolean {
       Swal.fire({
         icon: 'error',
         title: 'Erreur!',
-        text: 'Veuillez remplir tous les champsfggfgfgfgbfgfg.',
+        text: 'Veuillez remplir tous les champs.',
       });
       return;
     }
@@ -112,10 +116,11 @@ validatePhoneNumber(phone: string): boolean {
 
   login() {
     if (!this.email || !this.password) {
+
       Swal.fire({
         icon: 'error',
         title: 'Erreur!',
-        text: 'Veuillez remplir tous les champs.',
+        text: 'Veuillez remplir de bonne donnee.',
       });
       return;
     }

@@ -112,49 +112,136 @@
        color: #5D3C22;
    }
 
+   .ajoutArticle input{
+       border: 1px solid #FFA07A;
+   }
+   
+   .btn-add{
+       background-color: #5D3C22 !important;
+       color: white;
+       font-weight: bold !important;
+   }
+   
+   .titreAjout, .titreMdfArticle,.titreDetail{
+       color: #FFA07A;
+       font-weight: bold;
+   }
+   
+   .btn-closeAjout{
+       background-color: #FFA07A;
+       color: white;
+       border-radius: 50%;
+   }
+   
+   .mdfArticle input,textarea{
+       border: 1px solid #FFA07A;
+   }
+   
+   .btnUpdate{
+       background-color: #5D3C22 !important;
+       color: white;
+       font-weight: bold;
+   }
+   
+   .btnAnnuler{
+       background-color: #FFA07A !important;
+       color: white;
+       font-weight: bold;
+   }
+   
+   .btnCloseDetail{
+       background-color: #FFA07A;
+       color: white;
+   }
+/* Media query for screens smaller than 1200px */
 @media screen and (max-width:1200px) {
-    
+    .home-section {
+        width: 100%;
+        left: 0;
+    }
+
+    .card {
+        width: 90%; /* Adjust the width of the card as needed */
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5%;
+    }
+
+    .boutonajouter-blog {
+        margin-top: 10px;
+    }
+
+    .table-responsive {
+        overflow-x: auto; /* Make the table scroll horizontally on smaller screens */
+    }
+
+    /* Add other responsive styles as needed */
+}
+
+/* Media query for screens smaller than 992px (tablets) */
+@media screen and (max-width:992px) {
+    .card {
+        width: 95%; /* Adjust the width of the card as needed for tablets */
+    }
+
+    .search {
+        margin-top: 10px;
+    }
+
+    /* Add other responsive styles as needed */
+}
+
+/* Media query for screens smaller than 768px */
+@media screen and (max-width:768px) {
+    .card {
+        width: 100%; /* Adjust the width of the card as needed for screens <= 768px */
+    }
+
+    .search {
+        margin-top: 10px;
+    }
+
+    /* Add other responsive styles as needed */
+}
+
+/* Media query for screens smaller than 576px (phones) */
+@media screen and (max-width:576px) {
+    .card {
+        width: 100%; /* Adjust the width of the card as needed for phones */
+    }
+
+    .search {
+        margin-top: 10px;
+    }
+
+    .btn {
+        width: 100%; /* Make buttons full width on phones */
+    }
+
+    /* Add other responsive styles as needed */
+}
+
+@media screen and (max-width:400px) {
+    .home-section {
+        width: 100%;
+        left: 0;
+    }
+
+    .card {
+        width: 95%; /* Adjust the width of the card as needed for screens <= 400px */
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5%;
+    }
+
+    .boutonajouter-blog {
+        margin-top: 10px;
+    }
+
+    .table-responsive {
+        overflow-x: auto; /* Make the table scroll horizontally on smaller screens */
+    }
+
+    /* Add other responsive styles as needed */
 }
 /* **************************************************************************************************************************** */
-
-.ajoutArticle input{
-    border: 1px solid #FFA07A;
-}
-
-.btn-add{
-    background-color: #5D3C22 !important;
-    color: white;
-    font-weight: bold !important;
-}
-
-.titreAjout, .titreMdfArticle,.titreDetail{
-    color: #FFA07A;
-    font-weight: bold;
-}
-
-.btn-closeAjout{
-    background-color: #FFA07A;
-    color: white;
-    border-radius: 50%;
-}
-
-.mdfArticle input,textarea{
-    border: 1px solid #FFA07A;
-}
-
-.btnUpdate{
-    background-color: #5D3C22 !important;
-    color: white;
-    font-weight: bold;
-}
-
-.btnAnnuler{
-    background-color: #FFA07A !important;
-    color: white;
-    font-weight: bold;
-}
-
-.btnCloseDetail{
-    background-color: #FFA07A;
-    color: white;
-}

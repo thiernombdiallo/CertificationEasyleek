@@ -34,11 +34,12 @@ const routes: Routes = [
   { path: 'accueil', component: AccueilComponent},
   { path: 'restaurant', component: RestaurantComponent},
   { path: 'panier', component: PanierComponent },
-  { path: 'propos', component: ProposComponent},
+  { path: 'Apropos', component: ProposComponent },
   { path: 'guide', component: GuideComponent},
   { path: 'confidentialite', component:ConfidentialiteComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'profil', component: ProfilComponent },
+
 
   { path: 'dashboardResto', component: DasboardRestoComponent},
   { path: 'menuResto', component: MenuComponent},

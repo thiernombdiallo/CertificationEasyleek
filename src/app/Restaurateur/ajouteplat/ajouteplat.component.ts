@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { CommandeService } from 'src/app/Services/commande.service';
 import { GestionPlatService } from 'src/app/Services/gestion-plat.service';
 import { PlatService } from 'src/app/Services/menu.service';
@@ -40,14 +40,40 @@ export class AjouteplatComponent {
     this.ajoutArticle = this.formBuilder.group({
       libelle: ['', Validators.required],
       descriptif: ['', Validators.required],
-      image: ['', Validators.required],
+      image: ['', [Validators.required, this.validateImage]],
       prix: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
       menu_id: [null, Validators.required]
     });
   }
 
 
-
+  validateImage = (control: AbstractControl): ValidationErrors | null => {
+    const file = control.value as File;
+  
+    if (!file) {
+      // Aucun fichier sélectionné
+      return { required: true };
+    }
+  
+    const fileExtension = file.name.split('.').pop()?.toLowerCase();
+  
+    if (fileExtension === undefined) {
+      // Extension de fichier non définie
+      return { invalidExtension: true };
+    }
+  
+    const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif']; // Ajoutez les extensions autorisées
+  
+    if (allowedExtensions.indexOf(fileExtension) === -1) {
+      // Extension de fichier non autorisée
+      return { invalidExtension: true };
+    }
+  
+    // Image valide
+    return null;
+  };
+  
+  
 
   // tous les plats
   getAllmenu() {
@@ -55,7 +81,7 @@ export class AjouteplatComponent {
     this.recupererMenu.getMenus().subscribe(
       (menu: any) => {
         console.log('Menus récupérés avec succès !', menu);
-        this.menus = menu.menu;
+        this.menus = menu.menus;
       },
       (error) => {
         console.error("Erreur lors de la récupération des menus :", error);
@@ -80,23 +106,48 @@ export class AjouteplatComponent {
     } else {
       console.error('No file selected.');
     }
-  }
+  }  
+
+  // addPlat() {
+  //   if (this.ajoutArticle.valid) {
+  //     const platAdd = this.ajoutArticle.value;
+  //     console.log("je suis platadd avant l'ajout ", platAdd);
+  //     this.platservice.ajouterPlat(platAdd).subscribe(
+  //       (response: any) => {
+  //         console.log('Plat ajouté avec succès !', response);
+  //         this.loadPlats();
+  //       },
+  //       (error: any) => {
+  //         console.error('Erreur lors de l\'ajout du plat :', error);
+  //       }
+  //     );
+  //   }
+  // }
+
 
   addPlat() {
     if (this.ajoutArticle.valid) {
       const platAdd = this.ajoutArticle.value;
       console.log("je suis platadd avant l'ajout ", platAdd);
-      this.platservice.ajouterPlat(platAdd).subscribe(
-        (response: any) => {
-          console.log('Plat ajouté avec succès !', response);
-          this.loadPlats();
-        },
-        (error: any) => {
-          console.error('Erreur lors de l\'ajout du plat :', error);
-        }
-      );
+  
+      // Ajoutez une vérification pour vous assurer que l'image est correctement définie
+      if (platAdd.image instanceof File) {
+        // Effectuez l'appel API uniquement si l'image est une instance de File
+        this.platservice.ajouterPlat(platAdd).subscribe(
+          (response: any) => {
+            console.log('Plat ajouté avec succès !', response);
+            this.loadPlats();
+          },
+          (error: any) => {
+            console.error('Erreur lors de l\'ajout du plat :', error);
+          }
+        );
+      } else {
+        console.error('Erreur : Aucune image sélectionnée.');
+      }
     }
   }
+  
 
 
   onMenuChange() {

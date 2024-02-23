@@ -12,6 +12,10 @@
     left: 240px;
     transition: all 0.5s ease;
   }
+  .active{
+    color: #FFA07A;
+    background-color: #5D3C22;
+  }
 .boutonajouter-blog{
     color: #FFA07A;
     border: 2px solid #FFA07A ;

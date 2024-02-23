@@ -1,64 +1,82 @@
 <app-dasboard-resto></app-dasboard-resto>
 <section class="home-section">
-<div>
+  <div>
     <h3 class="text-center mt-2 fw-bold titremere-blog">Les commandes</h3>
-    <div class="d-flex justify-content-between">
+
+    <div class="contenuDelapage">
+      <div class="d-flex justify-content-between my-4">
         <div>
-            <button class="btn fw-bold me-3 boutonajouter-blog" data-bs-toggle="modal" data-bs-target="#ajoutplat">Liste</button>
-            <button class="btn fw-bold me-3  boutonajouter-blog" data-bs-toggle="modal" data-bs-target="#ajoutplat">En cours</button>
-            <button class="btn fw-bold me-3 boutonajouter-blog" data-bs-toggle="modal" data-bs-target="#ajoutplat">Livraison</button>
-            <button class="btn fw-bold boutonajouter-blog" data-bs-toggle="modal" data-bs-target="#ajoutplat">Termine</button>
+          <button class="btn fw-bold me-3 boutonajouter-blog" (click)="etatSelectionne = 'enCours'">En cours</button>
+          <button class="btn fw-bold me-3 boutonajouter-blog" (click)="etatSelectionne = 'livraison'">Livraison</button>
+          <button class="btn fw-bold me-3 boutonajouter-blog" (click)="etatSelectionne = 'acceptee'">Acceptée</button>
+          <button class="btn fw-bold me-3 boutonajouter-blog" (click)="etatSelectionne = 'refuser'">Refuser</button>
+          <button class="btn fw-bold boutonajouter-blog" (click)="etatSelectionne = 'termine'">Terminé</button>
+
+
         </div>
+
         <div class="search">
           <div class="input-group mb-3">
-              <input type="text" class="form-control inputPorteur" placeholder="Chercher une commande">
-              <button class="input-group-text iconsearch" id="basic-addon1"><i class="bi bi-search"></i></button>
+            <input type="text" class="form-control inputPorteur" placeholder="Chercher une commande">
+            <button class="input-group-text iconsearch" id="basic-addon1"><i class="bi bi-search"></i></button>
           </div>
+        </div>
+      </div>
+
+
+      <div class="card w-75" style="margin-top:8%;border:2px solid red;margin-left:15%;border:1px solid #ffa07a;">
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Nom client</th>
+                <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Nom du plat</th>
+                <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Prix Total</th>
+                <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Lieux de Livraison
+                </th>
+                <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Etat</th>
+                <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let commande of Commandes"
+                [hidden]="(commande.etatCommande === etatSelectionne || etatSelectionne === 'tous')">
+                <th scope="row">{{ commande.user_id }}</th>
+                <td>{{ commande.nomPlat }}</td>
+                <td>{{ commande.prixCommande }} fcfa</td>
+                <td>{{ commande.lieuLivraison }}</td>
+                <td>{{ commande.etatCommande }}</td>
+                <td class="d-flex justify-content-between">
+                  <i class="bi bi-pencil-square display-6" data-bs-toggle="modal"
+                    data-bs-target="#modifierCommande"></i>
+                  <i class="bi bi-x-octagon display-6" (click)="annulerCommande(commande.id)"></i>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Modal de mise a jour de la commande  -->
+  <div class="modal fade" id="modifierCommande" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Details Commandes</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"><i class="bi bi-x-octagon"></i> Annuler commande</button>
+        </div>
       </div>
     </div>
   </div>
 
-<div class="card w-75"style="margin-top:8%;border:2px solid red;margin-left:15%;border:1px solid #ffa07a;">
-    <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Nom client</th>
-            <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Nombres</th>
-            <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white; ">Statut</th>
-            <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Prix Total</th>
-            <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Etat</th>
-            <th scope="col" style="background-color: #FFA07A;font-weight:bold; color: white;">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Abdou Diop </th>
-            <td class="">1</td>
-            <td>A livre</td>
-            <td>2000 fcfa</td>
-            <td>En attente</td>
-            <td><i class="bi bi-pencil-square display-6"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">Tarib Sow</th>
-            <td class="" >2</td>
-            <td>A livre</td>
-            <td>1500 fcfa</td>
-            <td>En attente</td>
-            <td><i class="bi bi-pencil-square display-6"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">Alain Sall</th>
-            <td class="">3</td>
-            <td>A livre</td>
-            <td>3000 fcfa </td>
-            <td>En attente</td>
-            <td><i class="bi bi-pencil-square display-6"></i></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  
 </section>

@@ -12,6 +12,9 @@
   background: #5D3C22;
   transition: all 0.5s ease;
 }
+.active{
+  color: #FFA07A !important;
+}
 .sidebar.active{
   width: 60px;
 }

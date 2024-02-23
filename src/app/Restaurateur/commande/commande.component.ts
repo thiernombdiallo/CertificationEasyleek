@@ -1,3 +1,4 @@
+import { Token } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { CommandeService } from 'src/app/Services/commande.service';
 
@@ -8,7 +9,9 @@ import { CommandeService } from 'src/app/Services/commande.service';
 })
 export class CommandeComponent {
  
-
+  etatSelectionne: string = 'acceptee';
+  Commandes :any[]=[] ;
+  platId :string="";
 
   ngOnInit(): void {
     // this.loadCommande(); 
@@ -16,15 +19,13 @@ export class CommandeComponent {
     
   }
 
-  Commandes :any[]=[] ;
-  platId :string="";
 constructor(private commandeService: CommandeService) {}
 
   getAllCommande(){
-    this.commandeService.getRestoCommandes(this.platId).subscribe(
+    this.commandeService.getRestoCommandes().subscribe(
       (commandes :any) => {
         console.log('JNDFGJNDGLDNGIKNGKNNGGBJLGDFNFGJNDKLDFKF?', commandes)
-      this.Commandes = commandes.data;
+      this.Commandes = commandes.commandes;
       console.log('cest la reponse du utilisateur', this.Commandes)
   
     },
@@ -32,5 +33,13 @@ constructor(private commandeService: CommandeService) {}
       console.error('Erreur lors de la récupération des commandes utilisateur:', error);
     }
   );
+  }
+
+  annulerCommande(commadeId : any){
+    this.commandeService.annuleruneCommande(commadeId).subscribe(
+      (responses:any)=>{
+        console.log("c'est la reponse du reponse", responses);
+      }
+    )
   }
   };

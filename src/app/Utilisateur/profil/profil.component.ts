@@ -10,11 +10,22 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class ProfilComponent implements OnInit {
 
+  currentTemplate = 'template1';
+
   constructor(private authService: AuthService
     , private userService: UserService , private panierService :PanierService) {}
 
   logout(): void {
     this.authService.logout();
+  }
+
+
+  showTemplate1() {
+    this.currentTemplate = 'template1';
+  }
+
+  showTemplate2() {
+    this.currentTemplate = 'template2';
   }
 
   name: string = '';

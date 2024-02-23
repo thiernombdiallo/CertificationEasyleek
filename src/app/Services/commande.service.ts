@@ -26,8 +26,14 @@ export class CommandeService {
     }
   }
 
-  getRestoCommandes(platId :string): Observable<any[]> {
+  getRestoCommandes(): Observable<any[]> {
     const headers = this.getHeaders();
-    return this.http.get<any[]>(`${this.platsUrl}/auth/commande/plat/list/{plat_id}${platId}` , { headers });
+    return this.http.get<any[]>(`${this.platsUrl}/auth/restaurant/commande/plat/list` , { headers });
   }
+  annuleruneCommande(id: any): Observable<any[]> {
+    const headers = this.getHeaders();
+    return this.http.put<any>(`${this.platsUrl}/auth/commande/refuser/${id}`, null, { headers });
+  }
+  
+ 
 }

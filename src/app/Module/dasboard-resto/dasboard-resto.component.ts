@@ -26,6 +26,10 @@ export class DasboardRestoComponent {
         this.renderer.addClass(sidebarBtn, 'bx-menu');
       }
     });
+    const mobileMenuBtn = this.el.nativeElement.querySelector('.mobileMenuBtn');
+    mobileMenuBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+});
   }
 
   logout(): void {

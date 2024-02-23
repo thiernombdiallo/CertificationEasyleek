@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GestionPlatService } from 'src/app/Services/gestion-plat.service';
 import { PlatService } from 'src/app/Services/menu.service';
 import Swal from 'sweetalert2';
 
@@ -16,19 +17,22 @@ export class MenuComponent {
   editingMenu: any = {};
   editedTitre: string = '';
   plats:any[] = [];
+  menu_id: string="";
 
 
-constructor(private menusservice: PlatService) {}
+constructor(private menusservice: PlatService ,  private platservice: GestionPlatService) {}
 
   ngOnInit(): void {
     this.getMenu(); 
+    this.fetchPlats();
+    this.loadPlats(this.menu_id)
   }
   fetchPlats() {
     // console.log()
     this.menusservice.getRestaurantList().subscribe(
       (response: any) => {
         // console.log("Liste des plats :", response);
-        this.plats = response; // Adjust if the response structure is different
+        this.plats = response; 
       },
     );
   }
@@ -90,8 +94,8 @@ constructor(private menusservice: PlatService) {}
   getMenu() {
 
     this.menusservice.getMenus().subscribe((response :any) => {
-      // console.log("voir liste", response.menu)
-      this.menus = response.menu;
+      // console.log("voir listedfghjk", response)
+      this.menus = response.menus;
     });
   }
   detail(menuId: any) {
@@ -105,6 +109,15 @@ constructor(private menusservice: PlatService) {}
         console.error('Erreur lors de la récupération des détails du menu', error);
         // Handle error as needed
       }
+    );
+  }
+
+  loadPlats(menu_id:string) {
+    this.platservice.getPlatsForMenu(menu_id).subscribe(
+      (plats: any) => {
+        console.log('Plats récupérés avec succès!gyugygvydfhsd', this.plats);
+        this.plats = plats;
+      },
     );
   }
 }
